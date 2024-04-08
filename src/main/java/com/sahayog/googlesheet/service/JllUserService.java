@@ -36,43 +36,23 @@ public class JllUserService {
             String region, String area, String branch,
             String designation, String password, String userIdStatus) {
         if (getUser(userName) == null) {
-            AreaData areaData;
-            try {
-                areaData = new AreaData("/home/ritik/NetBeansProjects/JLL/src/main/resources/static/js/zone_Data.json");
-                // Getter example
-//                ArrayList<String> branchL;
-                JsonArray jsonArray = areaData.getArea(zone, region, area);
-//                ArrayList<String> areaL = (ArrayList<String>) areaData.getAreasForRegion(zone, region);
-                ArrayList<String> branchL = (ArrayList<String>) areaData.convertJsonArrayToList(jsonArray);
-
-                JllUser JllUser = new JllUser();
-                JllUser.setEmp_id(emp_id);
-                JllUser.setUserName(userName);
-                JllUser.setEmail(email);
-                JllUser.setZone(zone);
-                JllUser.setRegion(region);
-                ArrayList<String> areaL = new ArrayList<String>();
-                areaL.add(area);
-                JllUser.setArea(areaL);
-//                ArrayList<String> branchL = new ArrayList<String>();
-//                branchL.add(branch);
-                JllUser.setBranch(branchL);
-                JllUser.setDesignation(designation);
-                JllUser.setPassword(password);
-                JllUser.setUserIdStatus(userIdStatus);
-                JllUser.setKey(null);
-                repository.save(JllUser);
-                return JllUser;
-            } catch (IOException ex) {
-                Logger.getLogger(JllUserService.class.getName()).log(Level.SEVERE, null, ex);
+            if ("Branch Manager".equals(designation) || "Account Executive".equals(designation) || "Risk Offcer".equals(designation)) {
+                JllUser addUser = addUser(emp_id, userName, email, zone, region, area, branch, designation, password, userIdStatus);
+                return addUser;
+            } else if ("Area Manager".equals(designation) || "Area Account Manager".equals(designation) || "Auditor".equals(designation)) {
+                JllUser addManager = addManager(emp_id, userName, email, zone, region, area, branch, designation, password, userIdStatus);
+                return addManager;
+            } else if ("Regional Manager".equals(designation) || "MIS".equals(designation) || "Cluster Audit Manager".equals(designation)) {
+                JllUser addSuperUser = addSuperUser(emp_id, userName, email, zone, region, area, branch, designation, password, userIdStatus);
+                return addSuperUser;
             }
         }
         return getUser(userName);
     }
 
     public JllUser update(int id, String emp_id, String userName, String email,
-            String zone, String region, String area,
-            String branch, String designation,
+            String zone, String region, ArrayList<String> area,
+            ArrayList<String> branch, String designation,
             String password, String userIdStatus) {
         if (getUser(userName) != null) {
             JllUser JllUser = new JllUser();
@@ -82,11 +62,12 @@ public class JllUserService {
             JllUser.setEmail(email);
             JllUser.setZone(zone);
             JllUser.setRegion(region);
-            ArrayList<String> areaL = new ArrayList<String>();
-            areaL.add(area);
-            JllUser.setArea(areaL);
-            ArrayList<String> branchL = new ArrayList<String>();
-            branchL.add(branch);
+//            ArrayList<String> areaL = new ArrayList<String>();
+//            areaL.add(area);
+//            ArrayList<String> branchL = new ArrayList<String>();
+//            branchL.add(branch);
+            JllUser.setArea(area);
+            JllUser.setBranch(branch);
             JllUser.setDesignation(designation);
             JllUser.setPassword(password);
             JllUser.setUserIdStatus(userIdStatus);
@@ -97,7 +78,7 @@ public class JllUserService {
         return null;
     }
 
-    public JllUser update(int id, String emp_id, String userName, String email) {
+    public JllUser updateProfile(int id, String emp_id, String userName, String email) {
         JllUser user = get(id);
         if (user != null) {
             user.setEmp_id(emp_id);
@@ -269,6 +250,113 @@ public class JllUserService {
             }
         }
         return jus;
+    }
+
+    public JllUser addUser(String emp_id, String userName, String email, String zone,
+            String region, String area, String branch,
+            String designation, String password, String userIdStatus) {
+        if (getUser(userName) == null) {
+            JllUser JllUser = new JllUser();
+            JllUser.setEmp_id(emp_id);
+            JllUser.setUserName(userName);
+            JllUser.setEmail(email);
+            JllUser.setZone(zone);
+            JllUser.setRegion(region);
+            ArrayList<String> areaL = new ArrayList<>();
+            areaL.add(area);
+            JllUser.setArea(areaL);
+            ArrayList<String> branchL = new ArrayList<>();
+            branchL.add(branch);
+            JllUser.setBranch(branchL);
+            JllUser.setDesignation(designation);
+            JllUser.setPassword(password);
+            JllUser.setUserIdStatus(userIdStatus);
+            JllUser.setKey(null);
+            repository.save(JllUser);
+            return JllUser;
+        }
+        return getUser(userName);
+    }
+
+    public JllUser addManager(String emp_id, String userName, String email, String zone,
+            String region, String area, String branch,
+            String designation, String password, String userIdStatus) {
+        if (getUser(userName) == null) {
+            AreaData areaData;
+            try {
+                areaData = new AreaData("/home/ritik/NetBeansProjects/JLL/src/main/resources/static/js/zone_Data.json");
+                // Getter example
+//                ArrayList<String> branchL;
+                JsonArray jsonArray = areaData.getArea(zone, region, area);
+//                ArrayList<String> areaL = (ArrayList<String>) areaData.getAreasForRegion(zone, region);
+                ArrayList<String> branchL = (ArrayList<String>) areaData.convertJsonArrayToList(jsonArray);
+
+                JllUser JllUser = new JllUser();
+                JllUser.setEmp_id(emp_id);
+                JllUser.setUserName(userName);
+                JllUser.setEmail(email);
+                JllUser.setZone(zone);
+                JllUser.setRegion(region);
+                ArrayList<String> areaL = new ArrayList<String>();
+                areaL.add(area);
+                JllUser.setArea(areaL);
+                JllUser.setBranch(branchL);
+                JllUser.setDesignation(designation);
+                JllUser.setPassword(password);
+                JllUser.setUserIdStatus(userIdStatus);
+                JllUser.setKey(null);
+                repository.save(JllUser);
+                return JllUser;
+            } catch (IOException ex) {
+                Logger.getLogger(JllUserService.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return getUser(userName);
+    }
+
+    public JllUser addSuperUser(String emp_id, String userName, String email, String zone,
+            String region, String area, String branch,
+            String designation, String password, String userIdStatus) {
+        if (getUser(userName) == null) {
+            AreaData areaData;
+            try {
+                areaData = new AreaData("/home/ritik/NetBeansProjects/JLL/src/main/resources/static/js/zone_Data.json");
+
+                ArrayList<String> branchList = new ArrayList<>();
+                ArrayList<String> areaList = (ArrayList<String>) areaData.getAreasForRegion(zone, region);
+
+                for (String areaName : areaList) {
+
+                    JsonArray jsonArray = areaData.getArea(zone, region, areaName);
+                    List<String> list = areaData.convertJsonArrayToList(jsonArray);
+                    for (String branchName : list) {
+                        branchList.add(branchName);
+                    }
+                }
+
+                JllUser JllUser = new JllUser();
+                JllUser.setEmp_id(emp_id);
+                JllUser.setUserName(userName);
+                JllUser.setEmail(email);
+                JllUser.setZone(zone);
+                JllUser.setRegion(region);
+//                ArrayList<String> areaL = new ArrayList<String>();
+//                areaL.add(area);
+                JllUser.setArea(areaList);
+//                ArrayList<String> branchL = new ArrayList<String>();
+//                branchL.add(branch);
+                JllUser.setBranch(branchList);
+                JllUser.setDesignation(designation);
+                JllUser.setPassword(password);
+                JllUser.setUserIdStatus(userIdStatus);
+                JllUser.setKey(null);
+                repository.save(JllUser);
+                return JllUser;
+            } catch (IOException ex) {
+                Logger.getLogger(JllUserService.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return getUser(userName);
     }
 
 }

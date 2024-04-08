@@ -714,7 +714,7 @@
                                 <button type="button" class="form-button attractive-button" ng-click="exportToExcel()">Export To Excel</button>
                                 <button type="button" class="form-button attractive-button" ng-click="branchAccess()" >Branch Access</button>
                             </td>
-                            <td colspan="4" style="text-align: right;">
+                            <td colspan="5" style="text-align: right;">
                                 <button type="button" class="form-button attractive-button" onclick="switchList('Accepted')" data-list="Accepted" ng-click="listForAccept()" ng-model="Accepted">{{Accepted}}</button>
                                 <button type="button" class="form-button attractive-button" onclick="switchList('Rejected')" data-list="Rejected" ng-click="listForReject()" ng-model="Rejected">{{Rejected}}</button>
                                 <button type="button" class="form-button attractive-button" onclick="switchList('Pending')" data-list="Pending" ng-click="listForPending()" ng-model="Pending">{{Pending}}</button>
@@ -725,26 +725,27 @@
                     </thead>
                     <tr class="cardviewth" style="position: sticky; position: -webkit-sticky; top: 0;">
                         <!--<tr class="cardviewth" >-->
-                            <th style="width: 4%">Emp_ID</th>
-                            <th style="width: 12%">User Name</th>
-                            <th style="width: 12%">Zone</th>
-                            <th style="width: 12%">Region</th>
-                            <th style="width: 12%">Area</th>
-                            <th style="width: 12%">Branch</th>
-                            <th style="width: 8%">Designation</th>
-                            <th style="width: 6%">Status</th>
+                            <th style="width: 5%">Emp_ID</th>
+                            <th style="width: 5%">User Name</th>
+                            <th style="width: 5%">Zone</th>
+                            <th style="width: 5%">Region</th>
+                            <th style="width: 10%">Area</th>
+                            <th style="width: 10%">Branch</th>
+                            <th style="width: 5%">Designation</th>
+                            <th style="width: 5%">Status</th>
+                            <th style="width: 10%"></th>
                         <!--</tr>-->
                     </tr>
                     <tr class="cardviewtr" ng-repeat="record in list | continuousSubstringFilter:search:['id','userName', 'branchName','userType','userIdStatus']">
-                        <td >{{record.emp_id}}</td>
-                        <td >{{record.userName}}</td>
-                        <td >{{record.zone}}</td>
-                        <td >{{record.region}}</td>
-                        <td >{{record.area}}</td>
-                        <td >{{record.branch}}</td>
-                        <td >{{record.designation}}</td>
-                        <td >{{record.userIdStatus}}</td>
-                        <td>
+                        <td style="width: 5%">{{record.emp_id}}</td>
+                        <td style="width: 5%">{{record.userName}}</td>
+                        <td style="width: 5%">{{record.zone}}</td>
+                        <td style="width: 5%">{{record.region}}</td>
+                        <td style="width: 10%">{{record.area}}</td>
+                        <td style="width: 10%">{{record.branch}}</td>
+                        <td style="width: 5%">{{record.designation}}</td>
+                        <td style="width: 5%">{{record.userIdStatus}}</td>
+                        <td style="width: 10%">
                             <button type="button" class="form-buttonGr" ng-click="onUserEditA(record)" id="Accept" ng-show="acceptVisible">Accept</button>&nbsp;&nbsp;
                             <button type="button" class="form-buttonRe" ng-click="onUserEditR(record)" id="Reject" ng-show="rejectVisible">Reject</button>
                             <button type="button" class="form-buttonRe" ng-click="onUserEditT(record)" id="Reject" ng-show="terminateVisible">Terminate</button>

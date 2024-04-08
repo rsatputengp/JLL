@@ -45,8 +45,8 @@ public class JllUserController {
     @RequestMapping("update/{id}/{emp_id}/{userName}/{email}/{zone}/{region}/{area}/{branch}/{designation}/{password}/{userIdStatus}")
     public JllUser update(@PathVariable int id, @PathVariable String emp_id, @PathVariable String userName,
             @PathVariable String email, @PathVariable String zone,
-            @PathVariable String region, @PathVariable String area,
-            @PathVariable String branch, @PathVariable String designation,
+            @PathVariable String region, @PathVariable ArrayList<String> area,
+            @PathVariable ArrayList<String> branch, @PathVariable String designation,
             @PathVariable String password, @PathVariable String userIdStatus) {
         JllUser jllUser
                 = service.update(id, emp_id, userName, email, zone, region, area, branch, designation, password, userIdStatus);
@@ -58,6 +58,14 @@ public class JllUserController {
             @PathVariable String userIdStatus) {
         JllUser jllUser
                 = service.update(emp_id, userName, userIdStatus);
+        return jllUser;
+    }
+
+    @RequestMapping("updateProfile/{id}/{emp_id}/{userName}/{userIdStatus}")
+    public JllUser updateProfile(@PathVariable int id, @PathVariable String emp_id,
+            @PathVariable String userName, @PathVariable String userIdStatus) {
+        JllUser jllUser
+                = service.updateProfile(id, emp_id, userName, userIdStatus);
         return jllUser;
     }
 
