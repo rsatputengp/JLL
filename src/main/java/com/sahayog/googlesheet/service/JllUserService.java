@@ -97,6 +97,18 @@ public class JllUserService {
         return null;
     }
 
+    public JllUser update(int id, String emp_id, String userName, String email) {
+        JllUser user = get(id);
+        if (user != null) {
+            user.setEmp_id(emp_id);
+            user.setUserName(userName);
+            user.setEmail(email);
+            repository.save(user);
+            return user;
+        }
+        return null;
+    }
+
     public JllUser update(String emp_id, String userName, String userIdStatus) {
         JllUser user = getUser(userName);
         if (user != null) {
