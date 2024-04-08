@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sign Up module for JLLmanager</title>
+        <link rel="stylesheet" href="css/material-design-iconic-font.min.css">
+        <link rel="stylesheet" href="css/style.css">
+        <!--<meta name="robots" content="noindex, follow">-->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+        <script src="js/index.js" type="text/javascript"></script>
+    </head>
+    <body ng-app="app" ng-controller="signUpController">
+        <div class="main">
+            <section class="signup" ng-show="signUpSection">
+                <div class="container">
+                    <div class="signup-content">
+                        <div class="signup-form">
+                            <h2 class="form-title">Sign up</h2>
+                            <form class="register-form" id="register-form" ng-submit="signUpSubmit()">
+                                <div class="form-group">
+                                    <!-- <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label> -->
+                                    <input type="tel" name="employee-id" id="employee-id" placeholder="Your Employee-Id" ng-model="emp_id"
+                                           title="Enter your Employee-Id" required="">
+                                </div>
+                                <div class="form-group">
+                                    <!-- <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label> -->
+                                    <input type="text" name="name" id="name" placeholder="Your Name" ng-model="userName"
+                                           title="Enter your Full Name" required="">
+                                </div>
+
+                                <div class="form-group">
+                                    <!-- <label for="email"><i class="zmdi zmdi-email"></i>abc</label> -->
+                                    <input type="email" name="email" id="email" placeholder="Your Email" ng-model="email"
+                                           required="">
+                                </div>
+
+                                <div class="form-group">
+                                    <select id="zone" ng-model="selectedZone" ng-change="updateRegion()" required="">
+                                        <option value="">Select Zone</option>
+                                        <option value="Zone-1">Zone-1</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <select id="region" ng-model="selectedRegion" ng-change="updateArea()" required="">
+                                        <option value="">Select Region</option>
+                                        <option ng-repeat="(key, value) in regions[selectedZone]" value="{{key}}">{{key}}
+                                        </option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <select id="area" ng-model="selectedArea" ng-change="updateBranch()" required="">
+                                        <option value="">Select Area</option>
+                                        <option ng-repeat="area in areas" value="{{area}}">{{area}}</option>
+                                    </select>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <select id="branch" ng-model="selectedBranch" required="">
+                                        <option value="">Select Branch</option>
+                                        <option ng-repeat="branch in branches" value="{{branch}}">{{branch}}</option>
+                                    </select>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <select id="designation" ng-model="selectedDesignation" required="">
+                                        <option value="">Select the Designation</option>
+                                        <optgroup label="Sales Department">
+                                            <option value="Branch Manager">Branch Manager</option>
+                                            <option value="Area Manager">Area Manager</option>
+                                        </optgroup>
+                                        <optgroup label="Operation Department">
+                                            <option value="Account Executive">Account Executive</option>
+                                            <option value="Area Account Manager">Area Account Manager</option>
+                                        
+                                        </optgroup>
+                                        <optgroup label="Audit Department">
+                                            <option value="Risk Officer">Risk Officer</option>
+                                            <option value="Auditor">Auditor</option>
+                                            <option value="Cluster Audit Manager">Cluster Audit Manager</option>
+                                            </optgroup>
+                                        <optgroup label="JLL Inspection">
+                                            <option value="regional manager">Regional Manager</option>
+                                            <option value="MIS">MIS</option>
+                                        </optgroup>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <!-- <label for="pass"><i class="zmdi zmdi-lock"></i></label> -->
+                                    <input type="password" name="pass" id="pass" placeholder="Password" ng-model="password"
+                                           pattern="^(?=.*\d)(?=.*[a-zA-Z]).{6,12}$"
+                                           title="Password must be between 6 to 12 length characters, including at least one number and one letter."
+                                           required="">
+                                </div>
+                                <div class="form-group">
+                                    <!-- <label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label> -->
+                                    <input type="password" name="re_pass" id="re_pass" placeholder="Confirm Password"
+                                           pattern="^(?=.*\d)(?=.*[a-zA-Z]).{6,12}$"
+                                           title="Password must be between 6 to 12 length characters, including at least one number and one letter."
+                                           ng-model="cnfrmpass" required="">
+                                </div>
+                           
+
+                                <div class="form-group form-button">
+                                    <input type="submit" name="signup" id="signup" class="form-submit" value="Register">
+                                </div>
+                            </form>
+                        </div>
+
+
+                        <div class="signup-image">
+                            <figure><img src="images/51DMPfczmkL.jpg" alt="sing up image"></figure>
+                            <a ng-click="signInPage()" class="signup-image-link"><u>I am already member</u></a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <section class="signup" ng-show="resetPasswordSection">
+                <div class="container">
+                    <div class="signup-content">
+                        <div class="signup-form">
+                            <h2 class="form-title">Reset Password</h2>
+                            <form class="register-form" id="register-form" ng-submit="resetPassword()">
+
+                                <div class="form-group">
+                                    <input type="password" name="pass" id="pass" placeholder="Password" ng-model="password"
+                                           pattern="^(?=.*\d)(?=.*[a-zA-Z]).{6,12}$"
+                                           title="Password must be between 6 to 12 length characters, including at least one number and one letter."
+                                           required="">
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" name="re_pass" id="re_pass" placeholder="Confirm Password"
+                                           pattern="^(?=.*\d)(?=.*[a-zA-Z]).{6,12}$"
+                                           title="Password must be between 6 to 12 length characters, including at least one number and one letter."
+                                           ng-model="cnfrmpass" required="">
+                                </div>
+
+                                <div class="form-group form-button">
+                                    <input type="submit" name="signup" id="signup" class="form-submit"
+                                           value="Reset Password">
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="signup-image">
+                            <figure><img src="images/signup-image.jpg" alt="sing up image"></figure>
+                            <a ng-click="signInPage()" class="signup-image-link"><u>I am already member</u></a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <section class="sign-in" ng-show="signInSection">
+                <div class="container">
+                    <div class="signin-content">
+                        <div class="signin-image">
+                            <figure><img src="images/signin-image.jpg" class="signinImg" alt="sing up image"></figure>
+                            <a ng-click="signUpPage()" class="signup-image-link"><u>Create an account</u></a>
+                        </div>
+                        <div class="signin-form">
+                            <h2 class="form-title">Sign In</h2>
+                            <form class="register-form" id="login-form" ng-submit="signInSubmit()">
+                                <div class="form-group">
+                                    <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                    <input type="text" name="emp_id" id="emp_id" ng-model="emp_id"
+                                           placeholder="emp_id">
+                                </div>
+                                <div class="form-group">
+                                    <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
+                                    <input type="password" name="your_pass" id="your_pass" ng-model="password"
+                                           placeholder="Password">
+                                </div>
+
+                                <div class="form-group">
+                                    <a ng-click="forgotPassword()"><u>Forgot Password?</u></a>
+                                </div>
+
+                                <div class="form-group form-button">
+                                    <input type="submit" name="signin" id="signin" class="form-submit" value="Log in">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+
+            <section class="sign-in" ng-show="forgotPasswordSection">
+                <div class="container">
+                    <div class="signin-content">
+                        <div class="signin-image">
+                            <figure><img src="images/3293465.jpg" alt="sing up image"></figure>
+                            <a ng-click="signUpPage()" class="signup-image-link"><u>Create an account</u></a>
+                        </div>
+                        <div class="signin-form">
+                            <h2 class="form-title">Forgot Password</h2>
+                            <form class="register-form" id="login-form">
+                                <div class="form-group">
+                                    <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                    <input type="email" name="your_name" id="your_name" placeholder="Enter your email"
+                                           ng-model="email" ng-disabled="enterEmail" required="">
+                                </div>
+                                <div class="form-group" ng-show="timerExpired">
+                                    <input type="text" name="otpInput" id="otpInput" ng-model="otpInput" ng-pattern="/^\d{6}$/"
+                                           placeholder="Enter 6-digit OTP" required="">
+                                    <span class="timer" ng-class="{ 'red': timeLeft <= 10 }"
+                                          ng-model="formattedTime">{{formattedTime}}</span>
+                                </div>
+                                <div class="form-group form-button">
+                                    <input type="submit" name="signin" id="signin" class="form-submit"
+                                           ng-disabled="generateOTPa" ng-click="buttonClicked('generateOTP')"
+                                           value=" Generate OTP">
+                                    <input type="submit" class="form-submit" ng-click="buttonClicked('verify')"
+                                           ng-show="timerExpired" value="Verify">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </body>
+
+</html>
