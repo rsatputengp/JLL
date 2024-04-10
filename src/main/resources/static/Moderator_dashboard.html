@@ -11,14 +11,7 @@ and open the template in the editor.
     <title>User Form</title>
 </head>
 <body>
-    <h2>User Form</h2>
-    <form th:object="${user}" th:action="@{/users/save}" method="post">
-        <input type="hidden" th:field="*{id}" />
-        <label>Username: <input type="text" th:field="*{username}" /></label><br>
-        <label>Password: <input type="password" th:field="*{password}" /></label><br>
-        <label>User Type: <input type="text" th:field="*{userType}" /></label><br>
-        <input type="submit" value="Save" />
-    </form>
+    <h2>Welcome to Moderator_dashboard</h2>
 </body>
 </html>
 
