@@ -177,7 +177,7 @@ app.controller('signUpController', function ($scope, $http, $interval, $timeout)
                             } else if ($scope.resData.designation === "Auditor") {
                                 window.location.href = $scope.URL + "Moderator_dashboard.html";
                                 localStorage.setItem("user", JSON.stringify($scope.resData));
-                                alert("Login Successfully");
+                                alert("Login Successfully");   
                             } else if ($scope.resData.designation === "Cluster Audit Manager") {
                                 window.location.href = $scope.URL + "Moderator_dashboard.html";
                                 localStorage.setItem("user", JSON.stringify($scope.resData));

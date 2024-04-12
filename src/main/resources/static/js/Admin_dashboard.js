@@ -1,5 +1,63 @@
-            var app = angular.module("myAppa", []);
-            app.controller("cont", function ($scope, $http) {
+/* 
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+var app = angular.module('myApp', [])
+        app.controller('mainController', ['$scope', '$document', function ($scope, $http, $document) {
+
+
+
+            $scope.profileCard = false;
+            $scope.notificationCard = false;
+            $scope.helpCard = false;
+
+            $scope.ODcalling = false;
+            $scope.insuranceTracker = false;
+            $scope.ROcalling = true;
+
+            // side bar initial
+            $scope.sidebarWidth = '0px';
+
+            $scope.closeSidebar = function () {
+                $scope.sidebarWidth = '0px';
+            }
+
+            $scope.openSideBar = function () {
+                $scope.sidebarWidth = '250px';
+
+            }
+
+            $scope.notificationButton = function () {
+                $scope.profileCard = false;
+                $scope.notificationCard = true;
+                $scope.helpCard = false;
+            }
+
+            $scope.profileButton = function () {
+                $scope.profileCard = true;
+                $scope.notificationCard = false;
+                $scope.helpCard = false;
+            }
+
+            $scope.helpButton = function () {
+                $scope.profileCard = false;
+                $scope.notificationCard = false;
+                $scope.helpCard = true;
+
+            }
+
+            $scope.closePopup = function () {
+                $scope.profileCard = false;
+                $scope.notificationCard = false;
+                $scope.helpCard = false;
+            }
+
+        }]);
+    
+    
+    
+app.controller("cont", function ($scope, $http) {
             $scope.userRecord = JSON.parse(window.localStorage.getItem("user"));
 //            $scope.uRl = "http://118.185.131.13:9091/";
 //            $scope.uRl = "http://123.63.89.76:9091/";
@@ -532,5 +590,4 @@
                 clickedButton.style.backgroundColor = ''; // Reset to default
               }, 300);
             }
-            
-        
+

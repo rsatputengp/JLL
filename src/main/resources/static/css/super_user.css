@@ -1,0 +1,684 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 10 Apr, 2024, 12:49:11 PM
+    Author     : mishra
+*/
+
+body{
+    zoom: 0.9;
+    -moz-transform: scale(0.9);
+    transform-origin: 0 0;
+}
+.form-input {
+    width: 80%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.form-control {
+    width: 90%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f7fcf2;
+}
+
+.form-input-userType {
+    width: 28%;
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    /*background-color: #f0fce6;*/
+    background-color: #fff;
+    margin-left: 20px;
+}
+.form-input-selectuser {
+    width: 80%;
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    /*background-color: #f0fce6;*/
+    background-color: #fff;
+    /*margin-left: 20px;*/
+    height: 40px;
+    font-family: 'Rajdhani', sans-serif;
+}
+
+.container {
+    max-width: 100%;
+    width: 84rem;
+    height: 36rem;
+    margin-top: 10px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/*.containernew {
+    width: 100%;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+}*/
+
+.document {
+    margin-bottom: 20px;
+}
+
+.document-label {
+    font-weight: bold;
+}    
+
+.attractive-button {
+    background-color: #91E246; 
+    color: black; 
+    border: none; 
+    padding: 6px 20px; 
+    border-radius: 5px; 
+    cursor: pointer; 
+}
+
+.attractive-button:hover {
+    background-color: #007bff; 
+}
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+}
+td, th {
+    padding: 9px; 
+}
+h2 {
+    background-color: #80C37D; 
+    color:black;
+    padding: 25px;
+    border-radius: 5px; 
+    margin-left: -20px;
+    margin-right: -20px;
+    margin-top: -20px;
+}
+.rcorners {
+    border-radius: 25px;
+    border: 2px solid #C7E7C5;
+    padding: 8px;
+    height: 40px;
+}
+.rcornersimg {
+    border-radius: 10px;
+    border: 2px solid #80C37D;
+    padding: 0px;
+    height:40px;
+    width:50px;
+}
+.rcornersimgE {
+    border-radius: 15px;
+    border: 2px solid #80C37D;
+    padding: 0px;
+    height:80px;
+    width:100px;
+}
+
+body{
+    background-image: url('image/bgImg_half.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+}
+img{
+    cursor: pointer; 
+}
+.idpoint{
+    cursor: pointer; 
+}
+.recordcontainer {
+    max-width: 70%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.form-heading {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    border-radius: 5px; 
+    margin-left: -6px;
+    margin-right: -6px;
+    margin-top: -6px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+.form-label {
+    text-align: left;
+    font-weight: bold;
+}
+.form-button , .form-buttonX {
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    align-self: flex-end; /* Align the button to the right */
+    font-size: 14px;
+    /*display: inline-block;*/
+    background-color: #C7E7C5;
+    color: black;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    margin-top: 2px;
+    /*max-width: 180px;*/
+}
+.form-buttonGG {
+    background-color: #85b87e;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    /*padding: 10px 20px;*/
+    cursor: pointer;
+    /*align-self: flex-end;*/
+    /* Align the button to the right */
+    left:0;
+
+}
+.form-buttonRR {
+    background-color: #be4347;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    /*padding: 10px 20px;*/
+    cursor: pointer;
+    /*align-self: flex-end;*/ 
+    /* Align the button to the right */
+}
+.form-buttonGr {
+    background-color: #85B87E;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 5px;
+    cursor: pointer;
+    align-self: flex-end; /* Align the button to the right */
+    font-family: monospace;
+    font-size: 12px;
+}
+.form-buttonRe {
+    background-color: #BE4347;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 5px;
+    cursor: pointer;
+    align-self: flex-end; /* Align the button to the right */
+    font-family: monospace;
+    font-size: 12px;
+}
+
+.form-button:hover {
+    background-color: #0056b3;
+}
+.form-buttonGr:hover {
+    background-color: #0056b3;
+}
+.form-buttonRe:hover {
+    background-color: #0056b3;
+}
+h1.form-heading {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    background-color: #80C37D; 
+    color: black ; 
+    padding: 10px; 
+}
+
+.button:hover {
+    background-color: #91E246;
+}
+.form-group1 {
+    display: inline-block;
+    width: 250px; /* Adjust the width as needed */
+    /* Other CSS styles for .form-group1 */
+}
+.cardviewtr{
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    background-color: #C7E7C5;
+}
+.cardviewth{
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    background-color: #80C37D;
+}
+.searchbar{
+    width: 80%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;    
+}
+.tablecontainer{
+    width: 100%;
+}
+.ownfield{
+    width: 40%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.vertical_line{
+    border-right-style: dashed;
+    border-right-width:2px; 
+    border-right-color: #80C37D;
+}
+.docdivIn_F{
+    text-align: center;
+}
+.docdivIn_S{
+    padding-left: 50px;
+    padding-right: 45px;
+}
+.docdiv{
+    display: inline-block;
+    width: 24%;
+}
+
+header {
+    background-color: #80C37D; 
+    color: #fff;
+    padding: 12px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 5px; 
+    margin-left: -9px;
+    margin-right: -9px;
+    margin-top: -9px;
+}
+
+/* Style the buttons */
+.header-btn {
+    background-color: #555;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.header-btn.help-icon {
+    padding: 8px 16px;
+    background-color: #007bff; /* Change this to the desired help icon background color */
+}
+.headerdiv{
+    background-color: #91E246; 
+    color:black;
+    border-radius: 5px; 
+    margin-left: -20px;
+    margin-right: -20px;
+    margin-top: -20px;
+    width: 100%;
+}
+.titlename{
+    font-size: 40px; 
+    font-weight: 600;
+    color: white; 
+    font-family: 'Roboto Slab', serif;
+}
+
+/* Styles for the popup */
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    z-index: 999;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 0px;
+    cursor: pointer;
+}
+
+/* Style for the info icon */
+#info-icon {
+    font-size: 12px;
+    cursor: pointer;
+}
+dt{
+    font-family: sans-serif;
+}
+.list-container {
+    height: 500px; /* Adjust as needed */
+    overflow-y: auto;
+    scrollbar-width: thin; /* For Firefox */
+    scrollbar-color: #888 #f1f1f1; /* For Firefox */
+}
+
+.list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.list-item {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+/* CSS for webkit-based browsers (Chrome, Safari) */
+.list-container::-webkit-scrollbar {
+    width: 12px;
+}
+
+.list-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.list-container::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 6px;
+}
+
+.list-container::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+.padbutton{
+    padding: 10px 20px;
+}
+.iconlook{
+    padding: 0px;
+    height:15px;
+    width:15px;
+}    
+.table-view{
+    height: 440px;
+    overflow-y: auto;
+    width: 100%;
+}
+
+.user_name{
+    text-align: center;
+    max-width: 20%;
+    font-size: 16px;
+    display: inline-block;
+    color: black;
+    border-radius: 25px;
+    border: 2px solid #80C37D;
+    padding: 4px;
+    height: 38px;
+    background-color: #C7E7C5;
+    font-weight: 500;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 5px;
+    margin-right: 1px;
+}
+
+.cardL , .cardR{
+    width: 44%;
+    height:550px;
+    margin-top: -22px;
+    float: left;
+    padding: 8px;
+    border: 2px solid #80C37D;
+    border-radius: 7px;
+    background-color: #C7E7C5;
+    margin-left: 28px;  
+}
+
+
+.right-branchContainer{
+    width: 44%;
+    float: right;
+    padding: 20px;
+    border: 2px solid #80C37D;
+    border-radius: 7px;
+    background-color: #C7E7C5;
+    height: 400px;
+    margin-right: 28px;
+}
+
+.labell {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.options-container {
+    height: 185px; /* Adjust the maximum height as needed */
+    width: 250px;
+    overflow-y: auto;
+    border: 4px solid #e5ffcf;
+    padding: 8px;
+    margin-bottom: 1px;
+    border-radius: 8px;
+    background-color: #f7fcf2;
+}
+.selected-options-container {
+    height: 185px; /* Adjust the maximum height as needed */
+    overflow-y: auto;
+    border: 4px solid #e5ffcf;
+    border-radius: 8px;
+    padding: 8px; 
+    background-color: #f7fcf2;
+}
+
+.temp > span {
+    background-color: #e5ffcf;
+    font-size: 18px;
+    left: 2%;
+    position: absolute;
+    top: -15px;
+    padding: 5px;
+    border: 1px solid #e5ffcf;
+    border-radius: 8px;
+    font-family: 'Libre Baskerville', serif;
+}
+.cardX{
+    border: 1px solid #C7E7C5;
+    height: 520px;
+    border-radius: 10px;
+    margin-top: 6px;
+    padding: 2px;
+    position: relative;
+    background-color: white;
+    margin-left: 14px;
+    margin-right: 14px;
+}
+
+
+.user-info{
+    font-family: 'Libre Baskerville', serif;
+    font-size: 16px;
+}
+
+/* Style for the active button */
+.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+
+.c_logo{
+    width: 70px; 
+    height: 61px; 
+    margin-left: 17px;
+}
+
+.headerContainer{
+    justify-content: center;
+}
+
+.timstmp{
+    white-space: nowrap; color: #555; font-weight: bold; font-size: 12px;
+}
+
+
+.form-controlx:focus {
+    border-color: #218838; /* Dark green border when focused */
+    box-shadow: 0 0 5px #28a745; /* Green glow effect when focused */
+    outline: none; /* Remove default focus outline */
+}
+
+
+
+.has-search .form-control {
+    padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
+    border-radius: 20px;
+}
+
+
+.form-controlx {
+
+    display: block;
+    width: 100%;
+    height: calc(1.5em + 0.75rem + 2px);
+    max-width: 400px;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 20px;
+    border-color: #28a745;
+    padding: 15px 35px;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    margin-left: -14px;
+    padding-left: 40px;
+
+}
+
+.ab{
+    margin-left: -25px;
+}
+
+.bl{
+    margin-right: -20px;
+}
+
+.fa-search{
+    margin-left: -10px;
+}
+
+
+.l_cont{
+
+
+    text-align: right; font-size: 20px; color: #007006; font-family: 'Rajdhani', sans-serif;
+}
+
+.left_table{
+    font-size: 16px;
+    /*text-align: center;*/
+    margin-left: 2px;
+    padding-left: 18px;
+    margin-top:1px;
+    font-weight: 600;
+}
+
+
+
+@media screen and (min-width: 0px) and (max-width: 600px) {
+    .headerElement{
+        padding: 2px;
+        margin-top: -28px;
+    }
+
+    .headerContainer{
+        display: flex;
+        justify-content: space-between;
+
+    }
+
+    .timstmp{
+        font-size: 10px;
+        margin-left: 20px;
+    }
+
+    .form-buttonX{
+        font-size: 10px;
+    }
+
+    .ab{
+        margin-left: 40px;
+    }
+
+    .form-button{
+        font-size: 10px;
+    }
+
+    .user_name{
+        margin-right: 8px;
+    }
+
+    .card{
+        width: 90%;
+    }
+
+}
+
+.card-title {
+    margin-bottom: 0;
+    margin-top: -35px;
+    border: 2px;
+    background-color: #80C37D;
+    border-radius: 25px;
+    display: inline-block;
+    padding: 10px;
+    color:black;
+    font-family: serif;
+    font-weight: 500;
+    margin-left: -9px;
+}
+
+.form-control[type="text"]{
+    background-color: #f7fcf2;
+    /*border-color: rgba(0, 0, 0, 0.6);*/
+}
+
+.form-control:focus {
+    border-color: #218838; /* Dark green border when focused */
+    box-shadow: 0 0 5px #28a745; /* Green glow effect when focused */
+    outline: none; /* Remove default focus outline */
+}
