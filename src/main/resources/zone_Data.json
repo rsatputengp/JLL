@@ -1,20 +1,20 @@
 {
-  "Zone-1": {
-    "Region-2": {
-      "Nagpur-1": ["Kanhan", "Saoner", "Parsivani", "Ramtek", "Kalmeshwar"],
-      "Nagpur-2": ["Hingna", "Mouda", "Katol", "Manish Nagar", "Umred", "Kuhi"],
-      "Wardha": ["Wardha", "Seloo", "Deoli", "Karanja Gadge", "Samudrapur"],
-      "Yawatmal-1": ["Arni", "Dharwa", "Digras", "Umarkhed", "Wani"],
-      "Yawatmal-2": ["Kalamb", "Pandherkawada", "Yawatmal"]
-    },
-    "Region-1": {
-      "Gondia": ["Amgaon", "Deori", "Gondia", "Goregaon", "Morgaon Arjuni", "Sadak Arjuni", "Salekasa", "Tirora"],
-      "Bhandara": ["Bhandara", "Lakhandur", "Lakhani", "Pauni", "Sakoli", "Tumsar"],
-      "Gadchiroli": ["Armori", "Bhrampuri", "Gadchiroli", "Kurkheda", "Wadsa"],
-      "Chandrapur": ["Bhadrawati", "Chandrapur", "Gondpipari", "Rajura"]
-    },
-    "Region-3": {
-      "Amravati": ["Akola", "Amravati", "Chandur Railway", "Morshi", "Paratwada"]
+    "Zone-1": {
+        "Region-1": {
+            "Gondia": ["Amgaon", "Deori", "Gondia", "Goregaon", "Morgaon Arjuni", "Sadak Arjuni", "Salekasa", "Tirora"],
+            "Bhandara": ["Bhandara", "Lakhandur", "Lakhani", "Pauni", "Sakoli", "Tumsar"],
+            "Gadchiroli": ["Armori", "Bhrampuri", "Gadchiroli", "Kurkheda", "Wadsa"],
+            "Chandrapur": ["Bhadrawati", "Chandrapur", "Gondpipari", "Rajura"]
+        },
+        "Region-2": {
+            "Nagpur-1": ["Kanhan", "Saoner", "Parsivani", "Ramtek", "Kalmeshwar"],
+            "Nagpur-2": ["Hingna", "Mouda", "Katol", "Manish Nagar", "Umred", "Kuhi"],
+            "Wardha": ["Wardha", "Seloo", "Deoli", "Karanja Gadge", "Samudrapur"],
+            "Yawatmal-1": ["Arni", "Dharwa", "Digras", "Umarkhed", "Wani"],
+            "Yawatmal-2": ["Kalamb", "Pandherkawada", "Yawatmal"]
+        },
+        "Region-3": {
+            "Amravati": ["Akola", "Amravati", "Chandur Railway", "Morshi", "Paratwada"]
+        }
     }
-  }
 }
