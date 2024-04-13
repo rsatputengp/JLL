@@ -289,7 +289,8 @@ public class JllUserService {
         if (getUser(emp_id) == null) {
             AreaData areaData;
             try {
-                areaData = new AreaData("/home/ritik/NetBeansProjects/JLL/src/main/resources/zone_Data.json");
+                areaData = new AreaData("/home/mishra/NetBeansProjects/JLL/src/main/resources/zone_Data.json");
+//                areaData = new AreaData("/home/ritik/NetBeansProjects/JLL/src/main/resources/zone_Data.json");
 //                areaData = new AreaData("/home/sysadmin/NetBeansProjects/JLL/src/main/resources/zone_Data.json");
                 // Getter example
 //                ArrayList<String> branchL;
@@ -326,7 +327,9 @@ public class JllUserService {
         if (getUser(emp_id) == null) {
             AreaData areaData;
             try {
-                areaData = new AreaData("/home/ritik/NetBeansProjects/JLL/src/main/resources/zone_Data.json");
+                areaData = new AreaData("/home/mishra/NetBeansProjects/JLL/src/main/resources/zone_Data.json");
+//                areaData = new AreaData("/home/ritik/NetBeansProjects/JLL/src/main/resources/zone_Data.json");
+//                areaData = new AreaData("/home/sysadmin/NetBeansProjects/JLL/src/main/resources/zone_Data.json");
 
                 ArrayList<String> branchList = new ArrayList<>();
                 ArrayList<String> areaList = (ArrayList<String>) areaData.getAreasForRegion(zone, region);
