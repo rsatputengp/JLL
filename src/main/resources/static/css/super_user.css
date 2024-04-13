@@ -93,6 +93,7 @@ body{
 table {
     width: 100%;
     border-collapse: separate;
+    overflow: auto;
     border-spacing: 0 10px;
 }
 td, th {
@@ -347,18 +348,30 @@ header {
 }
 
 /* Styles for the popup */
+
+.popup-trigger {
+    position: relative;
+    cursor: pointer;
+}
+
 .popup {
-    display: none;
-    position: fixed;
-    top: 50%;
+    visibility: hidden;
+    width: auto;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #fff;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px; 
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-    z-index: 999;
+    transform: translateX(-50%);
+    white-space: nowrap;
+}
+
+.popup-trigger:hover .popup {
+    visibility: visible;
 }
 
 .close {
@@ -421,9 +434,41 @@ dt{
 }    
 .table-view{
     height: 440px;
+    overflow-x: auto;
     overflow-y: auto;
     width: 100%;
 }
+
+.table-responsive{
+    overflow: auto;
+    height:460px;
+}
+
+
+/*min view*/
+.branchView , .areaView{
+    max-width: 150px; /* Set your desired width */
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis; /* Apply ellipsis */
+}
+
+
+/*show pop-up on hover*/
+.popup {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-top: none;
+    display: none;
+    z-index: 1;
+}
+
+
+
 
 .user_name{
     text-align: center;
