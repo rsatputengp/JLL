@@ -35,8 +35,8 @@ public class JllUserService {
     public JllUser add(String emp_id, String userName, String email, String zone,
             String region, String area, String branch,
             String designation, String password, String userIdStatus) {
-        if (getUser(emp_id) == null) {
-            if ("Branch Manager".equals(designation) || "Account Executive".equals(designation) || "Risk Offcer".equals(designation)) {
+        if (getUser(userName, emp_id, email) == null) {
+            if ("Branch Manager".equals(designation) || "Account Executive".equals(designation) || "Risk Officer".equals(designation)) {
                 JllUser addUser = addUser(emp_id, userName, email, zone, region, area, branch, designation, password, userIdStatus);
                 return addUser;
             } else if ("Area Manager".equals(designation) || "Area Account Manager".equals(designation) || "Auditor".equals(designation)) {
@@ -140,9 +140,9 @@ public class JllUserService {
     }
 
     public JllUser getUser(String userName, String emp_id, String email) {
-        List<JllUser> findAll = getActiveRecords();
+        List<JllUser> findAll = getallUser();
         for (JllUser jllUser : findAll) {
-            if (userName.equals(jllUser.getUserName())) {
+            if (emp_id.equals(jllUser.getEmp_id()) || email.equals(jllUser.getEmail())) {
                 return jllUser;
             }
         }
@@ -261,24 +261,24 @@ public class JllUserService {
             String region, String area, String branch,
             String designation, String password, String userIdStatus) {
         if (getUser(emp_id) == null) {
-            JllUser JllUser = new JllUser();
-            JllUser.setEmp_id(emp_id);
-            JllUser.setUserName(userName);
-            JllUser.setEmail(email);
-            JllUser.setZone(zone);
-            JllUser.setRegion(region);
+            JllUser user = new JllUser();
+            user.setEmp_id(emp_id);
+            user.setUserName(userName);
+            user.setEmail(email);
+            user.setZone(zone);
+            user.setRegion(region);
             ArrayList<String> areaL = new ArrayList<>();
             areaL.add(area);
-            JllUser.setArea(areaL);
+            user.setArea(areaL);
             ArrayList<String> branchL = new ArrayList<>();
             branchL.add(branch);
-            JllUser.setBranch(branchL);
-            JllUser.setDesignation(designation);
-            JllUser.setPassword(password);
-            JllUser.setUserIdStatus(userIdStatus);
-            JllUser.setKey(null);
-            repository.save(JllUser);
-            return JllUser;
+            user.setBranch(branchL);
+            user.setDesignation(designation);
+            user.setPassword(password);
+            user.setUserIdStatus(userIdStatus);
+            user.setKey(null);
+            repository.save(user);
+            return user;
         }
         return getUser(emp_id);
     }
@@ -297,22 +297,22 @@ public class JllUserService {
 //                ArrayList<String> areaL = (ArrayList<String>) areaData.getAreasForRegion(zone, region);
                 ArrayList<String> branchL = (ArrayList<String>) areaData.convertJsonArrayToList(jsonArray);
 
-                JllUser JllUser = new JllUser();
-                JllUser.setEmp_id(emp_id);
-                JllUser.setUserName(userName);
-                JllUser.setEmail(email);
-                JllUser.setZone(zone);
-                JllUser.setRegion(region);
+                JllUser user = new JllUser();
+                user.setEmp_id(emp_id);
+                user.setUserName(userName);
+                user.setEmail(email);
+                user.setZone(zone);
+                user.setRegion(region);
                 ArrayList<String> areaL = new ArrayList<String>();
                 areaL.add(area);
-                JllUser.setArea(areaL);
-                JllUser.setBranch(branchL);
-                JllUser.setDesignation(designation);
-                JllUser.setPassword(password);
-                JllUser.setUserIdStatus(userIdStatus);
-                JllUser.setKey(null);
-                repository.save(JllUser);
-                return JllUser;
+                user.setArea(areaL);
+                user.setBranch(branchL);
+                user.setDesignation(designation);
+                user.setPassword(password);
+                user.setUserIdStatus(userIdStatus);
+                user.setKey(null);
+                repository.save(user);
+                return user;
             } catch (IOException ex) {
                 Logger.getLogger(JllUserService.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -340,24 +340,24 @@ public class JllUserService {
                     }
                 }
 
-                JllUser JllUser = new JllUser();
-                JllUser.setEmp_id(emp_id);
-                JllUser.setUserName(userName);
-                JllUser.setEmail(email);
-                JllUser.setZone(zone);
-                JllUser.setRegion(region);
+                JllUser user = new JllUser();
+                user.setEmp_id(emp_id);
+                user.setUserName(userName);
+                user.setEmail(email);
+                user.setZone(zone);
+                user.setRegion(region);
 //                ArrayList<String> areaL = new ArrayList<String>();
 //                areaL.add(area);
-                JllUser.setArea(areaList);
+                user.setArea(areaList);
 //                ArrayList<String> branchL = new ArrayList<String>();
 //                branchL.add(branch);
-                JllUser.setBranch(branchList);
-                JllUser.setDesignation(designation);
-                JllUser.setPassword(password);
-                JllUser.setUserIdStatus(userIdStatus);
-                JllUser.setKey(null);
-                repository.save(JllUser);
-                return JllUser;
+                user.setBranch(branchList);
+                user.setDesignation(designation);
+                user.setPassword(password);
+                user.setUserIdStatus(userIdStatus);
+                user.setKey(null);
+                repository.save(user);
+                return user;
             } catch (IOException ex) {
                 Logger.getLogger(JllUserService.class.getName()).log(Level.SEVERE, null, ex);
             }

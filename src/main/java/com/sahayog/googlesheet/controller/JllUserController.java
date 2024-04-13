@@ -126,6 +126,11 @@ public class JllUserController {
     public JllUser getJllUser(@PathVariable String emp_id) {
         return service.getUser(emp_id);
     }
+    
+    @RequestMapping("getuserDetails/{userName}/{emp_id}/{email}")
+    public JllUser getuserDetails(@PathVariable String userName,@PathVariable String emp_id,@PathVariable String email) {
+        return service.getUser(userName, emp_id, email);
+    }
 
     @RequestMapping("getEmail/{mail}")
     public JllUser getJMail(@PathVariable String mail) {

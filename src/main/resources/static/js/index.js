@@ -103,18 +103,21 @@ app.controller('signUpController', function ($scope, $http, $interval, $timeout)
 
 
     //signUP submit form
-    $scope.signUpSubmit = function () {
+    $scope.signUpSubmit = function () { debugger;
         // $scope.encryptedPassword = CryptoJS.MD5($scope.userPassword).toString();
         if ($scope.password === $scope.cnfrmpass) {
 
-            var Url = $scope.URL + "user/getuser/" + $scope.emp_id;
-
+            var Url = $scope.URL + "user/getuserDetails/" + $scope.userName 
+                    + "/" + $scope.emp_id + "/" + $scope.email;
+//                                {userName}/{emp_id}/{email}
             $http.get(Url)
-                    .then(function (response) {
+                    .then(function (response) { debugger
 
                         $scope.resData = response.data;
-                        if ($scope.resData.emp_id === $scope.emp_id) {
-                            alert("Account already exist!")
+                        if ($scope.resData.emp_id === $scope.emp_id ) {
+                            alert("Already have a Account for this Employee Id.")
+                        }else if ($scope.resData.email === $scope.email) {
+                            alert("Already have a Account for this Email.")
                         } else {
 
                             var url = $scope.URL + "user/add/" + $scope.emp_id + "/" + $scope.userName + "/" + $scope.email + "/" + $scope.selectedZone + "/" + $scope.selectedRegion + "/" +
