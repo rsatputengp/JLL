@@ -60,19 +60,19 @@ app.controller('signUpController', function ($scope, $http, $interval, $timeout)
 
     $scope.regions = {
         "Zone-1": {
+            "Region-1": {
+                "Gondia": ["Amgaon", "Deori", "Gondia", "Goregaon", "Morgaon Arjuni", "Sadak Arjuni", "Salekasa", "Tirora"],
+                "Bhandara": ["Bhandara", "Lakhandur", "Lakhani", "Pauni", "Sakoli", "Tumsar"],
+                "Gadchiroli": ["Armori", "Bhrampuri", "Gadchiroli", "Kurkheda", "Wadsa"],
+                "Chandrapur": ["Bhadrawati", "Chandrapur", "Gondpipari", "Rajura"]
+            },
+
             "Region-2": {
                 "Nagpur-1": ["Kanhan", "Saoner", "Parsivani", "Ramtek", "Kalmeshwar"],
                 "Nagpur-2": ["Hingna", "Mouda", "Katol", "Manish Nagar", "Umred", "Kuhi"],
                 "Wardha": ["Wardha", "Seloo", "Deoli", "Karanja Gadge", "Samudrapur"],
                 "Yawatmal-1": ["Arni", "Dharwa", "Digras", "Umarkhed", "Wani"],
                 "Yawatmal-2": ["Kalamb", "Pandherkawada", "Yawatmal"]
-            },
-
-            "Region-1": {
-                "Gondia": ["Amgaon", "Deori", "Gondia", "Goregaon", "Morgaon Arjuni", "Sadak Arjuni", "Salekasa", "Tirora"],
-                "Bhandara": ["Bhandara", "Lakhandur", "Lakhani", "Pauni", "Sakoli", "Tumsar"],
-                "Gadchiroli": ["Armori", "Bhrampuri", "Gadchiroli", "Kurkheda", "Wadsa"],
-                "Chandrapur": ["Bhadrawati", "Chandrapur", "Gondpipari", "Rajura"]
             },
 
             "Region-3": {
@@ -103,20 +103,20 @@ app.controller('signUpController', function ($scope, $http, $interval, $timeout)
 
 
     //signUP submit form
-    $scope.signUpSubmit = function () { debugger;
+    $scope.signUpSubmit = function () {
         // $scope.encryptedPassword = CryptoJS.MD5($scope.userPassword).toString();
         if ($scope.password === $scope.cnfrmpass) {
 
-            var Url = $scope.URL + "user/getuserDetails/" + $scope.userName 
+            var Url = $scope.URL + "user/getuserDetails/" + $scope.userName
                     + "/" + $scope.emp_id + "/" + $scope.email;
 //                                {userName}/{emp_id}/{email}
             $http.get(Url)
-                    .then(function (response) { debugger
+                    .then(function (response) {
 
                         $scope.resData = response.data;
-                        if ($scope.resData.emp_id === $scope.emp_id ) {
+                        if ($scope.resData.emp_id === $scope.emp_id) {
                             alert("Already have a Account for this Employee Id.")
-                        }else if ($scope.resData.email === $scope.email) {
+                        } else if ($scope.resData.email === $scope.email) {
                             alert("Already have a Account for this Email.")
                         } else {
 
@@ -180,7 +180,7 @@ app.controller('signUpController', function ($scope, $http, $interval, $timeout)
                             } else if ($scope.resData.designation === "Auditor") {
                                 window.location.href = $scope.URL + "Moderator_dashboard.html";
                                 localStorage.setItem("user", JSON.stringify($scope.resData));
-                                alert("Login Successfully");   
+                                alert("Login Successfully");
                             } else if ($scope.resData.designation === "Cluster Audit Manager") {
                                 window.location.href = $scope.URL + "Admin_dashboard.html";
                                 localStorage.setItem("user", JSON.stringify($scope.resData));
@@ -279,7 +279,7 @@ app.controller('signUpController', function ($scope, $http, $interval, $timeout)
                             $scope.resData = response.data;
 
                             if ($scope.resData.email === $scope.email) {
-                                Url = $scope.URL + "user/otpSender/"+ $scope.email;
+                                Url = $scope.URL + "user/otpSender/" + $scope.email;
                                 $http.get(Url)
                                         .then(function (response) {
                                             $scope.mess = response.data;

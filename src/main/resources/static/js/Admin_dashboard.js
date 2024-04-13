@@ -577,6 +577,12 @@ app.controller("cont", function ($scope, $http) {
         $scope.loadpage = function () {
             location.reload();
         };
+
+        $scope.viewRemark = function (mess) {
+            alert(mess);
+        }
+
+
     } else {
         window.location.href = $scope.uRl + "index.html";
     }
