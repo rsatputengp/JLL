@@ -10,9 +10,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=0.8">
         <script src="images/angular.min.js" type="text/javascript"></script>
         <script src="images/jquery-3.6.0.min.js" type="text/javascript"></script>
-        <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"></script>
-        <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/FileSaver.min.js"></script>-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.3/xlsx.full.min.js"></script>
 
 
@@ -31,303 +29,325 @@
         <title>Super User</title>
 
     </head>
-    <div ng-app="myAppa" ng-controller="cont" class="container">
+    <body>
+        <div ng-app="myAppa" ng-controller="cont" class="container">
 
-        <div class="row justify-content-center mt-3">
-            <div class="col-md-12">
+            <div class="row justify-content-center mt-3">
+                <div class="col-md-12">
 
-                <div  ng-show="userContainerVisible" class="container-fluid">
+                    <div ng-show="userContainerVisible" class="container-fluid">
 
-                    <div class="col-md-12">   
-                        <div class ="row">
-                            <div  class=" col">
-                                <div class="form-group has-search">
-                                    <span class="fa fa-search form-control-feedback"></span>
-                                    <input type="text" class="form-controlx" placeholder="Search...">
+                        <div class="col-md-12">  
+                            <div class="row">
+                                <div class=" col">
+                                    <div class="form-group has-search">
+                                        <span class="fa fa-search form-control-feedback"></span>
+                                        <input type="text" class="form-controlx" placeholder="Search...">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-3 ab mb-2">
-                                <button type="button" class="form-buttonX attractive-button" ng-click="exportToExcel()">Export To Excel</button>
-                                <button type="button" class="form-buttonX attractive-button" ng-click="branchAccess()" >Branch Access</button>
-                            </div>
-                            <div class="col-md-7 text-right bl" >
-                                <button type="button" class="form-button attractive-button" onclick="switchList('Accepted')" data-list="Accepted" ng-click="listForAccept()" ng-model="Accepted">{{Accepted}}</button>
-                                <button type="button" class="form-button attractive-button" onclick="switchList('Rejected')" data-list="Rejected" ng-click="listForReject()" ng-model="Rejected">{{Rejected}}</button>
-                                <button type="button" class="form-button attractive-button" onclick="switchList('Pending')" data-list="Pending" ng-click="listForPending()" ng-model="Pending">{{Pending}}</button>
-                                <button type="button" class="form-button attractive-button" onclick="switchList('Terminated')" data-list="Terminated" ng-click="listForTerminate()" ng-model="Terminated">{{Terminated}}</button>
-                                <!--<button type="button" class="form-button attractive-button" onclick="switchList('ResetPassword')" data-list="ResetPassword" ng-click="listForResetpass()" ng-model="Reset_Password">{{Reset_Password}}</button>-->
+                                <div class="col-3 ab mb-2">
+                                    <button type="button" class="form-buttonX attractive-button" ng-click="exportToExcel()">Export To Excel</button>
+                                    <button type="button" class="form-buttonX attractive-button" ng-click="branchAccess()">Branch Access</button>
+                                </div>
+                                <div class="col-md-7 text-right bl">
+                                    <button type="button" class="form-button attractive-button" onclick="switchList('Accepted')" data-list="Accepted" ng-click="listForAccept()" ng-model="Accepted">{{Accepted}}</button>
+                                    <button type="button" class="form-button attractive-button" onclick="switchList('Rejected')" data-list="Rejected" ng-click="listForReject()" ng-model="Rejected">{{Rejected}}</button>
+                                    <button type="button" class="form-button attractive-button" onclick="switchList('Pending')" data-list="Pending" ng-click="listForPending()" ng-model="Pending">{{Pending}}</button>
+                                    <button type="button" class="form-button attractive-button" onclick="switchList('Terminated')" data-list="Terminated" ng-click="listForTerminate()" ng-model="Terminated">{{Terminated}}</button>
+                                    <!--<button type="button" class="form-button attractive-button" onclick="switchList('ResetPassword')" data-list="ResetPassword" ng-click="listForResetpass()" ng-model="Reset_Password">{{Reset_Password}}</button>-->
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="table-responsive">
-                        <table class="table">
-                            <thead>
-                                <tr class="cardviewth" style="position: sticky; position: -webkit-sticky; top: 0;">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr class="cardviewth" style="position: sticky; position: -webkit-sticky; top: 0;">
 
-                                    <th scope="col" >Emp_ID</th>
-                                    <th scope="col" >User Name</th>
-                                    <th scope="col" >Zone</th>
-                                    <th scope="col">Region</th>
-                                    <th scope="col">Area</th>
-                                    <th scope="col" >Branch</th>
-                                    <th scope="col" >Designation</th>
-                                    <th scope="col" >Status</th>
-                                    <th scope="col" >Action</th>
+                                        <th scope="col">Emp_ID</th>
+                                        <th scope="col">User Name</th>
+                                        <th scope="col">Zone</th>
+                                        <th scope="col">Region</th>
+                                        <th scope="col">Area</th>
+                                        <th scope="col">Branch</th>
+                                        <th scope="col">Designation</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Action</th>
 
 
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="cardviewtr" ng-repeat="record in list| continuousSubstringFilter:search:['id','userName', 'branchName','userType','userIdStatus']">
-
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="cardviewtr" ng-repeat="record in list| continuousSubstringFilter:search:['id','userName', 'branchName','userType','userIdStatus']">
 
 
 
 
 
-                                    <td scope="row">{{record.emp_id}}</td>
-                                    <td >{{record.userName}}</td>
-                                    <td >{{record.zone}}</td>
-                                    <td >{{record.region}}</td>
-                                    <td >{{record.area}}</td>
-                                    <td>{{record.branch}}</td>
-                                    <td>{{record.designation}}</td>
-                                    <td>{{record.userIdStatus}}</td>
 
-                                    <!--                                    <td>
-                                                                            <input style="width: 90%" type="text" id="remark" name="remark" class="ownfield" value="{{record.remark}}" ng-model="record.remark">
-                                                                        </td>-->
-                                    <td>
-                                        <button type="button" class="form-buttonGr" ng-click="onUserEditA(record)" id="Accept" ng-show="acceptVisible">Accept</button>&nbsp;&nbsp;
-                                        <button type="button" class="form-buttonRe" ng-click="onUserEditR(record)" id="Reject" ng-show="rejectVisible">Reject</button>
-                                        <button type="button" class="form-buttonRe" ng-click="onUserEditT(record)" id="Reject" ng-show="terminateVisible">Terminate</button>
-                                        <button type="button" class="form-buttonRe" ng-click="onUserEditD(record)" id="Reject" ng-show="deleteVisible">Delete</button>
-                                    </td>
+                                        <td scope="row">{{record.emp_id}}</td>
+                                        <td>{{record.userName}}</td>
+                                        <td>{{record.zone}}</td>
+                                        <td>{{record.region}}</td>
+                                        <td>{{record.area}}</td>
+                                        <td>{{record.branch}}</td>
+                                        <td>{{record.designation}}</td>
+                                        <td>{{record.userIdStatus}}</td>
 
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+                                        <!--                                    <td>
+                                                                                <input style="width: 90%" type="text" id="remark" name="remark" class="ownfield" value="{{record.remark}}" ng-model="record.remark">
+                                                                            </td>-->
+                                        <td>
+                                            <button type="button" class="form-buttonGr" ng-click="onUserEditA(record)" id="Accept" ng-show="acceptVisible">Accept</button>&nbsp;&nbsp;
+                                            <button type="button" class="form-buttonRe" ng-click="onUserEditR(record)" id="Reject" ng-show="rejectVisible">Reject</button>
+                                            <button type="button" class="form-buttonRe" ng-click="onUserEditT(record)" id="Reject" ng-show="terminateVisible">Terminate</button>
+                                            <button type="button" class="form-buttonRe" ng-click="onUserEditD(record)" id="Reject" ng-show="deleteVisible">Delete</button>
+                                        </td>
 
-
-
-                <!--branch container-->
-
-
-                <div class="containernew card-deck" ng-show="branchContainerVisible" >
-
-                    <!--left container-->
-
-                    <div class="cardL row ml-md-5">
-                        <!--<form id="myForm"> style="width: 40%;"-->
-                        <div class="col "> 
-                            <div class="row justify-content-right">
-                                <!--                                <div class="  l_cont">
-                                                                    <button type="button" class="form-buttonGG attractive-button" ng-click="exportToExcel_COPs()">Export To Excel</button>
-                                                                </div>-->
-                            </div>
-
-                            <form class="form-row cardX">
-
-                                <!--<span style="font-family: 'Libre Baskerville', serif;">User Information:</span><br>-->
-                                <div class="col">
-                                    <!--<h5 class="card-title">User Information :</h5>-->
-                                    <div class=" row mt-5">
-                                        <div class="col-4">
-                                            <label for="user_id" class="left_table" >User ID:</label>   
-                                        </div>
-                                        <div class="col-7 ml-md-auto pr-2">
-                                            <input type="text" id="id" name="id" class="form-control left_tF" ng-model="emp_id" readonly="" required="">
-                                        </div>
-                                    </div>
-
-                                    <div class="row mt-3">
-                                        <div class="col-4">
-                                            <label for="user_name" class="left_table">User Name:</label>
-                                        </div>
-                                        <div class="col-7 ml-md-auto pr-2" >
-                                            <input type="text" id="userName" name="userName" class="form-control left_tF " ng-model="userName" readonly="" required="">
-                                        </div>
-                                    </div>
-
-                                    <div class="row mt-3">
-                                        <div class="col-4">
-                                            <label for="zone" class="left_table">Zone:</label>
-                                        </div>
-                                        <div class="col-7 ml-md-auto pr-2" >
-                                            <input type="text" id="zone" name="zone" class="form-control left_tF" ng-model="zone" readonly="" required="">
-                                        </div>
-                                    </div>
-                                    <div class="row mt-3 mb-2">
-                                        <div class="col-4">
-                                            <label for="region" class="left_table">Region :</label>
-                                        </div>
-                                        <div class="col-7 ml-md-auto pr-2">
-                                            <input type="text" id="region" name="region" class="form-control left_tF" ng-model="region" readonly="" required="">
-                                        </div>
-                                    </div>
-
-                                    <div class="row mt-3 mb-2">
-                                        <div class="col-4">
-                                            <label for="area" class="left_table">Area :</label>
-                                        </div>
-                                        <div class="col-7 ml-md-auto pr-2">
-                                            <input type="text" id="area" name="area" class="form-control left_tF" ng-model="area" readonly="" required="">
-                                        </div>
-                                    </div>
-
-
-                                    <div class="row mt-3 mb-2">
-                                        <div class="col-4">
-                                            <label for="branch" class="left_table">Branch :</label>
-                                        </div>
-                                        <div class="col-7 ml-md-auto pr-2">
-                                            <input type="text" id="branch" name="branch" class="form-control left_tF" ng-model="branch" readonly="" required="">
-                                        </div>
-                                    </div>
-
-                                    <div class="row mt-3 mb-2">
-                                        <div class="col-4">
-                                            <label for="designation" class="left_table">Designation:</label>
-                                        </div>
-                                        <div class="col-7 ml-md-auto pr-2">
-                                            <input type="text" id="designation" name="designation" class="form-control left_tF" ng-model="designation" readonly="" required="">
-                                        </div>
-                                    </div>
-
-
-                                    <div class="row mt-3 mb-2">
-                                        <div class="col-4">
-                                            <label for="userIdStatus" class="left_table">User ID Status :</label>
-                                        </div>
-                                        <div class="col-7 ml-md-auto pr-2">
-                                            <input type="text" id="userIdStatus" name="userIdStatus" class="form-control left_tF" ng-model="userIdStatus" readonly="" required="">
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
 
 
 
-
-                    <!--right conatiner-->
-
-                    <div class="cardR ml-md-5">
-                        <div class="col">
-                            <form class="form-row">
-                                <div class="row justify-content-center">
-                                    <div class="col ml-md-4 justify-content-center" >
-                                        <label  style="font-size: 20px; color: #007006;font-family: 'Rajdhani', sans-serif;" for="selectedOptionForUser">User Type :</label>
+                    <!--branch container-->
 
 
-                                        <select class="form-input-selectuser" id="designation" ng-model="selectedOptionForUser" ng-change="selectedUserType()">
-                                            <option value="" disabled selected ><i class="center-align" style="color: #999;" >Select The Designation</i></option>
-                                            <optgroup label="Sales Department">
-                                                <option value="Branch Manager">Branch Manager</option>
-                                                <option value="Area Manager">Area Manager</option>
-                                            </optgroup>
-                                            <optgroup label="Operation Department">
-                                                <option value="Account Executive">Account Executive</option>
-                                                <option value="Area Account Manager">Area Account Manager</option>
+                    <div class="containernew card-deck" ng-show="branchContainerVisible">
 
-                                            </optgroup>
-                                            <optgroup label="Audit Department">
-                                                <option value="Risk Officer">Risk Officer</option>
-                                                <option value="Auditor">Auditor</option>
-                                                <option value="Cluster Audit Manager">Cluster Audit Manager</option>
-                                            </optgroup>
-                                            <optgroup label="JLL Inspection">
-                                                <option value="regional manager">Regional Manager</option>
-                                                <option value="MIS">MIS</option>
-                                            </optgroup>
-                                        </select>
+                        <!--left container-->
 
-                                    </div>  
-
-                                    <div class="col ml-md-5 align-item-cneter">    
-                                        <label  style="font-size: 20px; color: #007006;font-family: 'Rajdhani', sans-serif;" for="selectedOption">User Name :</label>
-                                        <select class="form-input-selectuser" ng-model="selectedOption" ng-change="showSelectedValue()">
-                                            <option value="" disabled selected ><i class="center-align" style="color: #999;" >Select The User Name</i></option>
-                                            <option ng-repeat="option in acceptedlist" value="{{option.id}}">{{option.userName}}</option>
-                                        </select>
-                                    </div>
-                                </div> 
-
-                                <!-- select area option div -->
-                                <div class="form-row justify-content-center mt-3 ml-md-4">
-                                    <div class="col options-container">
-                                        <label class="labell" ng-repeat="option in options">
-                                            <input type="checkbox" ng-model="optionsArray[option]" ng-change="updateSelectedOptions(option)"> {{ option}}
-                                        </label>
-                                    </div>
-
-                                    <div class="col selected-options-container ml-md-5 " ng-show="selectedOptions.length > 0" >
-                                        <strong>Selected Options:</strong>
-                                        <ul>
-                                            <li ng-repeat="selectedOption in selectedOptions">{{ selectedOption}}</li>
-                                        </ul>
-                                    </div>
+                        <div class="cardL row ml-md-5">
+                            <!--<form id="myForm"> style="width: 40%;"-->
+                            <div class="col ">
+                                <div class="row justify-content-right">
+                                    <!--                                <div class="  l_cont">
+                                                                        <button type="button" class="form-buttonGG attractive-button" ng-click="exportToExcel_COPs()">Export To Excel</button>
+                                                                    </div>-->
                                 </div>
 
+                                <form class="form-row cardX">
 
-                                <!-- select branch option div -->
-                                <div class="form-row justify-content-center mt-3 ml-md-4">
-                                    <div class="col options-container">
-                                        <label class="labell" ng-repeat="option in options">
-                                            <input type="checkbox" ng-model="optionsArray[option]" ng-change="updateSelectedOptions(option)"> {{ option}}
-                                        </label>
+                                    <!--<span style="font-family: 'Libre Baskerville', serif;">User Information:</span><br>-->
+                                    <div class="col">
+                                        <!--<h5 class="card-title">User Information :</h5>-->
+                                        <div class=" row mt-5">
+                                            <div class="col-4">
+                                                <label for="user_id" class="left_table">User ID:</label>  
+                                            </div>
+                                            <div class="col-7 ml-md-auto pr-2">
+                                                <input type="text" id="id" name="id" class="form-control left_tF" ng-model="emp_id" readonly="" required="">
+                                            </div>
+                                        </div>
+
+                                        <div class="row mt-3">
+                                            <div class="col-4">
+                                                <label for="user_name" class="left_table">User Name:</label>
+                                            </div>
+                                            <div class="col-7 ml-md-auto pr-2">
+                                                <input type="text" id="userName" name="userName" class="form-control left_tF " ng-model="userName" readonly="" required="">
+                                            </div>
+                                        </div>
+
+                                        <div class="row mt-3">
+                                            <div class="col-4">
+                                                <label for="zone" class="left_table">Zone:</label>
+                                            </div>
+                                            <div class="col-7 ml-md-auto pr-2">
+                                                <input type="text" id="zone" name="zone" class="form-control left_tF" ng-model="zone" readonly="" required="">
+                                            </div>
+                                        </div>
+                                        <div class="row mt-3 mb-2">
+                                            <div class="col-4">
+                                                <label for="region" class="left_table">Region :</label>
+                                            </div>
+                                            <div class="col-7 ml-md-auto pr-2">
+                                                <input type="text" id="region" name="region" class="form-control left_tF" ng-model="region" readonly="" required="">
+                                            </div>
+                                        </div>
+
+                                        <div class="row mt-3 mb-2">
+                                            <div class="col-4">
+                                                <label for="area" class="left_table">Area :</label>
+                                            </div>
+                                            <div class="col-7 ml-md-auto pr-2">
+                                                <input type="text" id="area" name="area" class="form-control left_tF" ng-model="area" readonly="" required="">
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row mt-3 mb-2">
+                                            <div class="col-4">
+                                                <label for="branch" class="left_table">Branch :</label>
+                                            </div>
+                                            <div class="col-7 ml-md-auto pr-2">
+                                                <input type="text" id="branch" name="branch" class="form-control left_tF" ng-model="branch" readonly="" required="">
+                                            </div>
+                                        </div>
+
+                                        <div class="row mt-3 mb-2">
+                                            <div class="col-4">
+                                                <label for="designation" class="left_table">Designation:</label>
+                                            </div>
+                                            <div class="col-7 ml-md-auto pr-2">
+                                                <input type="text" id="designation" name="designation" class="form-control left_tF" ng-model="designation" readonly="" required="">
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row mt-3 mb-2">
+                                            <div class="col-4">
+                                                <label for="userIdStatus" class="left_table">User ID Status :</label>
+                                            </div>
+                                            <div class="col-7 ml-md-auto pr-2">
+                                                <input type="text" id="userIdStatus" name="userIdStatus" class="form-control left_tF" ng-model="userIdStatus" readonly="" required="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+
+
+
+                        <!--right conatiner-->
+
+                        <div class="cardR ml-md-5">
+                            <div class="col">
+                                <form class="form-row">
+                                    <div class="row justify-content-center">
+                                        <div class="col ml-md-4 justify-content-center">
+
+                                            <label style="font-size: 20px; color: #007006;font-family: 'Rajdhani', sans-serif;" for="selectedOptionForUser">User Type :</label>
+                                            <select class="form-input-selectuser" id="designation" ng-model="selectedOptionForUser" ng-change="selectedUserType()">
+                                                <!--                                            <option value="" disabled selected ><i class="center-align" style="color: #999;" >Select The Designation</i></option>
+                                                                                            <optgroup label="Sales Department">
+                                                                                                <option value="Branch Manager">Branch Manager</option>
+                                                                                                <option value="Area Manager">Area Manager</option>
+                                                                                            </optgroup>
+                                                                                            <optgroup label="Operation Department">
+                                                                                                <option value="Account Executive">Account Executive</option>
+                                                                                                <option value="Area Account Manager">Area Account Manager</option>
+                                                
+                                                                                            </optgroup>
+                                                                                            <optgroup label="Audit Department">
+                                                                                                <option value="Risk Officer">Risk Officer</option>
+                                                                                                <option value="Auditor">Auditor</option>
+                                                                                                <option value="Cluster Audit Manager">Cluster Audit Manager</option>
+                                                                                            </optgroup>
+                                                                                            <optgroup label="JLL Inspection">
+                                                                                                <option value="regional manager">Regional Manager</option>
+                                                                                                <option value="MIS">MIS</option>
+                                                                                            </optgroup>-->
+                                                <!--//new-->
+                                                <option value="">Select the Designation</option>
+                                                <optgroup label="Sales Department">
+                                                    <option value="Branch Manager">Branch Manager</option>
+                                                    <option value="Area Manager">Area Manager</option>
+                                                </optgroup>
+                                                <optgroup label="Operation Department">
+                                                    <option value="Account Executive">Account Executive</option>
+                                                    <option value="Area Account Manager">Area Account Manager</option>
+
+                                                </optgroup>
+                                                <optgroup label="Audit Department">
+                                                    <option value="Risk Officer">Risk Officer</option>
+                                                    <option value="Auditor">Auditor</option>
+                                                </optgroup>
+                                                <optgroup label="JLL Inspection">
+                                                    <option value="Cluster Audit Manager">Cluster Audit Manager</option>
+                                                    <option value="regional manager">Regional Manager</option>
+                                                    <option value="MIS">MIS</option>
+                                                </optgroup>
+                                            </select>
+
+
+                                        </div>  
+
+                                        <div class="col align-item-cneter">
+
+                                            <label style="font-size: 20px; color: #007006;font-family: 'Rajdhani', sans-serif;" for="selectedOption">User Name :</label>
+                                            <select class="form-input-selectuser" ng-model="selectedOption" ng-change="showSelectedValue()">
+                                                <option value="" disabled="" selected="">Select The User Name</option>
+                                                <option ng-repeat="option in acceptedlist" value="{{option.id}}">{{option.userName}}</option>
+                                            </select>
+                                        </div>
                                     </div>
 
-                                    <div class="col selected-options-container ml-md-5 " ng-show="selectedOptions.length > 0" >
-                                        <strong>Selected Options:</strong>
-                                        <ul>
-                                            <li ng-repeat="selectedOption in selectedOptions">{{ selectedOption}}</li>
-                                        </ul>
+                                    <!-- select Branch option div -->
+                                    <div class="col justify-content-center">
+                                        <div class="col options-container">
+                                            <label class="labell" ng-repeat="option in optionsB">
+                                                <input type="checkbox" ng-model="optionsArrayB[option]" ng-change="updateSelectedOptionsB(option)"> {{ option}}
+                                            </label>
+                                        </div>
+
+                                        <div class="col selected-options-container" ng-show="selectedOptionsB.length > 0">
+                                            <strong>Selected Branches :</strong>
+                                            <ul>
+                                                <li ng-repeat="selectedOption in selectedOptionsB">{{ selectedOption}}</li>
+                                            </ul>
+                                        </div>
                                     </div>
-                                </div>
-
-                                <!--end of div-->
 
 
-                                <div class="form-row">
-                                    <div class="col-12">
-                                        <button class="form-buttonGG ml-5 mt-3  " type="button" ng-click="submitForm()">Submit</button>
-                                        <button class="form-buttonRR" type="button" ng-click="loadpage()">Cancel</button>
+                                    <!-- select Area option div -->
+                                    <div class="col justify-content-center">
+                                        <div class="col options-container">
+                                            <label class="labell" ng-repeat="option in optionsA">
+                                                <input type="checkbox" ng-model="optionsArrayA[option]" ng-change="updateSelectedOptionsA(option)"> {{ option}}
+                                            </label>
+                                        </div>
+
+                                        <div class="col selected-options-container" ng-show="selectedOptionsA.length > 0">
+                                            <strong>Selected Areas :</strong>
+                                            <ul>
+                                                <li ng-repeat="selectedOption in selectedOptionsA">{{ selectedOption}}</li>
+                                            </ul>
+                                        </div>
                                     </div>
-                                </div>
-                            </form>    
-                        </div>  
+
+                                    <!--end of div-->
+
+
+                                    <div class="form-row">
+                                        <div class="col-12">
+                                            <button class="form-buttonGG ml-5 mt-3  " type="button" ng-click="submitForm()">Submit</button>
+                                            <button class="form-buttonRR" type="button" ng-click="loadpage()">Cancel</button>
+                                        </div>
+                                    </div>
+                                </form>    
+                            </div>  
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div> 
 
-    <script>
+        <script>
 
-        ///session tinme out code here
-        var idleTimeout = 900000; // 5 minutes in milliseconds
-        var idleTimer;
+            ///session tinme out code here
+            var idleTimeout = 900000; // 5 minutes in milliseconds
+            var idleTimer;
 
-        function resetTimer() {
-            clearTimeout(idleTimer);
-            idleTimer = setTimeout(logout, idleTimeout);
-        }
+            function resetTimer() {
+                clearTimeout(idleTimer);
+                idleTimer = setTimeout(logout, idleTimeout);
+            }
 
-        function logout() {
-            window.localStorage.removeItem("super_user");
-            location.reload();
-            console.log("User automatically logged out due to inactivity.");
-        }
-        // Initial setup
-        resetTimer();
-        // Listen for user activity
-        window.addEventListener('mousemove', resetTimer);
-        window.addEventListener('keydown', resetTimer);
-        window.addEventListener('scroll', resetTimer);
-    </script>
-</body>
+            function logout() {
+                window.localStorage.removeItem("super_user");
+                location.reload();
+                console.log("User automatically logged out due to inactivity.");
+            }
+            // Initial setup
+            resetTimer();
+            // Listen for user activity
+            window.addEventListener('mousemove', resetTimer);
+            window.addEventListener('keydown', resetTimer);
+            window.addEventListener('scroll', resetTimer);
+        </script>
+    </body>
 </html>

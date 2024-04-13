@@ -38,7 +38,7 @@ body{
     margin-left: 20px;
 }
 .form-input-selectuser {
-    width: 80%;
+    width: 88%;
     padding: 6px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -473,21 +473,28 @@ dt{
 
 .options-container {
     height: 185px; /* Adjust the maximum height as needed */
-    width: 250px;
+    width: 220px;
     overflow-y: auto;
     border: 4px solid #e5ffcf;
     padding: 8px;
-    margin-bottom: 1px;
+    /*margin-bottom: 1px;*/
     border-radius: 8px;
     background-color: #f7fcf2;
+    margin-left: 8%;
+    margin-top: 8px;
+    display:inline-block;
 }
 .selected-options-container {
     height: 185px; /* Adjust the maximum height as needed */
+    width: 220px;
     overflow-y: auto;
     border: 4px solid #e5ffcf;
     border-radius: 8px;
     padding: 8px; 
     background-color: #f7fcf2;
+    margin-left: 8%;
+    margin-top: 8px;
+    /*width: 80%;*/
 }
 
 .temp > span {

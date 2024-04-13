@@ -709,8 +709,6 @@ label.valid:after {
 }
 
 body{
-    background-image: url('image/bgImg.jpg');
-
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;

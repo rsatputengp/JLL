@@ -24,7 +24,7 @@ app.controller('signUpController', function ($scope, $http, $interval, $timeout)
 
 
     $scope.URL = window.location.protocol + "//" + window.location.host + "/";
-    console.log($scope.URL);
+//    console.log($scope.URL);
 
     $scope.signInPage = function () {
 
@@ -107,13 +107,13 @@ app.controller('signUpController', function ($scope, $http, $interval, $timeout)
         // $scope.encryptedPassword = CryptoJS.MD5($scope.userPassword).toString();
         if ($scope.password === $scope.cnfrmpass) {
 
-            var Url = $scope.URL + "user/getuser/" + $scope.userName;
+            var Url = $scope.URL + "user/getuser/" + $scope.emp_id;
 
             $http.get(Url)
                     .then(function (response) {
 
                         $scope.resData = response.data;
-                        if ($scope.resData.userName === $scope.userName) {
+                        if ($scope.resData.emp_id === $scope.emp_id) {
                             alert("Account already exist!")
                         } else {
 
@@ -179,7 +179,7 @@ app.controller('signUpController', function ($scope, $http, $interval, $timeout)
                                 localStorage.setItem("user", JSON.stringify($scope.resData));
                                 alert("Login Successfully");   
                             } else if ($scope.resData.designation === "Cluster Audit Manager") {
-                                window.location.href = $scope.URL + "Moderator_dashboard.html";
+                                window.location.href = $scope.URL + "Admin_dashboard.html";
                                 localStorage.setItem("user", JSON.stringify($scope.resData));
                                 alert("Login Successfully");
                             } else if ($scope.resData.designation === "Regional Manager") {
@@ -212,7 +212,7 @@ app.controller('signUpController', function ($scope, $http, $interval, $timeout)
             var Url = $scope.URL + "user/resetPassword/" + $scope.email + "/" + $scope.password;
             $http.get(Url)
                     .then(function (response) {
-                        console.log(response);
+//                        console.log(response);
                         alert("Password reset successfully :)")
                         location.reload();
                     },

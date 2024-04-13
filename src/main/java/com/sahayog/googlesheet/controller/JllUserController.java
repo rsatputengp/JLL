@@ -42,14 +42,14 @@ public class JllUserController {
         return jllUser;
     }
 
-    @RequestMapping("update/{id}/{emp_id}/{userName}/{email}/{zone}/{region}/{area}/{branch}/{designation}/{password}/{userIdStatus}")
+    @RequestMapping("update/{id}/{emp_id}/{userName}/{email}/{zone}/{region}/{area}/{branch}/{designation}/{userIdStatus}")
     public JllUser update(@PathVariable int id, @PathVariable String emp_id, @PathVariable String userName,
             @PathVariable String email, @PathVariable String zone,
             @PathVariable String region, @PathVariable ArrayList<String> area,
             @PathVariable ArrayList<String> branch, @PathVariable String designation,
-            @PathVariable String password, @PathVariable String userIdStatus) {
+            @PathVariable String userIdStatus) {
         JllUser jllUser
-                = service.update(id, emp_id, userName, email, zone, region, area, branch, designation, password, userIdStatus);
+                = service.update(id, emp_id, userName, email, zone, region, area, branch, designation, userIdStatus);
         return jllUser;
     }
 
@@ -81,9 +81,9 @@ public class JllUserController {
         return userRecord;
     }
 
-    @RequestMapping("login/{userName}/{password}")
-    public JllUser login(@PathVariable String userName, @PathVariable String password) {
-        JllUser userRecord = service.getUser(userName, password);
+    @RequestMapping("login/{emp_id}/{password}")
+    public JllUser login(@PathVariable String emp_id, @PathVariable String password) {
+        JllUser userRecord = service.getUser(emp_id, password);
         return userRecord;
     }
 
@@ -122,9 +122,9 @@ public class JllUserController {
         return ResponseEntity.ok(response);
     }
 
-    @RequestMapping("getuser/{userName}")
-    public JllUser getJllUser(@PathVariable String userName) {
-        return service.getUser(userName);
+    @RequestMapping("getuser/{emp_id}")
+    public JllUser getJllUser(@PathVariable String emp_id) {
+        return service.getUser(emp_id);
     }
 
     @RequestMapping("getEmail/{mail}")
@@ -174,21 +174,4 @@ public class JllUserController {
         return allRecordsNumberList;
     }
 
-//    @RequestMapping("typecheck")
-//    public String check(UserInfo userInfo) {
-//        System.out.println("I am in typecheck");
-//        System.out.println("111");
-//        UserInfo user = service.getUser(userInfo.getUsername(), userInfo.getPassword());
-//        int userTypeId = user.getUserTypeId();
-//        System.out.println("2222");
-//        List<UserInfo> all = service.getAll();
-//        for (UserInfo userInfo1 : all) {
-//
-//            if (userTypeId == userInfo1.getUserTypeId()) {
-//                System.out.println("3333");
-//                return "admin_dashboard.html";
-//            }
-//        }
-//        return null;
-//    }
 }

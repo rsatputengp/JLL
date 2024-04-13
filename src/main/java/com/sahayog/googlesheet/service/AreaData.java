@@ -80,24 +80,24 @@ public class AreaData {
         return list;
     }
 
-    public static void main(String[] args) {
-        try {
-            AreaData areaData = new AreaData("/home/ritik/NetBeansProjects/JLL/src/main/resources/static/js/zone_Data.json");
-
-            // Getter example
-            JsonArray nagpur1Data = areaData.getArea("Zone-1", "Region-2", "Nagpur-1");
-            System.out.println(nagpur1Data); // Output: {"0":"Kanhan","1":"Saoner","2":"Parsivani","3":"Ramtek","4":"Kalmeshwar"}
-            // Getter example
-            List<String> Data = areaData.getAreasForRegion("Zone-1", "Region-2");
-            System.out.println(Data); // Output: {"Nagpur-1":["Kanhan","Saoner","Parsivani","Ramtek","Kalmeshwar"],"Nagpur-2":["Hingna","Mouda","Katol","Manish Nagar","Umred","Kuhi"],"Wardha":["Wardha","Seloo","Deoli","Karanja Gadge","Samudrapur"],"Yawatmal-1":["Arni","Dharwa","Digras","Umarkhed","Wani"],"Yawatmal-2":["Kalamb","Pandherkawada","Yawatmal"]}
-
-            // Setter example
-//            JsonObject newData = new JsonObject();
-//            newData.addProperty("0", "New Area 1");
-//            newData.addProperty("1", "New Area 2");
-//            areaData.setArea("Zone-1", "Region-2", "Nagpur-1", newData);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+//    public static void main(String[] args) {
+//        try {
+//            AreaData areaData = new AreaData("/home/ritik/NetBeansProjects/JLL/src/main/resources/static/js/zone_Data.json");
+//
+//            // Getter example
+//            JsonArray nagpur1Data = areaData.getArea("Zone-1", "Region-2", "Nagpur-1");
+//            System.out.println(nagpur1Data); // Output: {"0":"Kanhan","1":"Saoner","2":"Parsivani","3":"Ramtek","4":"Kalmeshwar"}
+//            // Getter example
+//            List<String> Data = areaData.getAreasForRegion("Zone-1", "Region-2");
+//            System.out.println(Data); // Output: {"Nagpur-1":["Kanhan","Saoner","Parsivani","Ramtek","Kalmeshwar"],"Nagpur-2":["Hingna","Mouda","Katol","Manish Nagar","Umred","Kuhi"],"Wardha":["Wardha","Seloo","Deoli","Karanja Gadge","Samudrapur"],"Yawatmal-1":["Arni","Dharwa","Digras","Umarkhed","Wani"],"Yawatmal-2":["Kalamb","Pandherkawada","Yawatmal"]}
+//
+//            // Setter example
+////            JsonObject newData = new JsonObject();
+////            newData.addProperty("0", "New Area 1");
+////            newData.addProperty("1", "New Area 2");
+////            areaData.setArea("Zone-1", "Region-2", "Nagpur-1", newData);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 }
