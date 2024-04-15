@@ -74,7 +74,9 @@ app.controller("cont", function ($scope, $http) {
     var host = window.location.host;
     $scope.uRl = protocal + "//" + host + "/";
 //    console.log($scope.uRl);
-    if (($scope.userRecord)) {
+    if (($scope.userRecord.designation === "Cluster Audit Manager"
+            || $scope.userRecord.designation === "Regional Manager"
+            || $scope.userRecord.designation === "MIS")) {
         $scope.branchContainerVisible = false;
         $scope.userContainerVisible = true;
         //opration page
