@@ -49,6 +49,7 @@ public class JllUser {
     private String designation;
     private String password;
     private String userIdStatus;
+    private String reacted;
     private String key;
 
 }

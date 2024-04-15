@@ -121,7 +121,7 @@ app.controller('signUpController', function ($scope, $http, $interval, $timeout)
                         } else {
 
                             var url = $scope.URL + "user/add/" + $scope.emp_id + "/" + $scope.userName + "/" + $scope.email + "/" + $scope.selectedZone + "/" + $scope.selectedRegion + "/" +
-                                    $scope.selectedArea + "/" + $scope.selectedBranch + "/" + $scope.selectedDesignation + "/" + $scope.password + "/Pending";
+                                    $scope.selectedArea + "/" + $scope.selectedBranch + "/" + $scope.selectedDesignation + "/" + $scope.password + "/Pending/" + "Not taken yet.";
                             $http.post(url)
                                     .then(function (response) {
                                         alert("You had Successfully Registered");
@@ -199,7 +199,15 @@ app.controller('signUpController', function ($scope, $http, $interval, $timeout)
 
                         } else if ($scope.resData.userIdStatus === "Pending") {
                             alert("The user is not activated by Super User yet.");
+                            location.reload();
+                        } else if ($scope.resData.userIdStatus === "Reject") {
+                            alert("Please, check the username & password !");
+                            location.reload();
+                        } else if ($scope.resData.userIdStatus === "Terminate") {
+                            alert("The user was no more Active.");
+                            location.reload();
                         }
+
                     } else {
                         alert("check the userId and Password!");
                     }

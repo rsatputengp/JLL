@@ -34,16 +34,16 @@ public class JllUserService {
 
     public JllUser add(String emp_id, String userName, String email, String zone,
             String region, String area, String branch,
-            String designation, String password, String userIdStatus) {
+            String designation, String password, String userIdStatus, String reacted) {
         if (getUser(userName, emp_id, email) == null) {
             if ("Branch Manager".equals(designation) || "Account Executive".equals(designation) || "Risk Officer".equals(designation)) {
-                JllUser addUser = addUser(emp_id, userName, email, zone, region, area, branch, designation, password, userIdStatus);
+                JllUser addUser = addUser(emp_id, userName, email, zone, region, area, branch, designation, password, userIdStatus, reacted);
                 return addUser;
             } else if ("Area Manager".equals(designation) || "Area Account Manager".equals(designation) || "Auditor".equals(designation)) {
-                JllUser addManager = addManager(emp_id, userName, email, zone, region, area, branch, designation, password, userIdStatus);
+                JllUser addManager = addManager(emp_id, userName, email, zone, region, area, branch, designation, password, userIdStatus, reacted);
                 return addManager;
             } else if ("Regional Manager".equals(designation) || "MIS".equals(designation) || "Cluster Audit Manager".equals(designation)) {
-                JllUser addSuperUser = addSuperUser(emp_id, userName, email, zone, region, area, branch, designation, password, userIdStatus);
+                JllUser addSuperUser = addSuperUser(emp_id, userName, email, zone, region, area, branch, designation, password, userIdStatus, reacted);
                 return addSuperUser;
             }
         }
@@ -53,7 +53,7 @@ public class JllUserService {
     public JllUser update(int id, String emp_id, String userName, String email,
             String zone, String region, ArrayList<String> area,
             ArrayList<String> branch, String designation,
-            String userIdStatus) {
+            String userIdStatus,String reacted) {
         JllUser user = getUser(emp_id);
         if (user != null) {
             user.setId(id);
@@ -66,6 +66,7 @@ public class JllUserService {
             user.setBranch(branch);
             user.setDesignation(designation);
             user.setUserIdStatus(userIdStatus);
+            user.setReacted(reacted);
             repository.save(user);
             return user;
         }
@@ -84,10 +85,11 @@ public class JllUserService {
         return null;
     }
 
-    public JllUser update(String emp_id, String userName, String userIdStatus) {
+    public JllUser updateStatus(String emp_id, String userName, String userIdStatus, String reacted) {
         JllUser user = getUser(emp_id);
         if (user != null) {
             user.setUserIdStatus(userIdStatus);
+            user.setReacted(reacted);
             repository.save(user);
             return user;
         }
@@ -259,7 +261,7 @@ public class JllUserService {
 
     public JllUser addUser(String emp_id, String userName, String email, String zone,
             String region, String area, String branch,
-            String designation, String password, String userIdStatus) {
+            String designation, String password, String userIdStatus, String reacted) {
         if (getUser(emp_id) == null) {
             JllUser user = new JllUser();
             user.setEmp_id(emp_id);
@@ -276,6 +278,7 @@ public class JllUserService {
             user.setDesignation(designation);
             user.setPassword(password);
             user.setUserIdStatus(userIdStatus);
+            user.setReacted(reacted);
             user.setKey(null);
             repository.save(user);
             return user;
@@ -285,12 +288,12 @@ public class JllUserService {
 
     public JllUser addManager(String emp_id, String userName, String email, String zone,
             String region, String area, String branch,
-            String designation, String password, String userIdStatus) {
+            String designation, String password, String userIdStatus, String reacted) {
         if (getUser(emp_id) == null) {
             AreaData areaData;
             try {
-                areaData = new AreaData("/home/mishra/NetBeansProjects/JLL/src/main/resources/zone_Data.json");
-//                areaData = new AreaData("/home/ritik/NetBeansProjects/JLL/src/main/resources/zone_Data.json");
+//                areaData = new AreaData("/home/mishra/NetBeansProjects/JLL/src/main/resources/zone_Data.json");
+                areaData = new AreaData("/home/ritik/NetBeansProjects/JLL/src/main/resources/zone_Data.json");
 //                areaData = new AreaData("/home/sysadmin/NetBeansProjects/JLL/src/main/resources/zone_Data.json");
                 // Getter example
 //                ArrayList<String> branchL;
@@ -311,6 +314,7 @@ public class JllUserService {
                 user.setDesignation(designation);
                 user.setPassword(password);
                 user.setUserIdStatus(userIdStatus);
+                user.setReacted(reacted);
                 user.setKey(null);
                 repository.save(user);
                 return user;
@@ -323,12 +327,12 @@ public class JllUserService {
 
     public JllUser addSuperUser(String emp_id, String userName, String email, String zone,
             String region, String area, String branch,
-            String designation, String password, String userIdStatus) {
+            String designation, String password, String userIdStatus, String reacted) {
         if (getUser(emp_id) == null) {
             AreaData areaData;
             try {
-                areaData = new AreaData("/home/mishra/NetBeansProjects/JLL/src/main/resources/zone_Data.json");
-//                areaData = new AreaData("/home/ritik/NetBeansProjects/JLL/src/main/resources/zone_Data.json");
+//                areaData = new AreaData("/home/mishra/NetBeansProjects/JLL/src/main/resources/zone_Data.json");
+                areaData = new AreaData("/home/ritik/NetBeansProjects/JLL/src/main/resources/zone_Data.json");
 //                areaData = new AreaData("/home/sysadmin/NetBeansProjects/JLL/src/main/resources/zone_Data.json");
 
                 ArrayList<String> branchList = new ArrayList<>();
@@ -358,6 +362,7 @@ public class JllUserService {
                 user.setDesignation(designation);
                 user.setPassword(password);
                 user.setUserIdStatus(userIdStatus);
+                user.setReacted(reacted);
                 user.setKey(null);
                 repository.save(user);
                 return user;

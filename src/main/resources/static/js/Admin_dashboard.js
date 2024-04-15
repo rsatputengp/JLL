@@ -96,13 +96,6 @@ app.controller("cont", function ($scope, $http) {
                         function (error) {
                             console.log(error);
                         });
-//                    $http.get($scope.uRl + "branch/getall")
-//                            .then(function (response) {
-//                            $scope.userList_COPs = response.data;
-//                            },
-//                                    function (error) {
-//                                    console.log(error);
-//                                    }); 
 
         $scope.acceptVisible = true;
         $scope.rejectVisible = true;
@@ -189,15 +182,11 @@ app.controller("cont", function ($scope, $http) {
                     });
         };
         $scope.countNoForlistView();
-//                        console.log($scope.list);
-//                    console.log($scope.acceptedUserList +"|"+ $scope.rejectedUserList 
-//                            +"|"+$scope.pendingUserList +"|"+ $scope.terminatedUserList 
-//                            +"|"+ $scope.resetpasswordUserList );
-//                                                
+
         //Accept
         $scope.onUserEditA = function (record) {
             $scope.url = "user/updateStatus/" + record.emp_id + "/" + record.userName
-                    + "/" + "Accept";
+                    + "/" + "Accept" + "/" + "Accepted by : " + $scope.userRecord.emp_id;
             $http.get($scope.uRl + $scope.url)
                     .then(function (response) {
                         alert("User : " + record.userName + " is Activated.");
@@ -210,7 +199,7 @@ app.controller("cont", function ($scope, $http) {
         //Reject
         $scope.onUserEditR = function (record) {
             $scope.url = "user/updateStatus/" + record.emp_id + "/" + record.userName
-                    + "/" + "Reject";
+                    + "/" + "Reject" + "/" + "Rejected by : " + $scope.userRecord.emp_id;
             $http.get($scope.uRl + $scope.url)
                     .then(function (response) {
                         alert("User : " + record.userName + " is Rejected.");
@@ -223,7 +212,7 @@ app.controller("cont", function ($scope, $http) {
         //Terminate
         $scope.onUserEditT = function (record) {
             $scope.url = "user/updateStatus/" + record.emp_id + "/" + record.userName
-                    + "/" + "Terminate";
+                    + "/" + "Terminate" + "/" + "Terminated by : " + $scope.userRecord.emp_id;
             $http.get($scope.uRl + $scope.url)
                     .then(function (response) {
                         alert("User : " + record.userName + " is Terminated.");
@@ -283,7 +272,8 @@ app.controller("cont", function ($scope, $http) {
                     'area': item.area,
                     'branch': item.branch,
                     'designation': item.designation,
-                    'userIdStatus': item.userIdStatus
+                    'userIdStatus': item.userIdStatus,
+                    'reacted': item.reacted
                 };
             });
 
@@ -300,6 +290,7 @@ app.controller("cont", function ($scope, $http) {
                 {width: 10},
                 {width: 40},
                 {width: 60},
+                {width: 10},
                 {width: 10},
                 {width: 10}
             ];
@@ -401,6 +392,7 @@ app.controller("cont", function ($scope, $http) {
                             $scope.branch = $scope.list2.branch;
                             $scope.designation = $scope.list2.designation;
                             $scope.userIdStatus = $scope.list2.userIdStatus;
+                            $scope.reacted = $scope.list2.reacted;
                             $scope.showSelectedV();
                         }, function (error) {
                             console.log(error);
@@ -479,12 +471,11 @@ app.controller("cont", function ($scope, $http) {
                 var areaList = arraylistofarea.split(',').map(function (item) {
                     return item.trim();
                 });
-//            {id}/{emp_id}/{userName}/{email}/{zone}/{region}/{area}/{branch}/{designation}{userIdStatus}
                 if ($scope.selectedOptionsB.length > 0 && $scope.selectedOptionsA.length > 0) {
                     $scope.url = "user/update/" + $scope.list2.id + "/" + $scope.emp_id
                             + "/" + $scope.userName + "/" + $scope.list2.email + "/" + $scope.zone
                             + "/" + $scope.region + "/" + areaList + "/" + branchList
-                            + "/" + $scope.designation + "/" + $scope.userIdStatus;
+                            + "/" + $scope.designation + "/" + $scope.userIdStatus + "/" + $scope.reacted
                     alert(areaList);
                     alert(branchList);
                     $http.get($scope.uRl + $scope.url)
@@ -499,46 +490,6 @@ app.controller("cont", function ($scope, $http) {
                 }
 
 
-//            $scope.oldList = [];
-//            $http.get($scope.uRl + "branch/getuser/" + $scope.userName)
-//                    .then(function (response) {
-//                        $scope.oldList = response.data;
-//                        if ("" === $scope.oldList) {
-//                            if ($scope.selectedOptions.length > 0) {
-//                                $scope.url = "branch/add/" + $scope.list2.userName + "/" + arrayResult
-//                                        + "/" + $scope.list2.userType + "/" + $scope.list2.userIdStatus
-//                                        + "/" + $scope.list2.branchName;
-//                                $http.get($scope.uRl + $scope.url)
-//                                        .then(function (response) {
-//                                            alert("Branch successfully Added.");
-//                                            location.reload();
-//                                        }, function (error) {
-//                                            console.log(error);
-//                                        });
-//                            } else {
-//                                alert("Please, select atleast one branch OR press 'Cancel' button.");
-//                            }
-//                        } else {
-//                            if ($scope.selectedOptions.length > 0) {
-//                                $scope.url = "branch/update/" + $scope.oldList.id + "/" + $scope.list2.userName
-//                                        + "/" + arrayResult + "/" + $scope.list2.userType + "/" + $scope.list2.userIdStatus
-//                                        + "/" + $scope.list2.branchName;
-//                                alert(arrayResult);
-//                                $http.get($scope.uRl + $scope.url)
-//                                        .then(function (response) {
-//                                            alert("Branch successfully updated.");
-//                                            location.reload();
-//                                        }, function (error) {
-//                                            console.log(error);
-//                                        });
-//                            } else {
-//                                alert("Please, select atleast one branch OR press 'Cancel' button.");
-//                            }
-//                        }
-//                    },
-//                            function (error) {
-//                                console.log(error);
-//                            });
             }
         };
         $scope.loadpage = function () {
