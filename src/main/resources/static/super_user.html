@@ -164,7 +164,8 @@
                                                 <label for="area" class="left_table">Area :</label>
                                             </div>
                                             <div class="col-7 ml-md-auto pr-2">
-                                                <input type="text" id="area" name="area" class="form-control left_tF" ng-model="area" readonly="" required="">
+                                                <input type="text" id="areaview" name="area" class="hideExtra form-control left_tF" ng-model="area" readonly="" required="">
+                                                    <div class="popupView" id="popupViewArea">{{ area }}</div>
                                             </div>
                                         </div>
 
@@ -174,7 +175,8 @@
                                                 <label for="branch" class="left_table">Branch :</label>
                                             </div>
                                             <div class="col-7 ml-md-auto pr-2">
-                                                <input type="text" id="branch" name="branch" class="form-control left_tF" ng-model="branch" readonly="" required="">
+                                                <input type="text" id="branchview" name="branch" class="hideExtra   form-control left_tF" ng-model="branch" readonly required>
+                                                <div class="popupView" id="popupView">{{ branch }}</div>
                                             </div>
                                         </div>
 
@@ -183,7 +185,7 @@
                                                 <label for="designation" class="left_table">Designation:</label>
                                             </div>
                                             <div class="col-7 ml-md-auto pr-2">
-                                                <input type="text" id="designation" name="designation" class="form-control left_tF" ng-model="designation" readonly="" required="">
+                                                <input type="text" id="designation" name="designation" class=" form-control left_tF" ng-model="designation" readonly="" required="">
                                             </div>
                                         </div>
 
@@ -341,5 +343,27 @@
             window.addEventListener('keydown', resetTimer);
             window.addEventListener('scroll', resetTimer);
         </script>
+        
+        <script>
+            const branchview = document.getElementById('branchview');
+            const popupView = document.getElementById('popupView');
+
+            branchview.addEventListener('input', function () {
+                popupView.innerText = branchview.value;
+            });
+        </script>
+        
+         <script>
+            const branchview = document.getElementById('areaview');
+            const popupView = document.getElementById('popupViewArea');
+
+            branchview.addEventListener('input', function () {
+                popupView.innerText = branchview.value;
+            });
+        </script>
+        
+        
+        
+
     </body>
 </html>

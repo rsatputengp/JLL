@@ -734,3 +734,31 @@ dt{
     box-shadow: 0 0 5px #28a745; /* Green glow effect when focused */
     outline: none; /* Remove default focus outline */
 }
+
+
+/*css for wraping extra contnet in branch access branch input field*/
+
+.hideExtra{
+    width: 254px; /* Set your desired width */
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis; /* Apply ellipsis */
+}
+
+.popupView {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        border: 1px solid #ccc;
+        padding: 10px;
+        z-index: 2;
+    }
+
+    #branchview:hover + .popupView {
+        display: block;
+    }
+    
+    #areaview:hover + .popupView {
+        display: block;
+    }
+    

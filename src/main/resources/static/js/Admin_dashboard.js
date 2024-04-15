@@ -578,9 +578,32 @@ app.controller("cont", function ($scope, $http) {
             location.reload();
         };
 
+        $scope.replaceString = function (str, oldStr, newStr) {
+            return str.replace(oldStr, newStr);
+        };
+
+
         $scope.viewRemark = function (mess) {
             alert(mess);
         }
+
+//        show popUp
+
+        $scope.showPopup = function () {
+            debugger
+
+//            alert("add");
+            var inputField = document.getElementById("branchview");
+            var popup = document.getElementById("popup");
+            if (inputField.scrollWidth < inputField.clientWidth) {
+                popup.style.display = "block";
+            }
+        };
+
+        $scope.hidePopup = function () {
+            var popup = document.getElementById("popup");
+            popup.style.display = "none";
+        };
 
 
     } else {
