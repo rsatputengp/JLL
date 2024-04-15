@@ -267,29 +267,44 @@ app.controller("cont", function ($scope, $http) {
         $scope.exportToExcel = function () {
             alert("Downloading Data Excel file.");
             var jsonData = $scope.userList;
+
+            jsonData.forEach(function (item) {
+                item.area = item.area.join(', ');
+                item.branch = item.branch.join(', ');
+            });
+
             var filteredData = jsonData.map(function (item) {
                 return {
-                    'id': item.id,
+                    'emp_id': item.emp_id,
                     'userName': item.userName,
-                    'branchName': item.branchName,
-                    'userType': item.userType,
-                    'userIdStatus': item.userIdStatus,
-                    'remark': item.remark
-                }
-                ;
+                    'email': item.email,
+                    'zone': item.zone,
+                    'region': item.region,
+                    'area': item.area,
+                    'branch': item.branch,
+                    'designation': item.designation,
+                    'userIdStatus': item.userIdStatus
+                };
             });
+
             var ws = XLSX.utils.json_to_sheet(filteredData);
+
             // Add table properties
             var range = XLSX.utils.decode_range(ws['!ref']);
             ws['!autofilter'] = {ref: XLSX.utils.encode_range(range)};
             ws['!cols'] = [
                 {width: 10}, // Adjust column widths as needed
-                {width: 15},
-                {width: 15},
-                {width: 15},
-                {width: 15},
-                {width: 15}
+                {width: 20},
+                {width: 20},
+                {width: 10},
+                {width: 10},
+                {width: 40},
+                {width: 60},
+                {width: 10},
+                {width: 10}
             ];
+
+
             // Apply table style
             ws['!theme'] = {
                 'tableStyles': {
@@ -310,55 +325,7 @@ app.controller("cont", function ($scope, $http) {
             // Save the Excel file
             XLSX.writeFile(wb, 'User\'s Status_report.xlsx');
         };
-        ///// Json to Excel file for COPs
-        $scope.exportToExcel_COPs = function () {
-            alert("Downloading Data Excel file.");
-            var jsonData = $scope.userList_COPs;
-            jsonData.forEach(function (item) {
-                item.branchNameList = item.branchNameList + ".";
-            });
-            var filteredData = jsonData.map(function (item) {
-                return {
-                    'id': item.id,
-                    'userName': item.userName,
-                    'branchName': item.branchName,
-                    'userType': item.userType,
-                    'userIdStatus': item.userIdStatus,
-                    'branchNameList': item.branchNameList
-                };
-            });
-            var ws = XLSX.utils.json_to_sheet(filteredData);
-            // Add table properties
-            var range = XLSX.utils.decode_range(ws['!ref']);
-            ws['!autofilter'] = {ref: XLSX.utils.encode_range(range)};
-            ws['!cols'] = [
-                {width: 10}, // Adjust column widths as needed
-                {width: 15},
-                {width: 15},
-                {width: 15},
-                {width: 15},
-                {width: 70}
-            ];
-            // Apply table style
-            ws['!theme'] = {
-                'tableStyles': {
-                    '1': {
-                        'name': 'TableStyleMedium9',
-                        'showFirstColumn': false,
-                        'showLastColumn': false,
-                        'showRowStripes': true,
-                        'showColumnStripes': true
-                    }
-                }
-            };
-//            const columnF = ws.getColumn('branchNameList');
-//            columnF.alignment = {wrap Text: true};
 
-            var wb = XLSX.utils.book_new();
-            XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
-            // Save the Excel file
-            XLSX.writeFile(wb, 'COPs Branch list report.xlsx');
-        };
 //            User Access permission *_*
 //            _______________
 //            
