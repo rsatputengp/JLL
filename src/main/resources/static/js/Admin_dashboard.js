@@ -359,6 +359,7 @@ app.controller("cont", function ($scope, $http) {
                             $scope.branch = null;
                             $scope.designation = null;
                             $scope.userIdStatus = null;
+                            $scope.reacted = null;
                             //Branch
                             $scope.templistBranch = [];
                             $scope.optionsB.forEach(function (option) {
