@@ -183,12 +183,12 @@ public class JllUserController {
         return list;
     }
 
-    // Getting Resetpassword list
-    @RequestMapping("getuser_resetpassword_list")
-    public List<JllUser> resetpassword_list() {
-        List<JllUser> list = service.getResetPasswordRecords();
-        return list;
-    }
+//    // Getting Resetpassword list
+//    @RequestMapping("getuser_resetpassword_list")
+//    public List<JllUser> resetpassword_list() {
+//        List<JllUser> list = service.getResetPasswordRecords();
+//        return list;
+//    }
 
     // Getting Total no of user list all status
     @RequestMapping("getAllRecordsNumberList")
