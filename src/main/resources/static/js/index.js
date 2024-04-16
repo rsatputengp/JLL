@@ -138,11 +138,11 @@ app.controller('signUpController', function ($scope, $http, $interval, $timeout)
                                 console.error(error);
                             });
         } else {
-            alert("Password and Confirm Password should be match.")
+            alert("Password and Confirm Password should be match.");
         }
     };
 
-
+    //signIn submit form
     $scope.signInSubmit = function () {
 
         var url = $scope.URL + "user/login/" + $scope.emp_id + "/" + $scope.password;

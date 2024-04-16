@@ -171,12 +171,15 @@ public class JllUserService {
     }
 
     public JllUser getUser(String emp_id, String password) {
-        try {
-            JllUser jllUser = findUserByUsernameAndPassword(emp_id, password);
-            jllUser.setPassword(EncryptionDecryption.decryptPassword(jllUser.getPassword()));
-            return jllUser;
-        } catch (Exception ex) {
-            Logger.getLogger(JllUserService.class.getName()).log(Level.SEVERE, null, ex);
+        JllUser jllUser = findUserByUsernameAndPassword(emp_id, password);
+        if (jllUser != null) {
+
+            try {
+                jllUser.setPassword(EncryptionDecryption.decryptPassword(jllUser.getPassword()));
+                return jllUser;
+            } catch (Exception ex) {
+                Logger.getLogger(JllUserService.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return null;
     }
