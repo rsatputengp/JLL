@@ -53,7 +53,7 @@ public class JllUserService {
     public JllUser update(int id, String emp_id, String userName, String email,
             String zone, String region, ArrayList<String> area,
             ArrayList<String> branch, String designation,
-            String userIdStatus,String reacted) {
+            String userIdStatus, String reacted) {
         JllUser user = getUser(emp_id);
         if (user != null) {
             user.setId(id);
@@ -122,29 +122,25 @@ public class JllUserService {
         return findRecords("Terminate");
     }
 
-    public List<JllUser> getResetPasswordRecords() {
-        return findRecords("Reset_Password");
-    }
-
     public ArrayList<String> getAllRecordsNumberList() {
         List<JllUser> activeRecords = getActiveRecords();
         List<JllUser> inactiveRecords = getInactiveRecords();
         List<JllUser> pendingRecords = getPendingRecords();
         List<JllUser> terminateRecords = getTerminateRecords();
-        List<JllUser> resetPasswordRecords = getResetPasswordRecords();
         ArrayList<String> arrayList = new ArrayList<String>();
         arrayList.add(activeRecords.size() + "");
         arrayList.add(inactiveRecords.size() + "");
         arrayList.add(pendingRecords.size() + "");
         arrayList.add(terminateRecords.size() + "");
-        arrayList.add(resetPasswordRecords.size() + "");
         return arrayList;
     }
 
     public JllUser getUser(String userName, String emp_id, String email) {
         List<JllUser> findAll = getallUser();
         for (JllUser jllUser : findAll) {
-            if (emp_id.equals(jllUser.getEmp_id()) || email.equals(jllUser.getEmail())) {
+            if (emp_id.equals(jllUser.getEmp_id())
+                    || email.equals(jllUser.getEmail())
+                    || userName.equals(jllUser.getUserName())) {
                 return jllUser;
             }
         }
@@ -175,17 +171,26 @@ public class JllUserService {
     }
 
     public JllUser getUser(String emp_id, String password) {
-        JllUser JllUserOptional = findUserByUsernameAndPassword(emp_id, password);
-
-        return JllUserOptional;
+        try {
+            JllUser jllUser = findUserByUsernameAndPassword(emp_id, password);
+            jllUser.setPassword(EncryptionDecryption.decryptPassword(jllUser.getPassword()));
+            return jllUser;
+        } catch (Exception ex) {
+            Logger.getLogger(JllUserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     public JllUser getUserRstPass(String mail, String password) {
         JllUser user = getUserM(mail);
         if (user != null) {
-            user.setPassword(password);
-            JllUser record = repository.save(user);
-            return record;
+            try {
+                user.setPassword(EncryptionDecryption.encryptPassword(password));
+                repository.save(user);
+                return user;
+            } catch (Exception ex) {
+                Logger.getLogger(JllUserService.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return user;
     }
@@ -231,11 +236,17 @@ public class JllUserService {
     }
 
     private JllUser findUserByUsernameAndPassword(String emp_id, String password) {
-        List<JllUser> jllUsers = repository.findAll();
-        for (JllUser jllUser : jllUsers) {
-            if (jllUser.getEmp_id().equals(emp_id) && jllUser.getPassword().equals(password)) {
-                return jllUser;
+        try {
+            List<JllUser> jllUsers = repository.findAll();
+            String encryptPassword = EncryptionDecryption.encryptPassword(password);
+            for (JllUser jllUser : jllUsers) {
+                if (jllUser.getEmp_id().equals(emp_id) && jllUser.getPassword().equals(encryptPassword)) {
+                    jllUser.setPassword(encryptPassword);
+                    return jllUser;
+                }
             }
+        } catch (Exception ex) {
+            Logger.getLogger(JllUserService.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
@@ -263,25 +274,29 @@ public class JllUserService {
             String region, String area, String branch,
             String designation, String password, String userIdStatus, String reacted) {
         if (getUser(emp_id) == null) {
-            JllUser user = new JllUser();
-            user.setEmp_id(emp_id);
-            user.setUserName(userName);
-            user.setEmail(email);
-            user.setZone(zone);
-            user.setRegion(region);
-            ArrayList<String> areaL = new ArrayList<>();
-            areaL.add(area);
-            user.setArea(areaL);
-            ArrayList<String> branchL = new ArrayList<>();
-            branchL.add(branch);
-            user.setBranch(branchL);
-            user.setDesignation(designation);
-            user.setPassword(password);
-            user.setUserIdStatus(userIdStatus);
-            user.setReacted(reacted);
-            user.setKey(null);
-            repository.save(user);
-            return user;
+            try {
+                JllUser user = new JllUser();
+                user.setEmp_id(emp_id);
+                user.setUserName(userName);
+                user.setEmail(email);
+                user.setZone(zone);
+                user.setRegion(region);
+                ArrayList<String> areaL = new ArrayList<>();
+                areaL.add(area);
+                user.setArea(areaL);
+                ArrayList<String> branchL = new ArrayList<>();
+                branchL.add(branch);
+                user.setBranch(branchL);
+                user.setDesignation(designation);
+                user.setPassword(EncryptionDecryption.encryptPassword(password));
+                user.setUserIdStatus(userIdStatus);
+                user.setReacted(reacted);
+                user.setKey(null);
+                repository.save(user);
+                return user;
+            } catch (Exception ex) {
+                Logger.getLogger(JllUserService.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return getUser(emp_id);
     }
@@ -312,13 +327,13 @@ public class JllUserService {
                 user.setArea(areaL);
                 user.setBranch(branchL);
                 user.setDesignation(designation);
-                user.setPassword(password);
+                user.setPassword(EncryptionDecryption.encryptPassword(password));
                 user.setUserIdStatus(userIdStatus);
                 user.setReacted(reacted);
                 user.setKey(null);
                 repository.save(user);
                 return user;
-            } catch (IOException ex) {
+            } catch (Exception ex) {
                 Logger.getLogger(JllUserService.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
@@ -360,13 +375,13 @@ public class JllUserService {
 //                branchL.add(branch);
                 user.setBranch(branchList);
                 user.setDesignation(designation);
-                user.setPassword(password);
+                user.setPassword(EncryptionDecryption.encryptPassword(password));
                 user.setUserIdStatus(userIdStatus);
                 user.setReacted(reacted);
                 user.setKey(null);
                 repository.save(user);
                 return user;
-            } catch (IOException ex) {
+            } catch (Exception ex) {
                 Logger.getLogger(JllUserService.class.getName()).log(Level.SEVERE, null, ex);
             }
         }

@@ -345,11 +345,11 @@ app.controller("cont", function ($scope, $http) {
 
         $scope.acceptedlist = [];
         $scope.list2 = [];
-        $scope.selectedUserType = function () {
+        $scope.selectedUserType = function () { 
 //            alert($scope.selectedOptionForUser);
             if ($scope.selectedOptionForUser !== null) {
                 $http.get($scope.uRl + "user/getActiveUser/" + $scope.selectedOptionForUser)
-                        .then(function (response) {
+                        .then(function (response) { 
                             $scope.acceptedlist = response.data;
                             $scope.emp_id = null;
                             $scope.userName = null;
@@ -380,9 +380,9 @@ app.controller("cont", function ($scope, $http) {
                         });
             }
         };
-        $scope.showSelectedValue = function () {
+        $scope.showSelectedValue = function () { debugger;
 //            alert($scope.selectedOption);
-            if ($scope.selectedOption !== null) {
+            if ($scope.selectedOption !== null) { 
                 $http.get($scope.uRl + "user/get/" + $scope.selectedOption)
                         .then(function (response) {
                             $scope.list2 = response.data;

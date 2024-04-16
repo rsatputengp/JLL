@@ -1,7 +1,6 @@
 
 var app = angular.module('app', []);
 
-
 app.controller('signUpController', function ($scope, $http, $interval, $timeout) {
 
     $scope.signInSection = true;
@@ -104,20 +103,22 @@ app.controller('signUpController', function ($scope, $http, $interval, $timeout)
 
     //signUP submit form
     $scope.signUpSubmit = function () {
-        // $scope.encryptedPassword = CryptoJS.MD5($scope.userPassword).toString();
+
         if ($scope.password === $scope.cnfrmpass) {
 
             var Url = $scope.URL + "user/getuserDetails/" + $scope.userName
                     + "/" + $scope.emp_id + "/" + $scope.email;
-//                                {userName}/{emp_id}/{email}
+
             $http.get(Url)
                     .then(function (response) {
 
                         $scope.resData = response.data;
                         if ($scope.resData.emp_id === $scope.emp_id) {
-                            alert("Already have a Account for this Employee Id.")
+                            alert("Already have a Account for this Employee Id.");
                         } else if ($scope.resData.email === $scope.email) {
-                            alert("Already have a Account for this Email.")
+                            alert("Already have a Account for this Email.");
+                        } else if ($scope.resData.userName === $scope.userName) {
+                            alert("Already have a Account for this User Name.");
                         } else {
 
                             var url = $scope.URL + "user/add/" + $scope.emp_id + "/" + $scope.userName + "/" + $scope.email + "/" + $scope.selectedZone + "/" + $scope.selectedRegion + "/" +
@@ -255,7 +256,6 @@ app.controller('signUpController', function ($scope, $http, $interval, $timeout)
     $scope.startTimer = function () {
 
         $scope.generateOTPa = true;
-        alert("inside the timer")
 
         $scope.timerDuration = 60;//timer duration in 20secs
         $scope.timeLeft = $scope.timerDuration;
@@ -287,19 +287,19 @@ app.controller('signUpController', function ($scope, $http, $interval, $timeout)
                             $scope.resData = response.data;
 
                             if ($scope.resData.email === $scope.email) {
+                                $scope.generateOTPa = true;
                                 Url = $scope.URL + "user/otpSender/" + $scope.email;
                                 $http.get(Url)
                                         .then(function (response) {
                                             $scope.mess = response.data;
-                                            alert("helloji");
-                                            alert($scope.mess.message);
                                             if ($scope.mess.message === "OK") {
+                                                alert("Sending OTP on your mail.");
                                                 $scope.timerExpired = true;
                                                 $scope.enterEmail = true;
-                                                alert($scope.timerExpired === true);
                                                 $scope.startTimer();
                                             } else {
                                                 alert("Something , went wrong. Please! regenarate OTP.");
+                                                $scope.generateOTPa = false;
                                             }
                                         }, function (error) {
                                             console.error(error);
