@@ -3,15 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-var app = angular.module('myApp', [])
-app.controller('mainController', ['$scope', '$document', function ($scope, $http, $document) {
+var app = angular.module('CAM_App', []);
+app.controller('CAM_Controller', function ($scope, $http, $document) {
 
 
-        $scope.userRecord = JSON.parse(window.localStorage.getItem("user"));
-        var protocal = window.location.protocol;
-        var host = window.location.host;
-        $scope.uRl = protocal + "//" + host + "/";
-//        console.log($scope.uRl);
+    $scope.userRecord = JSON.parse(window.localStorage.getItem("user"));
+    var protocal = window.location.protocol;
+    var host = window.location.host;
+    $scope.uRl = protocal + "//" + host + "/";
+
+    if (($scope.userRecord.designation === "Cluster Audit Manager")) {
         $scope.profileCard = false;
         $scope.notificationCard = false;
         $scope.helpCard = false;
@@ -22,35 +23,30 @@ app.controller('mainController', ['$scope', '$document', function ($scope, $http
         $scope.sidebarWidth = '0px';
         $scope.closeSidebar = function () {
             $scope.sidebarWidth = '0px';
-        }
-
+        };
         $scope.openSideBar = function () {
             $scope.sidebarWidth = '250px';
-        }
-
+        };
         $scope.notificationButton = function () {
             $scope.profileCard = false;
             $scope.notificationCard = true;
             $scope.helpCard = false;
-        }
-
+        };
         $scope.profileButton = function () {
             $scope.profileCard = true;
             $scope.notificationCard = false;
             $scope.helpCard = false;
-        }
-
+        };
         $scope.helpButton = function () {
             $scope.profileCard = false;
             $scope.notificationCard = false;
             $scope.helpCard = true;
-        }
-
+        };
         $scope.closePopup = function () {
             $scope.profileCard = false;
             $scope.notificationCard = false;
             $scope.helpCard = false;
-        }
+        };
         $scope.logout = function () {
             alert("Logout Successfully.");
             window.location.href = $scope.uRl + "index.html";
@@ -64,19 +60,19 @@ app.controller('mainController', ['$scope', '$document', function ($scope, $http
             $scope.resetpasswordUserList = [];
             window.localStorage.removeItem("user");
         };
-
-    }]);
+    } else {
+        window.location.href = $scope.uRl + "index.html";
+    }
+});
 //super_user - controller
-app.controller("cont", function ($scope, $http) {
+app.controller("super_controller", function ($scope, $http) {
 
     $scope.userRecord = JSON.parse(window.localStorage.getItem("user"));
     var protocal = window.location.protocol;
     var host = window.location.host;
     $scope.uRl = protocal + "//" + host + "/";
-//    console.log($scope.uRl);
-    if (($scope.userRecord.designation === "Cluster Audit Manager"
-            || $scope.userRecord.designation === "Regional Manager"
-            || $scope.userRecord.designation === "MIS")) {
+
+    if (($scope.userRecord.designation === "Cluster Audit Manager")) {
         $scope.branchContainerVisible = false;
         $scope.userContainerVisible = true;
         //opration page
@@ -98,7 +94,6 @@ app.controller("cont", function ($scope, $http) {
                         function (error) {
                             console.log(error);
                         });
-
         $scope.acceptVisible = true;
         $scope.rejectVisible = true;
         $scope.terminateVisible = false;
@@ -184,7 +179,6 @@ app.controller("cont", function ($scope, $http) {
                     });
         };
         $scope.countNoForlistView();
-
         //Accept
         $scope.onUserEditA = function (record) {
             $scope.url = "user/updateStatus/" + record.emp_id + "/" + record.userName
@@ -258,12 +252,10 @@ app.controller("cont", function ($scope, $http) {
         $scope.exportToExcel = function () {
             alert("Downloading Data Excel file.");
             var jsonData = $scope.userList;
-
             jsonData.forEach(function (item) {
                 item.area = item.area.join(', ');
                 item.branch = item.branch.join(', ');
             });
-
             var filteredData = jsonData.map(function (item) {
                 return {
                     'emp_id': item.emp_id,
@@ -278,9 +270,7 @@ app.controller("cont", function ($scope, $http) {
                     'reacted': item.reacted
                 };
             });
-
             var ws = XLSX.utils.json_to_sheet(filteredData);
-
             // Add table properties
             var range = XLSX.utils.decode_range(ws['!ref']);
             ws['!autofilter'] = {ref: XLSX.utils.encode_range(range)};
@@ -296,8 +286,6 @@ app.controller("cont", function ($scope, $http) {
                 {width: 10},
                 {width: 10}
             ];
-
-
             // Apply table style
             ws['!theme'] = {
                 'tableStyles': {
@@ -318,7 +306,6 @@ app.controller("cont", function ($scope, $http) {
             // Save the Excel file
             XLSX.writeFile(wb, 'User\'s Status_report.xlsx');
         };
-
 //            User Access permission *_*
 //            _______________
 //            
@@ -341,15 +328,16 @@ app.controller("cont", function ($scope, $http) {
         $scope.selectedOptionsA = [];
         $scope.optionsA = ["Nagpur-1", "Nagpur-2", "Wardha", "Yawatmal-1", "Yawatmal-2",
             "Gondia", "Bhandara", "Gadchiroli", "Chandrapur", "Amravati"];
-
-
         $scope.acceptedlist = [];
         $scope.list2 = [];
-        $scope.selectedUserType = function () { 
+        $scope.selectedOptionForUser = "";
+        $scope.selectedOption = "";
+        $scope.selectedUserType = function () { debugger;
 //            alert($scope.selectedOptionForUser);
             if ($scope.selectedOptionForUser !== null) {
+                console.log($scope.uRl + "user/getActiveUser/" + $scope.selectedOptionForUser);
                 $http.get($scope.uRl + "user/getActiveUser/" + $scope.selectedOptionForUser)
-                        .then(function (response) { 
+                        .then(function (response) { debugger;
                             $scope.acceptedlist = response.data;
                             $scope.emp_id = null;
                             $scope.userName = null;
@@ -380,11 +368,11 @@ app.controller("cont", function ($scope, $http) {
                         });
             }
         };
-        $scope.showSelectedValue = function () { debugger;
+        $scope.showSelectedValue = function () {debugger;
 //            alert($scope.selectedOption);
             if ($scope.selectedOption !== null) { 
-                $http.get($scope.uRl + "user/get/" + $scope.selectedOption)
-                        .then(function (response) {
+                $http.get($scope.uRl + "user/getuser/" + $scope.selectedOption)
+                        .then(function (response) { debugger;
                             $scope.list2 = response.data;
                             $scope.id = $scope.list2.id;
                             $scope.emp_id = $scope.list2.emp_id;
@@ -403,33 +391,35 @@ app.controller("cont", function ($scope, $http) {
             }
         };
         $scope.showSelectedV = function () {
-            $http.get($scope.uRl + "user/get/" + $scope.list2.id)
-                    .then(function (response) {
-                        if ("" === response.data) {
-                            $scope.selectedOptionsB = [];
-                            $scope.optionsArrayB = [];
-                            $scope.selectedOptionsA = [];
-                            $scope.optionsArrayA = [];
-                        } else {
+            if ($scope.list2.id) {
+                $http.get($scope.uRl + "user/get/" + $scope.list2.id)
+                        .then(function (response) {
+                            if ("" === response.data) {
+                                $scope.selectedOptionsB = [];
+                                $scope.optionsArrayB = [];
+                                $scope.selectedOptionsA = [];
+                                $scope.optionsArrayA = [];
+                            } else {
 
-                            //Branch
-                            $scope.templistBranch = response.data.branch;
-                            $scope.optionsB.forEach(function (option) {
+                                //Branch
+                                $scope.templistBranch = response.data.branch;
+                                $scope.optionsB.forEach(function (option) {
 
-                                $scope.optionsArrayB[option] = $scope.templistBranch.includes(option);
-                            });
-                            $scope.selectedOptionsB = Object.values($scope.templistBranch);
-                            //Area
-                            $scope.templistArea = response.data.area;
-                            $scope.optionsA.forEach(function (option) {
+                                    $scope.optionsArrayB[option] = $scope.templistBranch.includes(option);
+                                });
+                                $scope.selectedOptionsB = Object.values($scope.templistBranch);
+                                //Area
+                                $scope.templistArea = response.data.area;
+                                $scope.optionsA.forEach(function (option) {
 
-                                $scope.optionsArrayA[option] = $scope.templistArea.includes(option);
-                            });
-                            $scope.selectedOptionsA = Object.values($scope.templistArea);
-                        }
-                    }, function (error) {
-                        console.log(error);
-                    });
+                                    $scope.optionsArrayA[option] = $scope.templistArea.includes(option);
+                                });
+                                $scope.selectedOptionsA = Object.values($scope.templistArea);
+                            }
+                        }, function (error) {
+                            console.log(error);
+                        });
+            }
         };
         $scope.updateSelectedOptionsB = function (option) {
             // Update the selectedOptions array based on checkbox changes
@@ -469,7 +459,6 @@ app.controller("cont", function ($scope, $http) {
                 var branchList = arraylistofbranch.split(',').map(function (item) {
                     return item.trim();
                 });
-
                 var arraylistofarea = $scope.selectedOptionsA.toString();
                 var areaList = arraylistofarea.split(',').map(function (item) {
                     return item.trim();
@@ -498,12 +487,9 @@ app.controller("cont", function ($scope, $http) {
         $scope.loadpage = function () {
             location.reload();
         };
-
         $scope.replaceString = function (str, oldStr, newStr) {
             return str.replace(oldStr, newStr);
         };
-
-
         $scope.viewRemark = function (mess) {
             alert(mess);
         }
@@ -520,13 +506,10 @@ app.controller("cont", function ($scope, $http) {
                 popup.style.display = "block";
             }
         };
-
         $scope.hidePopup = function () {
             var popup = document.getElementById("popup");
             popup.style.display = "none";
         };
-
-
     } else {
         window.location.href = $scope.uRl + "index.html";
     }

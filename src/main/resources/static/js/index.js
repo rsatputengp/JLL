@@ -1,5 +1,5 @@
 
-var app = angular.module('app', []);
+var app = angular.module('index_App', []);
 
 app.controller('signUpController', function ($scope, $http, $interval, $timeout) {
 
@@ -183,15 +183,15 @@ app.controller('signUpController', function ($scope, $http, $interval, $timeout)
                                 localStorage.setItem("user", JSON.stringify($scope.resData));
                                 alert("Login Successfully");
                             } else if ($scope.resData.designation === "Cluster Audit Manager") {
-                                window.location.href = $scope.URL + "Admin_dashboard.html";
+                                window.location.href = $scope.URL + "CAM_dashboard.html";
                                 localStorage.setItem("user", JSON.stringify($scope.resData));
                                 alert("Login Successfully");
                             } else if ($scope.resData.designation === "Regional Manager") {
-                                window.location.href = $scope.URL + "Admin_dashboard.html";
+                                window.location.href = $scope.URL + "RM_MIS_dashboard.html";
                                 localStorage.setItem("user", JSON.stringify($scope.resData));
                                 alert("Login Successfully");
                             } else if ($scope.resData.designation === "MIS") {
-                                window.location.href = $scope.URL + "Admin_dashboard.html";
+                                window.location.href = $scope.URL + "RM_MIS_dashboard.html";
                                 localStorage.setItem("user", JSON.stringify($scope.resData));
                                 alert("Login Successfully");
                             } else {
