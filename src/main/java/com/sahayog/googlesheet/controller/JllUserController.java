@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author ritik
  */
 @RestController
-@RequestMapping("user")
+@RequestMapping("/user")
 public class JllUserController {
 
     @Autowired
@@ -32,7 +32,7 @@ public class JllUserController {
     }
     
     // Add user
-    @RequestMapping("add/{emp_id}/{userName}/{email}/{zone}/{region}/{area}/{branch}/{designation}/{password}/{userIdStatus}/{reacted}")
+    @RequestMapping("/add/{emp_id}/{userName}/{email}/{zone}/{region}/{area}/{branch}/{designation}/{password}/{userIdStatus}/{reacted}")
     public JllUser save(@PathVariable String emp_id, @PathVariable String userName,
             @PathVariable String email, @PathVariable String zone,
             @PathVariable String region, @PathVariable String area,
@@ -45,7 +45,7 @@ public class JllUserController {
     }
 
     // Update for branch and area
-    @RequestMapping("update/{id}/{emp_id}/{userName}/{email}/{zone}/{region}/{area}/{branch}/{designation}/{userIdStatus}/{reacted}")
+    @RequestMapping("/update/{id}/{emp_id}/{userName}/{email}/{zone}/{region}/{area}/{branch}/{designation}/{userIdStatus}/{reacted}")
     public JllUser update(@PathVariable int id, @PathVariable String emp_id, @PathVariable String userName,
             @PathVariable String email, @PathVariable String zone,
             @PathVariable String region, @PathVariable ArrayList<String> area,
@@ -57,7 +57,7 @@ public class JllUserController {
     }
 
     // Update for Reaction take by ?
-    @RequestMapping("updateStatus/{emp_id}/{userName}/{userIdStatus}/{reacted}")
+    @RequestMapping("/updateStatus/{emp_id}/{userName}/{userIdStatus}/{reacted}")
     public JllUser updateStatus(@PathVariable String emp_id, @PathVariable String userName,
             @PathVariable String userIdStatus, @PathVariable String reacted) {
         JllUser jllUser
@@ -66,7 +66,7 @@ public class JllUserController {
     }
 
     // Edit profile for user
-    @RequestMapping("updateProfile/{id}/{emp_id}/{userName}/{userIdStatus}")
+    @RequestMapping("/updateProfile/{id}/{emp_id}/{userName}/{userIdStatus}")
     public JllUser updateProfile(@PathVariable int id, @PathVariable String emp_id,
             @PathVariable String userName, @PathVariable String userIdStatus) {
         JllUser jllUser
@@ -75,35 +75,35 @@ public class JllUserController {
     }
 
     // Get all user list
-    @RequestMapping("getallUser")
+    @RequestMapping("/getallUser")
     public List<JllUser> getAll() {
         List<JllUser> list = service.getallUser();
         return list;
     }
 
     // Getting record by ID
-    @RequestMapping("get/{id}")
+    @RequestMapping("/get/{id}")
     public JllUser get(@PathVariable int id) {
         JllUser userRecord = service.get(id);
         return userRecord;
     }
 
     // Sign in
-    @RequestMapping("login/{emp_id}/{password}")
+    @RequestMapping("/login/{emp_id}/{password}")
     public JllUser login(@PathVariable String emp_id, @PathVariable String password) {
         JllUser userRecord = service.getUser(emp_id, password);
         return userRecord;
     }
 
     // Reset Password
-    @RequestMapping("resetPassword/{email}/{password}")
+    @RequestMapping("/resetPassword/{email}/{password}")
     public JllUser reset(@PathVariable String email, @PathVariable String password) {
         JllUser userRecord = service.getUserRstPass(email, password);
         return userRecord;
     }
 
     // For OTP verification
-    @RequestMapping("otpVerification/{email}/{key}")
+    @RequestMapping("/otpVerification/{email}/{key}")
     public ResponseEntity<Object> OtpVerification(@PathVariable String email, @PathVariable String key) {
         String status = service.OtpVerification(email, key);
         HashMap<String, String> response = new HashMap<>();
@@ -112,7 +112,7 @@ public class JllUserController {
     }
 
     // OTP Sender
-    @RequestMapping("otpSender/{email}")
+    @RequestMapping("/otpSender/{email}")
     public ResponseEntity<Object> OtpSender(@PathVariable String email) {
         String status = service.getUserRstPass(email);
         HashMap<String, String> response = new HashMap<>();
@@ -121,7 +121,7 @@ public class JllUserController {
     }
 
     // Delete User
-    @RequestMapping("delete/{emp_id}/{userName}/{userIdStatus}")
+    @RequestMapping("/delete/{emp_id}/{userName}/{userIdStatus}")
     public ResponseEntity<Object> delete(@PathVariable String emp_id, @PathVariable String userName,
             @PathVariable String userIdStatus) {
         String status = service.delete(emp_id, userName, userIdStatus);
@@ -131,53 +131,53 @@ public class JllUserController {
     }
 
     // Getting by emp_id
-    @RequestMapping("getuser/{emp_id}")
+    @RequestMapping("/getuser/{emp_id}")
     public JllUser getJllUser(@PathVariable String emp_id) {
         return service.getUser(emp_id);
     }
 
     // Get User Details
-    @RequestMapping("getuserDetails/{userName}/{emp_id}/{email}")
+    @RequestMapping("/getuserDetails/{userName}/{emp_id}/{email}")
     public JllUser getuserDetails(@PathVariable String userName, @PathVariable String emp_id, @PathVariable String email) {
         return service.getUser(userName, emp_id, email);
     }
 
     // Get User by mail
-    @RequestMapping("getEmail/{mail}")
+    @RequestMapping("/getEmail/{mail}")
     public JllUser getJMail(@PathVariable String mail) {
         return service.getUserM(mail);
     }
 
     // Getting Actived User
-    @RequestMapping("getActiveUser/{designation}")
+    @RequestMapping("/getActiveUser/{designation}")
     public List<JllUser> getActiveUser(@PathVariable String designation) {
         List<JllUser> list = service.getActiveUser(designation);
         return list;
     }
     
     // Getting Acceptance list
-    @RequestMapping("getuser_accept_list")
+    @RequestMapping("/getuser_accept_list")
     public List<JllUser> accept_list() {
         List<JllUser> list = service.getActiveRecords();
         return list;
     }
 
     // Getting Rejected list
-    @RequestMapping("getuser_reject_list")
+    @RequestMapping("/getuser_reject_list")
     public List<JllUser> reject_list() {
         List<JllUser> list = service.getInactiveRecords();
         return list;
     }
 
     // Getting Pending list
-    @RequestMapping("getuser_pending_list")
+    @RequestMapping("/getuser_pending_list")
     public List<JllUser> pending_list() {
         List<JllUser> list = service.getPendingRecords();
         return list;
     }
 
     // Getting Terminated list
-    @RequestMapping("getuser_terminate_list")
+    @RequestMapping("/getuser_terminate_list")
     public List<JllUser> terminate_list() {
         List<JllUser> list = service.getTerminateRecords();
         return list;
@@ -191,7 +191,7 @@ public class JllUserController {
 //    }
 
     // Getting Total no of user list all status
-    @RequestMapping("getAllRecordsNumberList")
+    @RequestMapping("/getAllRecordsNumberList")
     public ArrayList<String> getAllRecordsNumberList() {
         ArrayList<String> allRecordsNumberList = service.getAllRecordsNumberList();
         return allRecordsNumberList;
