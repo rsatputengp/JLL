@@ -23,7 +23,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Insurance_Trackers_SD_OD {
+public class InsuranceTrackers_SD_OD {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)

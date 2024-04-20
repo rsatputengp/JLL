@@ -23,7 +23,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class OD_Calling_OD {
+public class ODCalling_OD {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
