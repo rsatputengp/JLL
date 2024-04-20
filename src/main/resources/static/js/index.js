@@ -159,27 +159,27 @@ app.controller('signUpController', function ($scope, $http, $interval, $timeout)
 //                            alert($scope.resData.designation);
 //                            alert($scope.resData.designation === "account executive");
                             if ($scope.resData.designation === "Branch Manager") {
-                                window.location.href = $scope.URL + "Moderator_dashboard.html";
+                                window.location.href = $scope.URL + "SD_User_dashboard.html";
                                 localStorage.setItem("user", JSON.stringify($scope.resData));
                                 alert("Login Successfully");
                             } else if ($scope.resData.designation === "Area Manager") {
-                                window.location.href = $scope.URL + "Moderator_dashboard.html";
+                                window.location.href = $scope.URL + "SD_Moderator_dashboard.html";
                                 localStorage.setItem("user", JSON.stringify($scope.resData));
                                 alert("Login Successfully");
                             } else if ($scope.resData.designation === "Account Executive") {
-                                window.location.href = $scope.URL + "Moderator_dashboard.html";
+                                window.location.href = $scope.URL + "OD_User_dashboard.html";
                                 localStorage.setItem("user", JSON.stringify($scope.resData));
                                 alert("Login Successfully");
                             } else if ($scope.resData.designation === "Area Account Manager") {
-                                window.location.href = $scope.URL + "Moderator_dashboard.html";
+                                window.location.href = $scope.URL + "OD_Moderator_dashboard.html";
                                 localStorage.setItem("user", JSON.stringify($scope.resData));
                                 alert("Login Successfully");
                             } else if ($scope.resData.designation === "Risk Officer") {
-                                window.location.href = $scope.URL + "Moderator_dashboard.html";
+                                window.location.href = $scope.URL + "AD_User_dashboard.htmll";
                                 localStorage.setItem("user", JSON.stringify($scope.resData));
                                 alert("Login Successfully");
                             } else if ($scope.resData.designation === "Auditor") {
-                                window.location.href = $scope.URL + "Moderator_dashboard.html";
+                                window.location.href = $scope.URL + "AD_Moderator_dashboard.html";
                                 localStorage.setItem("user", JSON.stringify($scope.resData));
                                 alert("Login Successfully");
                             } else if ($scope.resData.designation === "Cluster Audit Manager") {

@@ -55,6 +55,99 @@ app.controller('AD_Moderator_Controller', function ($scope, $http, $document) {
             $scope.resetpasswordUserList = [];
             window.localStorage.removeItem("user");
         };
+
+        $scope.submitHVform = function () {
+
+            $scope.houseVerification = {
+                branchId: $scope.branchId,
+                branchName: $scope.branchName,
+                roName: $scope.roName,
+                roId: $scope.roId,
+                hvDate: $scope.hvDate,
+                centerName: $scope.centerName,
+                centerId: $scope.centerId,
+                clientId: $scope.clientId,
+                clientName: $scope.clientName,
+                loanAppliedCycle: $scope.loanAppliedCycle,
+                foId: $scope.foId,
+                foName: $scope.foName,
+                reasonOfCancellation: $scope.reasonOfCancellation,
+                remarks: $scope.remarks
+            };
+
+            var URL = $scope.uRl + "houseverification/create";
+            $http.post(URL, $scope.houseVerification)
+                    .then(function (response) {
+                        console.log(response);
+                        alert("Form submitted Successfully");
+                    }, function (error) {
+                        console.log(error);
+                    });
+
+        };
+        $scope.submitCVRform = function () {
+
+            $scope.centerVisitReport = {
+                branchName: $scope.branchName,
+                branchId: $scope.branchId,
+                roName: $scope.roName,
+                roEmpId: $scope.roEmpId,
+                dateOfCenterVisit: $scope.dateOfCenterVisit,
+                foName: $scope.foName,
+                foId: $scope.foId,
+                centerName: $scope.centerName,
+                centerId: $scope.centerId,
+                noOfInstallment: $scope.noOfInstallment,
+                loanCollectionReceiptAvailableInFile: $scope.loanCollectionReceiptAvailableInFile,
+                rdCollectionReceiptAvailableInFile: $scope.rdCollectionReceiptAvailableInFile,
+                loanCardUpdate: $scope.loanCardUpdate,
+                rdPassbookIssued: $scope.rdPassbookIssued,
+                rdCollectionRegular_Irregula: $scope.rdCollectionRegular_Irregula,
+                ifAnyODCustomer: $scope.ifAnyODCustomer,
+                ifAnyCustomerMigrate: $scope.ifAnyCustomerMigrate,
+                bmVisitDone: $scope.bmVisitDone,
+                amVisitDone: $scope.amVisitDone,
+                anyOtherObservation: $scope.anyOtherObservation
+            };
+
+            var URL = $scope.uRl + "centervisitreport/create";
+            $http.post(URL, $scope.centerVisitReport)
+                    .then(function (response) {
+                        console.log(response);
+                        alert("Form submitted Successfully");
+                    }, function (error) {
+                        console.log(error);
+                    });
+
+        };
+        $scope.submitASRform = function () {
+
+            $scope.auditScoringReport = {
+                region: $scope.region,
+                area: $scope.area,
+                branchName: $scope.branchName,
+                branchId: $scope.branchId,
+                monthOfAudit: $scope.monthOfAudit,
+                auditedBy: $scope.auditedBy,
+                auditReportRealeseDate: $scope.auditReportRealeseDate,
+                auditScoring: $scope.auditScoring,
+                scores: $scope.scores,
+                remark: $scope.remark,
+                auditCover: $scope.auditCover,
+                auditSchedule: $scope.auditSchedule,
+                complinceStatus: $scope.complinceStatus
+            };
+
+            var URL = $scope.uRl + "auditscoringreport/create";
+            $http.post(URL, $scope.auditScoringReport)
+                    .then(function (response) {
+                        console.log(response);
+                        alert("Form submitted Successfully");
+                    }, function (error) {
+                        console.log(error);
+                    });
+
+        };
     } else {
         window.location.href = $scope.uRl + "index.html";
     }

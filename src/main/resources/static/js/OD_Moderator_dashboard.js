@@ -55,6 +55,115 @@ app.controller('OD_Moderator_Controller', function ($scope, $http, $document) {
             $scope.resetpasswordUserList = [];
             window.localStorage.removeItem("user");
         };
+
+        $scope.submitODform = function () {
+
+            $scope.odCallingOD = {
+                region: $scope.region,
+                area: $scope.area,
+                branchId: $scope.branchId,
+                branchName: $scope.branchName,
+                loanAccountNumber: $scope.loanAccountNumber,
+                clientName: $scope.clientName,
+                dateOfDefault: $scope.dateOfDefault,
+                callingDate: $scope.callingDate,
+                calledByEmployeeId: $scope.calledByEmployeeId,
+                calledByEmployeeName: $scope.calledByEmployeeName,
+                reasonOfODDefault: $scope.reasonOfODDefault,
+                anyMisappropriationCase: $scope.anyMisappropriationCase,
+                remarksIfAny: $scope.remarksIfAny,
+                filledBy: $scope.filledBy,
+                modifiedBy: $scope.modifiedBy
+            };
+
+            var URL = $scope.uRl + "odcalling/create";
+            $http.post(URL, $scope.odCallingOD)
+                    .then(function (response) {
+                        console.log(response);
+                        alert("Form Submitted Successfully.");
+                    }, function (error) {
+                        console.log(error);
+                    });
+        };
+
+
+
+        $scope.submitRDform = function () {
+
+            $scope.rdCallingOD = {
+                region: $scope.region,
+                area: $scope.area,
+                branchId: $scope.branchId,
+                branchName: $scope.branchName,
+                rdAccountNumber: $scope.rdAccountNumber,
+                clientName: $scope.clientName,
+                dateOfDefault: $scope.dateOfDefault,
+                callingDate: $scope.callingDate,
+                calledByEmployeeId: $scope.calledByEmployeeId,
+                calledByEmployeeName: $scope.calledByEmployeeName,
+                reasonOfODDefault: $scope.reasonOfODDefault,
+                anyMisappropriationCase: $scope.anyMisappropriationCase,
+                remarksIfAny: $scope.remarksIfAny,
+                filledBy: $scope.filledBy,
+                modifiedBy: $scope.modifiedBy
+            };
+            var URL = $scope.uRl + "rdcalling/create";
+            $http.post(URL, $scope.rdCallingOD)
+                    .then(function (response) {
+                        console.log(response);
+                        alert("Form submitted Successfully");
+                    }, function (error) {
+                        console.log(error);
+                    });
+        };
+
+
+
+        $scope.submitITform = function () {
+
+            $scope.insuranceTracker = {
+                region: $scope.region,
+                branchCode: $scope.branchCode,
+                branchName: $scope.branchName,
+                claimId: $scope.claimId,
+                centerId: $scope.centerId,
+                centerName: $scope.centerName,
+                clientId: $scope.clientId,
+                accountId: $scope.accountId,
+                disbursementDate: $scope.disbursementDate,
+                clientName: $scope.clientName,
+                nomineeName: $scope.nomineeName,
+                deathClientName: $scope.deathClientName,
+                disbursementAmount: $scope.disbursementAmount,
+                emiDay: $scope.emiDay,
+                dateOfDeath: $scope.dateOfDeath,
+                deathReasion: $scope.deathReasion,
+                paidEmi: $scope.paidEmi,
+                loanOutstandingAmt: $scope.loanOutstandingAmt,
+                otsAmt: $scope.otsAmt,
+                claimSettelmentAmt: $scope.claimSettelmentAmt,
+                memberHandoverAmount: $scope.memberHandoverAmount,
+                claimStatus: $scope.claimStatus,
+                remarks: $scope.remarks,
+                trueCellPunchingDate: $scope.trueCellPunchingDate,
+                datedOfDOCReceivedFromMember: $scope.datedOfDOCReceivedFromMember,
+                datedOfSendDocToHo: $scope.datedOfSendDocToHo,
+                datedOfSendDocToKotak: $scope.datedOfSendDocToKotak,
+                dateOfSettelmentByKotak: $scope.dateOfSettelmentByKotak,
+                accountCloseDateByBranch: $scope.accountCloseDateByBranch,
+                incentiveReceivedInMonth: $scope.incentiveReceivedInMonth
+            };
+
+            var URL = $scope.uRl + "insurancetrackers/create";
+            $http.post(URL, $scope.insuranceTracker)
+                    .then(function (response) {
+                        console.log(response);
+                        alert("Form submitted Successfully");
+                    }, function (error) {
+                        console.log(error);
+                    });
+
+        };
     } else {
         window.location.href = $scope.uRl + "index.html";
     }
