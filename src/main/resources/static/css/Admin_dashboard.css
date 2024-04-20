@@ -478,6 +478,7 @@ h3{
     width: 350px !important; 
   }
 
+  
   .form-control:focus {
     border-color: #218838 !important; /* Dark green border when focused */
     box-shadow: 0 0 5px #28a745 !important; /* Green glow effect when focused */
