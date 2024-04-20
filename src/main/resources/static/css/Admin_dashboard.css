@@ -304,8 +304,8 @@ hr {
 
 
 
-#dashBoard .ROcalling , .insuranceTracker , .ODcalling{
-    display: flex !important;
+#dashBoard .RDcalling , .insuranceTracker , .ODcalling{
+    display: flex ;
     justify-content: center !important;
     align-items: center !important;
     width: 85% !important;
@@ -314,6 +314,7 @@ hr {
     background-color: rgb(123, 199, 235) !important;
     border-radius: 15px;
     z-index: 12 !important;
+    margin-top: 36px;
 }
 
 
@@ -338,8 +339,6 @@ hr {
     z-index: 10 !important;
 
 }
-
-
 
 /* table */
 .my-card {
@@ -368,7 +367,7 @@ th {
     vertical-align: top !important;
 }
 
-#addROcalling , #addODcalling , #addInsuranceTracker {
+#addRDcalling , #addODcalling , #addInsuranceTracker {
     background-color: #4CAF50;
     /* Green */
     border-color: #00902b;
@@ -383,13 +382,104 @@ th {
     cursor: pointer;
 }
 
-#addROcalling:active {
+#addRDcalling:active {
     background-color: #f44336;
     /* Red */
 }
 
 
 
-.superUserView{
-    
+.RDcontainer , .ODcontainer , .HouseVerificationContainer , .CVRcontainer , .ASRcontainer{
+    align-self: center;
+    margin-top: 20px;
+    width: 800px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+}
+
+
+
+.RDcallingCard , .ODcallingCard , .InsuaranceTrackerCard , .houseVerificationCard , .CVRcard ,.ASRcallingCard{
+   
+    height: 600px;
+    align-self: center;
+
+}
+
+.RDform , .InsuaranceTrackerform , .houseVerificationform , .CVRform , .ASRform , .ODform{
+    padding: 40px;
+    width:800px;
+    height: 570px;
+    /* border-radius: 20px !important; */
+    background-color: aliceblue;
+    overflow-x: auto;
+    overflow-x: hidden;
+}
+
+
+.form-row {   
+     margin-top: 10px;
+}
+
+
+label{
+    margin-bottom: 0px !important;
+}
+
+
+.formHeader{
+    width:auto;
+    height:100px;
+    display: flex;
+    /* justify-content: center; */
+    /* align-items: center; */
+    flex-direction: column;
+align-content: center;
+}
+
+h3{
+    font-weight: 700 !important;
+    font-family: 'Georgia';
+}
+
+.required {
+    color: red;
+  }
+
+
+  .closeForm{
+    font-size: xx-large !important;
+    margin-left:720px;
+    margin-top: -40px;
+    text-align: right;
+    position: absolute;
+    z-index: 2;
+    color: red;
+  }
+
+
+  .closeForm:hover {
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+  }
+  
+
+  .stylishLine , .stylishLinex{
+        height: 2px; 
+        border: 0;
+     background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgb(0, 100, 0) , rgba(0, 0, 0, 0));
+        position: relative;
+        margin-top: -8px;
+       width: 250px;
+
+  }
+
+  .stylishLinex{
+    width: 350px !important; 
+  }
+
+  .form-control:focus {
+    border-color: #218838 !important; /* Dark green border when focused */
+    box-shadow: 0 0 5px #28a745 !important; /* Green glow effect when focused */
+    outline: none !important; /* Remove default focus outline */
 }
