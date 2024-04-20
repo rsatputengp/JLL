@@ -38,13 +38,13 @@ public class HouseVerification_ADController {
     }
 
     // Read operation
-    @GetMapping("/all")
+    @GetMapping("/getall")
     public ResponseEntity<List<HouseVerification_AD>> getAll() {
         List<HouseVerification_AD> houseVerificationList = houseVerificationService.getAll();
         return new ResponseEntity<>(houseVerificationList, HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/get/{id}")
     public ResponseEntity<HouseVerification_AD> getById(@PathVariable("id") int id) {
         Optional<HouseVerification_AD> houseVerification = houseVerificationService.getById(id);
         return houseVerification.map(value -> new ResponseEntity<>(value, HttpStatus.OK))

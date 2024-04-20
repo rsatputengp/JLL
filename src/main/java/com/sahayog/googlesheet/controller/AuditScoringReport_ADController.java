@@ -38,13 +38,13 @@ public class AuditScoringReport_ADController {
     }
 
     // Read operation
-    @GetMapping("/all")
+    @GetMapping("/getall")
     public ResponseEntity<List<AuditScoringReport_AD>> getAll() {
         List<AuditScoringReport_AD> auditScoringReportList = auditScoringReportService.getAll();
         return new ResponseEntity<>(auditScoringReportList, HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/get/{id}")
     public ResponseEntity<AuditScoringReport_AD> getById(@PathVariable("id") int id) {
         Optional<AuditScoringReport_AD> auditScoringReport = auditScoringReportService.getById(id);
         return auditScoringReport.map(value -> new ResponseEntity<>(value, HttpStatus.OK))

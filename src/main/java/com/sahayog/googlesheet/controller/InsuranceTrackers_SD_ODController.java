@@ -38,13 +38,13 @@ public class InsuranceTrackers_SD_ODController {
     }
 
     // Read operation
-    @GetMapping("/all")
+    @GetMapping("/getall")
     public ResponseEntity<List<InsuranceTrackers_SD_OD>> getAll() {
         List<InsuranceTrackers_SD_OD> insuranceTrackersList = insuranceTrackersService.getAll();
         return new ResponseEntity<>(insuranceTrackersList, HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/get/{id}")
     public ResponseEntity<InsuranceTrackers_SD_OD> getById(@PathVariable("id") int id) {
         Optional<InsuranceTrackers_SD_OD> insuranceTrackers = insuranceTrackersService.getById(id);
         return insuranceTrackers.map(value -> new ResponseEntity<>(value, HttpStatus.OK))

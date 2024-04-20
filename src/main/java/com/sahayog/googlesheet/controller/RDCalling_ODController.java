@@ -38,13 +38,13 @@ public class RDCalling_ODController {
     }
 
     // Read operation
-    @GetMapping("/all")
+    @GetMapping("/getall")
     public ResponseEntity<List<RDCalling_OD>> getAll() {
         List<RDCalling_OD> rdCallingODs = rdCallingOdService.getAll();
         return new ResponseEntity<>(rdCallingODs, HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/get/{id}")
     public ResponseEntity<RDCalling_OD> getById(@PathVariable("id") int id) {
         Optional<RDCalling_OD> rdCallingOD = rdCallingOdService.getById(id);
         return rdCallingOD.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
