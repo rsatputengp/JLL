@@ -23,23 +23,29 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class House_Verification_AD {
+public class CenterVisitReport_AD {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
-    private String branchId;
     private String branchName;
+    private String branchId;
     private String roName;
-    private String roId;
-    private String hvDate;
+    private String roEmpId;
+    private String dateOfCenterVisit;
+    private String foName;
+    private String foId;
     private String centerName;
     private String centerId;
-    private String clientId;
-    private String clientName;
-    private String loanAppliedCycle;
-    private String foId;
-    private String foName;
-    private String reasonOfCancellation;
-    private String remarks;
+    private String noOfInstallment;
+    private String loanCollectionReceiptAvailableInFile;
+    private String rdCollectionReceiptAvailableInFile;
+    private String loanCardUpdate;
+    private String rdPassbookIssued;
+    private String rdCollectionRegular_Irregula;
+    private String ifAnyODCustomer;
+    private String ifAnyCustomerMigrate;
+    private String bmVisitDone;
+    private String amVisitDone;
+    private String anyOtherObservation;
 }

@@ -26,7 +26,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class RD_Calling_OD {
+public class RDCalling_OD {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
