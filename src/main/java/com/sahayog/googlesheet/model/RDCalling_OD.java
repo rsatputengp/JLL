@@ -33,13 +33,13 @@ public class RDCalling_OD {
     private int id;
     private String region;
     private String area;
-    private int branchId;
+    private String branchId;
     private String branchName;
-    private long rdAccountNumber;
+    private String rdAccountNumber;
     private String clientName;
     private String dateOfDefault;
     private String callingDate;
-    private int calledByEmployeeId;
+    private String calledByEmployeeId;
     private String calledByEmployeeName;
     private String reasonOfRDDefault;
     private String anyMisappropriationCase;
