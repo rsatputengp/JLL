@@ -42,4 +42,6 @@ public class HouseVerification_AD {
     private String foName;
     private String reasonOfCancellation;
     private String remarks;
+    private String filledBy;
+    private String modifiedBy;
 }

@@ -41,4 +41,6 @@ public class AuditScoringReport_AD {
     private String auditCover;
     private String auditSchedule;
     private String complinceStatus;
+    private String filledBy;
+    private String modifiedBy;
 }

@@ -30,7 +30,7 @@ public class JllUserController {
     public JllUserController() {
         System.out.println("I am in User RecordController");
     }
-    
+
     // Add user
     @RequestMapping("/add/{emp_id}/{userName}/{email}/{zone}/{region}/{area}/{branch}/{designation}/{password}/{userIdStatus}/{reacted}")
     public JllUser save(@PathVariable String emp_id, @PathVariable String userName,
@@ -154,7 +154,7 @@ public class JllUserController {
         List<JllUser> list = service.getActiveUser(designation);
         return list;
     }
-    
+
     // Getting Acceptance list
     @RequestMapping("/getuser_accept_list")
     public List<JllUser> accept_list() {
@@ -189,7 +189,6 @@ public class JllUserController {
 //        List<JllUser> list = service.getResetPasswordRecords();
 //        return list;
 //    }
-
     // Getting Total no of user list all status
     @RequestMapping("/getAllRecordsNumberList")
     public ArrayList<String> getAllRecordsNumberList() {

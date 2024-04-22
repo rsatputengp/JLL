@@ -72,4 +72,3 @@ public class RDCalling_ODController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
-

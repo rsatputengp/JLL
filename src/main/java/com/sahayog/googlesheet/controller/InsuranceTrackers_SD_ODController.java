@@ -72,4 +72,3 @@ public class InsuranceTrackers_SD_ODController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
-

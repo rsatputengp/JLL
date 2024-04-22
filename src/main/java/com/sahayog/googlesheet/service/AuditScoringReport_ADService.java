@@ -59,6 +59,8 @@ public class AuditScoringReport_ADService {
             auditScoringReport.setAuditCover(updatedAuditScoringReport.getAuditCover());
             auditScoringReport.setAuditSchedule(updatedAuditScoringReport.getAuditSchedule());
             auditScoringReport.setComplinceStatus(updatedAuditScoringReport.getComplinceStatus());
+            auditScoringReport.setFilledBy(updatedAuditScoringReport.getFilledBy());
+            auditScoringReport.setModifiedBy(updatedAuditScoringReport.getModifiedBy());            
             return auditScoringReportRepository.save(auditScoringReport);
         } else {
             // Handle not found

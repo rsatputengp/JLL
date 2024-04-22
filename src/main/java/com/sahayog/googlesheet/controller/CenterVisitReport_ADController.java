@@ -72,4 +72,3 @@ public class CenterVisitReport_ADController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
-

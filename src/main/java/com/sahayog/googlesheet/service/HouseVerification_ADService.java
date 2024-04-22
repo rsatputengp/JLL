@@ -60,6 +60,8 @@ public class HouseVerification_ADService {
             houseVerification.setFoName(updatedHouseVerification.getFoName());
             houseVerification.setReasonOfCancellation(updatedHouseVerification.getReasonOfCancellation());
             houseVerification.setRemarks(updatedHouseVerification.getRemarks());
+            houseVerification.setFilledBy(updatedHouseVerification.getFilledBy());
+            houseVerification.setModifiedBy(updatedHouseVerification.getModifiedBy());
             return houseVerificationRepository.save(houseVerification);
         } else {
             // Handle not found

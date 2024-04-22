@@ -72,4 +72,3 @@ public class HouseVerification_ADController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
-

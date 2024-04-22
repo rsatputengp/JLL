@@ -42,10 +42,12 @@ public class CenterVisitReport_AD {
     private String rdCollectionReceiptAvailableInFile;
     private String loanCardUpdate;
     private String rdPassbookIssued;
-    private String rdCollectionRegular_Irregula;
+    private String rdCollectionRegular_Irregular;
     private String ifAnyODCustomer;
     private String ifAnyCustomerMigrate;
     private String bmVisitDone;
     private String amVisitDone;
     private String anyOtherObservation;
+    private String filledBy;
+    private String modifiedBy;
 }

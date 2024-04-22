@@ -76,6 +76,8 @@ public class InsuranceTrackers_SD_ODService {
             insuranceTrackers.setDateOfSettelmentByKotak(updatedInsuranceTrackers.getDateOfSettelmentByKotak());
             insuranceTrackers.setAccountCloseDateByBranch(updatedInsuranceTrackers.getAccountCloseDateByBranch());
             insuranceTrackers.setIncentiveReceivedInMonth(updatedInsuranceTrackers.getIncentiveReceivedInMonth());
+            insuranceTrackers.setFilledBy(updatedInsuranceTrackers.getFilledBy());
+            insuranceTrackers.setModifiedBy(updatedInsuranceTrackers.getModifiedBy());
             return insuranceTrackersRepository.save(insuranceTrackers);
         } else {
             // Handle not found

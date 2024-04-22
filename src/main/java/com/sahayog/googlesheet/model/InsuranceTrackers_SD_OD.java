@@ -58,4 +58,6 @@ public class InsuranceTrackers_SD_OD {
     private String dateOfSettelmentByKotak;
     private String accountCloseDateByBranch;
     private String incentiveReceivedInMonth;
+    private String filledBy;
+    private String modifiedBy;
 }

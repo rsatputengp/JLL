@@ -60,12 +60,14 @@ public class CenterVisitReport_ADService {
             centerVisitReport.setRdCollectionReceiptAvailableInFile(updatedCenterVisitReport.getRdCollectionReceiptAvailableInFile());
             centerVisitReport.setLoanCardUpdate(updatedCenterVisitReport.getLoanCardUpdate());
             centerVisitReport.setRdPassbookIssued(updatedCenterVisitReport.getRdPassbookIssued());
-            centerVisitReport.setRdCollectionRegular_Irregula(updatedCenterVisitReport.getRdCollectionRegular_Irregula());
+            centerVisitReport.setRdCollectionRegular_Irregular(updatedCenterVisitReport.getRdCollectionRegular_Irregular());
             centerVisitReport.setIfAnyODCustomer(updatedCenterVisitReport.getIfAnyODCustomer());
             centerVisitReport.setIfAnyCustomerMigrate(updatedCenterVisitReport.getIfAnyCustomerMigrate());
             centerVisitReport.setBmVisitDone(updatedCenterVisitReport.getBmVisitDone());
             centerVisitReport.setAmVisitDone(updatedCenterVisitReport.getAmVisitDone());
             centerVisitReport.setAnyOtherObservation(updatedCenterVisitReport.getAnyOtherObservation());
+            centerVisitReport.setFilledBy(updatedCenterVisitReport.getFilledBy());
+            centerVisitReport.setModifiedBy(updatedCenterVisitReport.getModifiedBy());
             return centerVisitReportRepository.save(centerVisitReport);
         } else {
             // Handle not found
