@@ -88,7 +88,9 @@ app.controller('SD_Moderator_Controller', function ($scope, $http, $document) {
                 datedOfSendDocToKotak: $scope.datedOfSendDocToKotak,
                 dateOfSettelmentByKotak: $scope.dateOfSettelmentByKotak,
                 accountCloseDateByBranch: $scope.accountCloseDateByBranch,
-                incentiveReceivedInMonth: $scope.incentiveReceivedInMonth
+                incentiveReceivedInMonth: $scope.incentiveReceivedInMonth,
+                filledBy: $scope.filledBy,
+                modifiedBy: $scope.modifiedBy
             };
 
             var URL = $scope.uRl + "insurancetrackers/create";

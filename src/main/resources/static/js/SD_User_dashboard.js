@@ -8,12 +8,13 @@ app.controller('SD_User_Controller', function ($scope, $http, $document) {
     $scope.uRl = protocal + "//" + host + "/";
 
     if (($scope.userRecord.designation === "Branch Manager")) {
+
+
         $scope.profileCard = false;
         $scope.notificationCard = false;
         $scope.helpCard = false;
-        $scope.ODcalling = false;
-        $scope.insuranceTracker = false;
-        $scope.ROcalling = true;
+        $scope.InsuranceTracker = true;
+
         // side bar initial
         $scope.sidebarWidth = '0px';
         $scope.closeSidebar = function () {
@@ -32,16 +33,22 @@ app.controller('SD_User_Controller', function ($scope, $http, $document) {
             $scope.notificationCard = false;
             $scope.helpCard = false;
         };
+
+
         $scope.helpButton = function () {
             $scope.profileCard = false;
             $scope.notificationCard = false;
             $scope.helpCard = true;
         };
+
+
         $scope.closePopup = function () {
             $scope.profileCard = false;
             $scope.notificationCard = false;
             $scope.helpCard = false;
         };
+
+
         $scope.logout = function () {
             alert("Logout Successfully.");
             window.location.href = $scope.uRl + "index.html";
@@ -56,13 +63,34 @@ app.controller('SD_User_Controller', function ($scope, $http, $document) {
             window.localStorage.removeItem("user");
         };
 
+        $scope.insuranceTracker = function () {
+            $scope.InsuranceTracker = true;
+            $scope.insuranceTrackerForm = false;
+            $scope.sidebarWidth = '0px';
+        };
+
+
+
+
+        $scope.ITcloseForm = function () {
+            $scope.InsuranceTracker = true;
+            $scope.insuranceTrackerForm = false;
+        };
+
+
+        $scope.InsuranceTrackerForm = function () {
+            $scope.InsuranceTracker = false;
+            $scope.insuranceTrackerForm = true;
+
+        }
+
 
 
 
         $scope.getITformData = function (id) {
 
             var URL = $scope.uRl + "insurancetrackers/get/" + id;
-            $http.post(URL, $scope.insuranceTracker)
+            $http.get(URL, $scope.insuranceTracker)
                     .then(function (response) {
                         $scope.record = response.data;
                         $scope.region = $scope.record.region;
@@ -95,11 +123,63 @@ app.controller('SD_User_Controller', function ($scope, $http, $document) {
                         $scope.dateOfSettelmentByKotak = $scope.record.dateOfSettelmentByKotak;
                         $scope.accountCloseDateByBranch = $scope.record.accountCloseDateByBranch;
                         $scope.incentiveReceivedInMonth = $scope.record.incentiveReceivedInMonth;
+                        $scope.filledBy = $scope.record.filledBy;
+                        $scope.modifiedBy = $scope.record.modifiedBy;
 
                     }, function (error) {
                         console.log(error);
                     });
         };
+
+
+        $scope.submitITform = function () {
+
+            $scope.insuranceTracker = {
+                region: $scope.region,
+                branchCode: $scope.branchCode,
+                branchName: $scope.branchName,
+                claimId: $scope.claimId,
+                centerId: $scope.centerId,
+                centerName: $scope.centerName,
+                clientId: $scope.clientId,
+                accountId: $scope.accountId,
+                disbursementDate: $scope.disbursementDate,
+                clientName: $scope.clientName,
+                nomineeName: $scope.nomineeName,
+                deathClientName: $scope.deathClientName,
+                disbursementAmount: $scope.disbursementAmount,
+                emiDay: $scope.emiDay,
+                dateOfDeath: $scope.dateOfDeath,
+                deathReasion: $scope.deathReasion,
+                paidEmi: $scope.paidEmi,
+                loanOutstandingAmt: $scope.loanOutstandingAmt,
+                otsAmt: $scope.otsAmt,
+                claimSettelmentAmt: $scope.claimSettelmentAmt,
+                memberHandoverAmount: $scope.memberHandoverAmount,
+                claimStatus: $scope.claimStatus,
+                remarks: $scope.remarks,
+                trueCellPunchingDate: $scope.trueCellPunchingDate,
+                datedOfDOCReceivedFromMember: $scope.datedOfDOCReceivedFromMember,
+                datedOfSendDocToHo: $scope.datedOfSendDocToHo,
+                datedOfSendDocToKotak: $scope.datedOfSendDocToKotak,
+                dateOfSettelmentByKotak: $scope.dateOfSettelmentByKotak,
+                accountCloseDateByBranch: $scope.accountCloseDateByBranch,
+                incentiveReceivedInMonth: $scope.incentiveReceivedInMonth,
+                filledBy: $scope.filledBy,
+                modifiedBy: $scope.modifiedBy
+            };
+
+            var URL = $scope.uRl + "insurancetrackers/create";
+            $http.post(URL, $scope.insuranceTracker)
+                    .then(function (response) {
+                        console.log(response);
+                        alert("Form submitted Successfully");
+                    }, function (error) {
+                        console.log(error);
+                    });
+
+        };
+
 
     } else {
         window.location.href = $scope.uRl + "index.html";

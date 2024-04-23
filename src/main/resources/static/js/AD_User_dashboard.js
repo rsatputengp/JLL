@@ -11,9 +11,17 @@ app.controller('AD_User_Controller', function ($scope, $http, $document) {
         $scope.profileCard = false;
         $scope.notificationCard = false;
         $scope.helpCard = false;
-        $scope.ODcalling = false;
-        $scope.insuranceTracker = false;
-        $scope.ROcalling = true;
+
+        //list view
+        $scope.HouseVerification = true;
+        $scope.CenterVisitReport = false;
+        $scope.AuditScoringReport = false;
+
+        //form
+        $scope.HVform = false;
+        $scope.CVRform = false;
+        $scope.ASRform = false;
+
         // side bar initial
         $scope.sidebarWidth = '0px';
         $scope.closeSidebar = function () {
@@ -36,12 +44,14 @@ app.controller('AD_User_Controller', function ($scope, $http, $document) {
             $scope.profileCard = false;
             $scope.notificationCard = false;
             $scope.helpCard = true;
+               $scope.sidebarWidth = '0px';
         };
         $scope.closePopup = function () {
             $scope.profileCard = false;
             $scope.notificationCard = false;
             $scope.helpCard = false;
         };
+        
         $scope.logout = function () {
             alert("Logout Successfully.");
             window.location.href = $scope.uRl + "index.html";
@@ -56,6 +66,73 @@ app.controller('AD_User_Controller', function ($scope, $http, $document) {
             window.localStorage.removeItem("user");
         };
 
+
+        $scope.houseVerification = function () {
+
+            $scope.HouseVerification = true;
+            $scope.CenterVisitReport = false;
+            $scope.AuditScoringReport = false;
+            $scope.HVform = false;
+            $scope.CVRform = false;
+            $scope.ASRform = false;
+             $scope.sidebarWidth = '0px';
+
+        };
+
+        $scope.centerVisitReport = function () {
+            $scope.HouseVerification = false;
+            $scope.CenterVisitReport = true;
+            $scope.AuditScoringReport = false;
+            $scope.HVform = false;
+            $scope.CVRform = false;
+            $scope.ASRform = false;
+             $scope.sidebarWidth = '0px';
+        };
+
+        $scope.auditScoringReport = function () {
+            $scope.HouseVerification = false;
+            $scope.CenterVisitReport = false;
+            $scope.AuditScoringReport = true;
+            $scope.HVform = false;
+            $scope.CVRform = false;
+            $scope.ASRform = false;
+             $scope.sidebarWidth = '0px';
+        };
+
+
+        $scope.addHouseVerification = function () {
+            $scope.HouseVerification = false;
+            $scope.HVform = true;
+        }
+
+
+        $scope.addCenterVisitReport = function () {
+            $scope.CenterVisitReport = false;
+            $scope.CVRform = true;
+        }
+
+
+        $scope.addAuditScoringReport = function () {
+              $scope.AuditScoringReport = false;
+               $scope.ASRform = true;
+        }   
+        
+        
+        $scope.HVcloseform = function (){
+            $scope.HouseVerification = true;
+            $scope.HVform = false;
+        }
+
+        $scope.CVRcloseform = function(){
+            $scope.CenterVisitReport = true;
+            $scope.CVRform = false;
+        }
+        
+        
+        $scope.ASRcloseform = function(){
+            $scope.AuditScoringReport = true;
+               $scope.ASRform = false;
+        }
 
         $scope.submitHVform = function () {
 
@@ -73,7 +150,9 @@ app.controller('AD_User_Controller', function ($scope, $http, $document) {
                 foId: $scope.foId,
                 foName: $scope.foName,
                 reasonOfCancellation: $scope.reasonOfCancellation,
-                remarks: $scope.remarks
+                remarks: $scope.remarks,
+                filledBy: $scope.filledBy,
+                modifiedBy: $scope.modifiedBy
             };
 
             var URL = $scope.uRl + "houseverification/create";
@@ -86,6 +165,9 @@ app.controller('AD_User_Controller', function ($scope, $http, $document) {
                     });
 
         };
+        
+        
+        
         $scope.submitCVRform = function () {
 
             $scope.centerVisitReport = {
@@ -108,7 +190,9 @@ app.controller('AD_User_Controller', function ($scope, $http, $document) {
                 ifAnyCustomerMigrate: $scope.ifAnyCustomerMigrate,
                 bmVisitDone: $scope.bmVisitDone,
                 amVisitDone: $scope.amVisitDone,
-                anyOtherObservation: $scope.anyOtherObservation
+                anyOtherObservation: $scope.anyOtherObservation,
+                filledBy: $scope.filledBy,
+                modifiedBy: $scope.modifiedBy
             };
 
             var URL = $scope.uRl + "centervisitreport/create";
@@ -121,6 +205,9 @@ app.controller('AD_User_Controller', function ($scope, $http, $document) {
                     });
 
         };
+        
+        
+        
         $scope.submitASRform = function () {
 
             $scope.auditScoringReport = {
@@ -136,7 +223,9 @@ app.controller('AD_User_Controller', function ($scope, $http, $document) {
                 remark: $scope.remark,
                 auditCover: $scope.auditCover,
                 auditSchedule: $scope.auditSchedule,
-                complinceStatus: $scope.complinceStatus
+                complinceStatus: $scope.complinceStatus,
+                filledBy: $scope.filledBy,
+                modifiedBy: $scope.modifiedBy
             };
 
             var URL = $scope.uRl + "auditscoringreport/create";
@@ -149,6 +238,8 @@ app.controller('AD_User_Controller', function ($scope, $http, $document) {
                     });
 
         };
+        
+        
     } else {
         window.location.href = $scope.uRl + "index.html";
     }

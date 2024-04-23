@@ -175,7 +175,7 @@ app.controller('signUpController', function ($scope, $http, $interval, $timeout)
                                 localStorage.setItem("user", JSON.stringify($scope.resData));
                                 alert("Login Successfully");
                             } else if ($scope.resData.designation === "Risk Officer") {
-                                window.location.href = $scope.URL + "AD_User_dashboard.htmll";
+                                window.location.href = $scope.URL + "AD_User_dashboard.html";
                                 localStorage.setItem("user", JSON.stringify($scope.resData));
                                 alert("Login Successfully");
                             } else if ($scope.resData.designation === "Auditor") {

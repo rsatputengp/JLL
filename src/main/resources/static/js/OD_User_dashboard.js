@@ -18,6 +18,53 @@ app.controller('OD_User_Controller', function ($scope, $http, $document) {
         $scope.rdContainerForm = false;
         // side bar initial
         $scope.sidebarWidth = '0px';
+
+        //getting list for displaying
+        $scope.odCallingList = [];
+        $scope.rdCallingList = [];
+        $scope.iTtrackerList = [];
+
+
+        $scope.getListforOD = function () {
+
+
+            console.log($scope.uRl + "odcalling/getall");
+            $http.get($scope.uRl + "odcalling/getall")
+                    .then(function (response) {
+                        $scope.odCallingList = response.data;
+                    }, function (error) {
+                        console.error(error);
+                    });
+        };
+
+
+        $scope.getListforRD = function () {
+
+            console.log($scope.uRl + "rdcalling/getall");
+            $http.get($scope.uRl + "rdcalling/getall")
+                    .then(function (response) {
+                        $scope.rdCallingList = response.data;
+                    }, function (error) {
+                        console.error(error);
+                    });
+        };
+
+
+        $scope.getListforIT = function () {
+
+            console.log($scope.uRl + "insurancetrackers/getall");
+            $http.get($scope.uRl + "insurancetrackers/getall")
+                    .then(function (response) {
+                        $scope.iTtrackerList = response.data;
+                    }, function (error) {
+                        console.error(error);
+                    });
+        };
+
+        $scope.getListforRD();
+
+
+        //for RD calling list view
         $scope.rdCalling = function () {
             $scope.RDcalling = true;
             $scope.ODcalling = false;
@@ -26,8 +73,11 @@ app.controller('OD_User_Controller', function ($scope, $http, $document) {
             $scope.odConatinerForm = false;
             $scope.rdContainerForm = false;
             $scope.sidebarWidth = '0px';
+            $scope.getListforRD();
         }
 
+
+        //for OD calling list view
         $scope.odCalling = function () {
             $scope.RDcalling = false;
             $scope.ODcalling = true;
@@ -36,8 +86,11 @@ app.controller('OD_User_Controller', function ($scope, $http, $document) {
             $scope.odConatinerForm = false;
             $scope.rdContainerForm = false;
             $scope.sidebarWidth = '0px';
+            $scope.getListforOD();
         }
 
+
+        // for IT tracker list view       
         $scope.insuranceTracker = function () {
             $scope.RDcalling = false;
             $scope.ODcalling = false;
@@ -46,9 +99,11 @@ app.controller('OD_User_Controller', function ($scope, $http, $document) {
             $scope.odConatinerForm = false;
             $scope.rdContainerForm = false;
             $scope.sidebarWidth = '0px';
+            $scope.getListforIT();
         }
 
 
+//        for RD calling list view
         $scope.RDcallingForm = function () {
             $scope.RDcalling = false;
             $scope.ODcalling = false;
@@ -56,9 +111,14 @@ app.controller('OD_User_Controller', function ($scope, $http, $document) {
             $scope.insuranceTrackerForm = false;
             $scope.odConatinerForm = false;
             $scope.rdContainerForm = true;
+
+            //form button            
+            $scope.RDsubmitButton = true;
+            $scope.RDupdateButton = false;
         }
 
 
+//for OD calling list view
         $scope.ODcallingForm = function () {
             $scope.RDcalling = false;
             $scope.ODcalling = false;
@@ -66,8 +126,15 @@ app.controller('OD_User_Controller', function ($scope, $http, $document) {
             $scope.insuranceTrackerForm = false;
             $scope.odConatinerForm = true;
             $scope.rdContainerForm = false;
+
+
+            //form button            
+            $scope.ODsubmitButton = true;
+            $scope.ODupdateButton = false;
+
         }
 
+//for IT tracker list view
         $scope.InsuranceTrackerForm = function () {
             $scope.RDcalling = false;
             $scope.ODcalling = false;
@@ -75,22 +142,33 @@ app.controller('OD_User_Controller', function ($scope, $http, $document) {
             $scope.insuranceTrackerForm = true;
             $scope.odConatinerForm = false;
             $scope.rdContainerForm = false;
+
+            //form button            
+            $scope.ITsubmitButton = true;
+            $scope.ITupdateButton = false;
+
+
         }
+
+
 
         $scope.ODcloseForm = function () {
             $scope.odConatinerForm = false;
             $scope.ODcalling = true;
+            location.reload();
         }
 
         $scope.RDcloseForm = function () {
             $scope.rdContainerForm = false;
             $scope.RDcalling = true;
+            location.reload();
         }
 
 
         $scope.ITcloseForm = function () {
             $scope.InsuranceTracker = true;
             $scope.insuranceTrackerForm = false;
+            location.reload();
         }
 
 
@@ -120,6 +198,9 @@ app.controller('OD_User_Controller', function ($scope, $http, $document) {
             $scope.notificationCard = false;
             $scope.helpCard = false;
         };
+
+
+
         $scope.logout = function () {
             alert("Logout Successfully.");
             window.location.href = $scope.uRl + "index.html";
@@ -134,6 +215,118 @@ app.controller('OD_User_Controller', function ($scope, $http, $document) {
             window.localStorage.removeItem("user");
         };
 
+
+//        for submitting RD form
+        $scope.submitRDform = function () {
+            debugger;
+
+            $scope.rdCallingOD = {
+                region: $scope.region,
+                area: $scope.area,
+                branchId: $scope.branchId,
+                branchName: $scope.branchName,
+                rdAccountNumber: $scope.rdAccountNumber,
+                clientName: $scope.clientName,
+                dateOfDefault: $scope.dateOfDefault,
+                callingDate: $scope.callingDate,
+                calledByEmployeeId: $scope.calledByEmployeeId,
+                calledByEmployeeName: $scope.calledByEmployeeName,
+                reasonOfRDDefault: $scope.reasonOfRDDefault,
+                anyMisappropriationCase: $scope.anyMisappropriationCase,
+                remarksIfAny: $scope.remarksIfAny,
+                filledBy: $scope.filledBy,
+                modifiedBy: $scope.modifiedBy
+            };
+
+
+            var URL = $scope.uRl + "rdcalling/create";
+            $http.post(URL, $scope.rdCallingOD)
+                    .then(function (response) {
+                        debugger;
+                        console.log(response);
+                        alert("Form submitted Successfully");
+                        location.reload();
+                    }, function (error) {
+                        console.log(error);
+                    });
+        };
+
+
+//        for updating RD form
+        $scope.updateRDform = function () {
+
+            $scope.rdCallingOD = {
+                region: $scope.region,
+                area: $scope.area,
+                branchId: $scope.branchId,
+                branchName: $scope.branchName,
+                rdAccountNumber: $scope.rdAccountNumber,
+                clientName: $scope.clientName,
+                dateOfDefault: $scope.dateOfDefault,
+                callingDate: $scope.callingDate,
+                calledByEmployeeId: $scope.calledByEmployeeId,
+                calledByEmployeeName: $scope.calledByEmployeeName,
+                reasonOfRDDefault: $scope.reasonOfRDDefault,
+                anyMisappropriationCase: $scope.anyMisappropriationCase,
+                remarksIfAny: $scope.remarksIfAny,
+                filledBy: $scope.filledBy,
+                modifiedBy: $scope.modifiedBy
+            };
+            var URL = $scope.uRl + "rdcalling/update/" + $scope.id;
+            $http.put(URL, $scope.rdCallingOD)
+                    .then(function (response) {
+                        console.log(response);
+                        alert("Form Submitted Successfully.");
+                        location.reload();
+                    }, function (error) {
+                        console.log(error);
+                    });
+        };
+
+
+        //get RD form
+        $scope.getRDrecord = function (id) {
+            $scope.ODcalling = false;
+            $scope.InsuranceTracker = false;
+            $scope.RDcalling = false;
+            $scope.insuranceTrackerForm = false;
+            $scope.odConatinerForm = false;
+            $scope.rdContainerForm = true;
+
+            //form button            
+            $scope.RDsubmitButton = false;
+            $scope.RDupdateButton = true;
+
+            var URL = $scope.uRl + "rdcalling/get/" + id;
+            $http.get(URL)
+                    .then(function (response) {
+                        $scope.record = response.data;
+                        $scope.id = $scope.record.id;
+                        $scope.region = $scope.record.region;
+                        $scope.area = $scope.record.area;
+                        $scope.branchId = $scope.record.branchId;
+                        $scope.branchName = $scope.record.branchName;
+                        $scope.rdAccountNumber = $scope.record.rdAccountNumber;
+                        $scope.clientName = $scope.record.clientName;
+                        $scope.dateOfDefault = $scope.record.dateOfDefault;
+                        $scope.callingDate = $scope.record.callingDate;
+                        $scope.calledByEmployeeId = $scope.record.calledByEmployeeId;
+                        $scope.calledByEmployeeName = $scope.record.calledByEmployeeName;
+                        $scope.reasonOfRDDefault = $scope.record.reasonOfRDDefault;
+                        $scope.anyMisappropriationCase = $scope.record.anyMisappropriationCase;
+                        $scope.remarksIfAny = $scope.record.remarksIfAny;
+                        $scope.filledBy = $scope.record.filledBy;
+                        $scope.modifiedBy = $scope.record.modifiedBy;
+
+                    }, function (error) {
+                        console.log(error);
+                    });
+
+        };
+
+
+
+//        for submitting OD form
         $scope.submitODform = function () {
 
             $scope.odCallingOD = {
@@ -159,6 +352,7 @@ app.controller('OD_User_Controller', function ($scope, $http, $document) {
                     .then(function (response) {
                         console.log(response);
                         alert("Form Submitted Successfully.");
+                        location.reload();
                     }, function (error) {
                         console.log(error);
                     });
@@ -166,14 +360,15 @@ app.controller('OD_User_Controller', function ($scope, $http, $document) {
 
 
 
-        $scope.submitRDform = function () {
+        //update OD form
+        $scope.updateODform = function () {
 
-            $scope.rdCallingOD = {
+            $scope.odCallingOD = {
                 region: $scope.region,
                 area: $scope.area,
                 branchId: $scope.branchId,
                 branchName: $scope.branchName,
-                rdAccountNumber: $scope.rdAccountNumber,
+                loanAccountNumber: $scope.loanAccountNumber,
                 clientName: $scope.clientName,
                 dateOfDefault: $scope.dateOfDefault,
                 callingDate: $scope.callingDate,
@@ -185,18 +380,61 @@ app.controller('OD_User_Controller', function ($scope, $http, $document) {
                 filledBy: $scope.filledBy,
                 modifiedBy: $scope.modifiedBy
             };
-            var URL = $scope.uRl + "rdcalling/create";
-            $http.post(URL, $scope.rdCallingOD)
+            var URL = $scope.uRl + "odcalling/update/" + $scope.id;
+            $http.put(URL, $scope.odCallingOD)
                     .then(function (response) {
                         console.log(response);
-                        alert("Form submitted Successfully");
+                        alert("Form Submitted Successfully.");
+                        location.reload();
                     }, function (error) {
                         console.log(error);
                     });
         };
 
 
+        //for getting OD form
+        $scope.getODform = function (id) {
 
+            $scope.ODcalling = false;
+            $scope.InsuranceTracker = false;
+            $scope.RDcalling = false;
+            $scope.insuranceTrackerForm = false;
+            $scope.odConatinerForm = true;
+            $scope.rdContainerForm = false;
+
+
+            //form button            
+            $scope.ODsubmitButton = false;
+            $scope.ODupdateButton = true;
+
+            var URL = $scope.uRl + "odcalling/get/" + id;
+            $http.get(URL)
+                    .then(function (response) {
+                        $scope.record = response.data;
+                        $scope.id = $scope.record.id;
+                        $scope.region = $scope.record.region;
+                        $scope.area = $scope.record.area;
+                        $scope.branchId = $scope.record.branchId;
+                        $scope.branchName = $scope.record.branchName;
+                        $scope.loanAccountNumber = $scope.record.loanAccountNumber;
+                        $scope.clientName = $scope.record.clientName;
+                        $scope.dateOfDefault = $scope.record.dateOfDefault;
+                        $scope.callingDate = $scope.record.callingDate;
+                        $scope.calledByEmployeeId = $scope.record.calledByEmployeeId;
+                        $scope.calledByEmployeeName = $scope.record.calledByEmployeeName;
+                        $scope.reasonOfODDefault = $scope.record.reasonOfODDefault;
+                        $scope.anyMisappropriationCase = $scope.record.anyMisappropriationCase;
+                        $scope.remarksIfAny = $scope.record.remarksIfAny;
+                        $scope.filledBy = $scope.record.filledBy;
+                        $scope.modifiedBy = $scope.record.modifiedBy;
+
+                    }, function (error) {
+                        console.log(error);
+                    });
+        };
+
+
+//        for submitting IT form
         $scope.submitITform = function () {
 
             $scope.insuranceTracker = {
@@ -229,7 +467,9 @@ app.controller('OD_User_Controller', function ($scope, $http, $document) {
                 datedOfSendDocToKotak: $scope.datedOfSendDocToKotak,
                 dateOfSettelmentByKotak: $scope.dateOfSettelmentByKotak,
                 accountCloseDateByBranch: $scope.accountCloseDateByBranch,
-                incentiveReceivedInMonth: $scope.incentiveReceivedInMonth
+                incentiveReceivedInMonth: $scope.incentiveReceivedInMonth,
+                filledBy: $scope.filledBy,
+                modifiedBy: $scope.modifiedBy
             };
 
             var URL = $scope.uRl + "insurancetrackers/create";
@@ -237,11 +477,123 @@ app.controller('OD_User_Controller', function ($scope, $http, $document) {
                     .then(function (response) {
                         console.log(response);
                         alert("Form submitted Successfully");
+                        location.reload();
                     }, function (error) {
                         console.log(error);
                     });
 
         };
+
+
+//        for updating IT form
+        $scope.updateITform = function () {
+
+            $scope.ITtrackerOD = {
+                region: $scope.region,
+                branchCode: $scope.branchCode,
+                branchName: $scope.branchName,
+                claimId: $scope.claimId,
+                centerId: $scope.centerId,
+                centerName: $scope.centerName,
+                clientId: $scope.clientId,
+                accountId: $scope.accountId,
+                disbursementDate: $scope.disbursementDate,
+                clientName: $scope.clientName,
+                nomineeName: $scope.nomineeName,
+                deathClientName: $scope.deathClientName,
+                disbursementAmount: $scope.disbursementAmount,
+                emiDay: $scope.emiDay,
+                dateOfDeath: $scope.dateOfDeath,
+                deathReasion: $scope.deathReasion,
+                paidEmi: $scope.paidEmi,
+                loanOutstandingAmt: $scope.loanOutstandingAmt,
+                otsAmt: $scope.otsAmt,
+                claimSettelmentAmt: $scope.claimSettelmentAmt,
+                memberHandoverAmount: $scope.memberHandoverAmount,
+                claimStatus: $scope.claimStatus,
+                remarks: $scope.remarks,
+                trueCellPunchingDate: $scope.trueCellPunchingDate,
+                datedOfDOCReceivedFromMember: $scope.datedOfDOCReceivedFromMember,
+                datedOfSendDocToHo: $scope.datedOfSendDocToHo,
+                datedOfSendDocToKotak: $scope.datedOfSendDocToKotak,
+                dateOfSettelmentByKotak: $scope.dateOfSettelmentByKotak,
+                accountCloseDateByBranch: $scope.accountCloseDateByBranch,
+                incentiveReceivedInMonth: $scope.incentiveReceivedInMonth,
+                filledBy: $scope.filledBy,
+                modifiedBy: $scope.modifiedBy
+            };
+
+
+            var URL = $scope.uRl + "insurancetrackers/update/" + $scope.id;
+            $http.put(URL, $scope.ITtrackerOD)
+                    .then(function (response) {
+                        console.log(response);
+                        alert("Form Submitted Successfully.");
+                        location.reload();
+                    }, function (error) {
+                        console.log(error);
+                    });
+        };
+
+
+        // for getting ITform
+        $scope.getITform = function (id) {
+            $scope.ODcalling = false;
+            $scope.InsuranceTracker = false;
+            $scope.RDcalling = false;
+            $scope.insuranceTrackerForm = true;
+            $scope.odConatinerForm = false;
+            $scope.rdContainerForm = false;
+
+            //form button            
+            $scope.ITsubmitButton = false;
+            $scope.ITupdateButton = true;
+            
+
+            var URL = $scope.uRl + "odcalling/get/" + id;
+            $http.get(URL)
+                    .then(function (response) {
+
+                        $scope.region = $scope.record.region;
+                        $scope.branchCode = $scope.record.branchCode;
+                        $scope.branchName = $scope.record.branchName;
+                        $scope.claimId = $scope.record.claimId;
+                        $scope.centerId = $scope.record.centerId;
+                        $scope.centerName = $scope.record.centerName;
+                        $scope.clientId = $scope.record.clientId;
+                        $scope.accountId = $scope.record.accountId;
+                        $scope.disbursementDate = $scope.record.disbursementDate;
+                        $scope.clientName = $scope.record.clientName;
+                        $scope.nomineeName = $scope.record.nomineeName;
+                        $scope.deathClientName = $scope.record.deathClientName;
+                        $scope.disbursementAmount = $scope.record.disbursementAmount;
+                        $scope.emiDay = $scope.record.emiDay;
+                        $scope.dateOfDeath = $scope.record.dateOfDeath;
+                        $scope.deathReasion = $scope.record.deathReasion;
+                        $scope.paidEmi = $scope.record.paidEmi;
+                        $scope.loanOutstandingAmt = $scope.record.loanOutstandingAmt;
+                        $scope.otsAmt = $scope.record.otsAmt;
+                        $scope.claimSettelmentAmt = $scope.record.claimSettelmentAmt;
+                        $scope.memberHandoverAmount = $scope.record.memberHandoverAmount;
+                        $scope.claimStatus = $scope.record.claimStatus;
+                        $scope.remarks = $scope.record.remarks;
+                        $scope.trueCellPunchingDate = $scope.record.trueCellPunchingDate;
+                        $scope.datedOfDOCReceivedFromMember = $scope.record.datedOfDOCReceivedFromMember;
+                        $scope.datedOfSendDocToHo = $scope.record.datedOfSendDocToHo;
+                        $scope.datedOfSendDocToKotak = $scope.record.datedOfSendDocToKotak;
+                        $scope.dateOfSettelmentByKotak = $scope.record.dateOfSettelmentByKotak;
+                        $scope.accountCloseDateByBranch = $scope.record.accountCloseDateByBranch;
+                        $scope.incentiveReceivedInMonth = $scope.record.incentiveReceivedInMonth;
+                        $scope.filledBy = $scope.record.filledBy;
+                        $scope.modifiedBy = $scope.record.modifiedBy;
+
+
+                    }, function (error) {
+                        console.log(error);
+                    });
+        };
+
+
 
     } else {
         window.location.href = $scope.uRl + "index.html";

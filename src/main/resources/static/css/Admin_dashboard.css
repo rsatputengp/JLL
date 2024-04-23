@@ -303,8 +303,7 @@ hr {
 }
 
 
-
-#dashBoard .RDcalling , .insuranceTracker , .ODcalling{
+#dashBoard .RDcalling , .insuranceTracker , .ODcalling , .HouseVerification , .centerVisitReport , .AuditScoringReport{
     display: flex ;
     justify-content: center !important;
     align-items: center !important;
@@ -320,7 +319,10 @@ hr {
 
 #dashBoard {
     display: flex !important;
-    justify-content: center !important;
+    justify-content: flex-start !important;
+      flex-direction: column !important;
+    /*justify-content:flex-start;*/
+    align-items: center;
     width: 100% !important;
     border-top: 1px solid #eca400 !important;
     border-left: 1px solid #eca400 !important;
@@ -367,7 +369,7 @@ th {
     vertical-align: top !important;
 }
 
-#addRDcalling , #addODcalling , #addInsuranceTracker {
+#addRDcalling , #addODcalling , #addInsuranceTracker,  #addHouseVerification ,#addCenterVisitReport, #addAuditScoringReport{
     background-color: #4CAF50;
     /* Green */
     border-color: #00902b;
@@ -381,6 +383,8 @@ th {
     margin: 4px 2px;
     cursor: pointer;
 }
+
+
 
 #addRDcalling:active {
     background-color: #f44336;

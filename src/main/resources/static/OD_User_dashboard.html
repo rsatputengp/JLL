@@ -112,7 +112,6 @@
         <div>
 
             <!-- pop-up for profile -->
-
             <div class="navPopup">
                 <div class="profile-card" ng-show="profileCard">
                     <div class="row">
@@ -160,7 +159,6 @@
             <!-- Dashboard -->
             <div id="dashBoard" ng-show="dashBoard">
 
-
                 <!-- RD calling  List view-->
                 <div class="RDcalling row" ng-show="RDcalling">
                     <div class="col-md-12">
@@ -179,65 +177,7 @@
                                                 <th scope="col">sr.no</th>
                                                 <th scope="col">Region</th>
                                                 <th scope="col">Area</th>
-                                                <th scope="col"> Branch Name</th>
-                                                <th scope="col"> RD Acc No.</th>
-                                                <th scope="col"> Client Name</th>
-                                                <th scope="col">Date</th>
-                                                <th scope="col">Calling Date</th>
-                                                <th scope="col">Employee ID</th>
-                                                <th scope="col">Employee Name</th>
-                                                <th scope="col">Reason of RD</th>
-                                                <th scope="col">AMC</th>
-                                                <th scope="col">Remarks</th>
-
-                                            </tr>
-                                        </thead>
-                                        <tbody> 
-                                            <tr ng-repeat="rdCalling in rdCallingList">
-                                                <td>{{rdCalling.id}}</td>
-                                                <td>{{rdCalling.region}}</td>
-                                                <td>{{rdCalling.branchId}}</td>
-                                                <td>{{rdCalling.branchName}}</td>
-                                                <td>{{rdCalling.rdAccountNumber}}</td>
-                                                <td>{{rdCalling.clientName}}</td>
-                                                <td>{{rdCalling.dateOfDefault}}</td>
-                                                <td>{{rdCalling.callingDate}}</td>
-                                                <td>{{rdCalling.calledByEmployeeId}}</td>
-                                                <td>{{rdCalling.calledByEmployeeName}}</td>
-                                                <td>{{rdCalling.reasonOfRDDefault}}</td>
-                                                <td>{{rdCalling.anyMisappropriationCase}}</td>
-                                                <td>{{rdCalling.anyMisappropriationCase}}</td>
-                                                <td>{{rdCalling.remarksIfAny}}</td>
-                                                <td>{{rdCalling.FilledBy}}</td>
-                                                <td>{{rdCalling.modifiedBy}}</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <!-- Od calling List view --->
-                <div class="ODcalling row" ng-show="ODcalling">
-                    <div class="col-md-12">
-                        <h4 style="font-weight: 900;"> OD Calling
-                            <button id="addODcalling" ng-click="ODcallingForm()">
-                                <i class="fa-solid fa-plus "></i>
-                            </button>
-                        </h4>
-
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="my-card-a">
-                                    <table class="table">
-                                        <thead class="thead-dark">
-                                            <tr>
-                                                <th scope="col">sr.no</th>
-                                                <th scope="col">Region</th>
-                                                <th scope="col">Area</th>
+                                                <th scope="col"> Branch Id</th>
                                                 <th scope="col"> Branch Name</th>
                                                 <th scope="col"> RD Acc No.</th>
                                                 <th scope="col"> Client Name</th>
@@ -250,150 +190,36 @@
                                                 <th scope="col">Remarks</th>
                                                 <th scope="col">Filled By</th>
                                                 <th scope="col">Modified By</th>
+
                                             </tr>
                                         </thead>
                                         <tbody> 
-                                            <tr ng-repeat="odCalling in odCallingList">
-                                                <td>{{odCalling.id}}</td>
-                                                <td>{{odCalling.region}}</td>
-                                                <td>{{odCalling.branchId}}</td>
-                                                <td>{{odCalling.branchName}}</td>
-                                                <td>{{odCalling.rdAccountNumber}}</td>
-                                                <td>{{odCalling.clientName}}</td>
-                                                <td>{{odCalling.dateOfDefault}}</td>
-                                                <td>{{odCalling.callingDate}}</td>
-                                                <td>{{odCalling.calledByEmployeeId}}</td>
-                                                <td>{{odCalling.calledByEmployeeName}}</td>
-                                                <td>{{odCalling.reasonOfRDDefault}}</td>
-                                                <td>{{odCalling.anyMisappropriationCase}}</td>
-                                                <td>{{odCalling.anyMisappropriationCase}}</td>
-                                                <td>{{odCalling.remarksIfAny}}</td>
-                                                <td>{{odCalling.FilledBy}}</td>
-                                                <td>{{odCalling.modifiedBy}}</td>
+                                            <tr ng-repeat="rdCalling in rdCallingList">
+                                                <td  ng-click="getRDrecord(rdCalling.id)">{{$index + 1}}</td>
+                                                <td>{{rdCalling.region}}</td>
+                                                <td>{{rdCalling.area}}</td>
+                                                <td>{{rdCalling.branchId}}</td>
+                                                <td>{{rdCalling.branchName}}</td>
+                                                <td>{{rdCalling.rdAccountNumber}}</td>
+                                                <td>{{rdCalling.clientName}}</td>
+                                                <td>{{rdCalling.dateOfDefault}}</td>
+                                                <td>{{rdCalling.callingDate}}</td>
+                                                <td>{{rdCalling.calledByEmployeeId}}</td>
+                                                <td>{{rdCalling.calledByEmployeeName}}</td>
+                                                <td>{{rdCalling.reasonOfRDDefault}}</td>
+                                                <td>{{rdCalling.anyMisappropriationCase}}</td>
+                                                <td>{{rdCalling.remarksIfAny}}</td>
+                                                <td>{{rdCalling.filledBy}}</td>
+                                                <td>{{rdCalling.modifiedBy}}</td>
                                             </tr>
                                         </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> 
-
-
-                <!--- Insuarance tracker List view -->
-                <div class="insuranceTracker row" ng-show="InsuranceTracker">
-                    <div class="col-md-12">
-                        <h4 style="font-weight: 900;"> Insurance Tracker
-                            <button id="addInsuranceTracker" ng-click="InsuranceTrackerForm()">
-                                <i class="fa-solid fa-plus "></i>
-                            </button>
-                        </h4>
-
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="my-card-a">
-                                    <table class="table">
-                                        <thead class="thead-dark">
-                                            <tr>
-                                                <th scope="col">sr.no</th>
-                                                <th scope="col">Region</th>
-                                                <th scope="col">Branch Code</th>
-                                                <th scope="col"> Branch Name</th>
-                                                <th scope="col"> CLAIM ID
-                                                </th>
-                                                <th scope="col">Center Name
-                                                </th>
-                                                <th scope="col"> Center ID</th>
-                                                <th scope="col">Account Id
-                                                </th>
-                                                <th scope="col">Disbursement Date
-                                                </th>
-                                                <th scope="col">Client Name
-                                                </th>
-                                                <th scope="col">Nominee Name
-                                                </th>
-                                                <th scope="col">Death Client Name /Demise Client Name
-                                                </th>
-                                                <th scope="col">Disbursement
-                                                    Amount
-                                                </th>
-                                                <th scope="col">EMI Day
-                                                </th>
-                                                <th scope="col">Date of Death
-                                                </th>
-                                                <th scope="col">Death Reasion/ Demise Reasion
-                                                </th>
-                                                <th scope="col">Paid EMI
-                                                </th>
-                                                <th scope="col">Loan Outstanding Amt
-                                                </th>
-                                                <th scope="col">OTS Amt
-                                                </th>
-                                                <th scope="col">Claim Settelment Amt
-                                                </th>
-                                                <th scope="col">Member Handover Amount
-                                                </th>
-                                                <th scope="col">Claim Status
-                                                </th>
-                                                <th scope="col">Remarks
-                                                </th>
-                                                <th scope="col">True cell punching date
-                                                </th>
-                                                <th scope="col">Dated of DOC Received Fom Member
-                                                </th>
-                                                <th scope="col">Dated of send DOC to HO
-                                                </th>
-                                                <th scope="col">Dated of send DOC TO KOTAK
-                                                </th>
-                                                <th scope="col">Date of Settelment by Kotak
-                                                </th>
-                                                <th scope="col">Account Close date by Branch
-                                                </th>
-                                                <th scope="col">Incentive received in month
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr ng-repeat="iTtracker in iTtrackerList"></tr>
-
-                                        <td>{{iTtracker.region}}</td>
-                                        <td>{{iTtracker.branchCode}}</td>
-                                        <td>{{iTtracker.branchName}}</td>
-                                        <td>{{iTtracker.claimId}}</td>
-                                        <td>{{iTtracker.centerId}}</td>
-                                        <td>{{iTtracker.centerName}}</td>
-                                        <td>{{iTtracker.clientId}}</td>
-                                        <td>{{iTtracker.accountId}}</td>
-                                        <td>{{iTtracker.disbursementDate}}</td>
-                                        <td>{{iTtracker.clientName}}</td>
-                                        <td>{{iTtracker.nomineeName}}</td>
-                                        <td>{{iTtracker.deathClientName}}</td>
-                                        <td>{{iTtracker.disbursementAmount}}</td>
-                                        <td>{{iTtracker.emiDay}}</td>
-                                        <td>{{iTtracker.dateOfDeath}}</td>
-                                        <td>{{iTtracker.deathReasion}}</td>
-                                        <td>{{iTtracker.paidEmi}}</td>
-                                        <td>{{iTtracker.loanOutstandingAmt}}</td>
-                                        <td>{{iTtracker.otsAmt}}</td>
-                                        <td>{{iTtracker.claimSettelmentAmt}}</td>
-                                        <td>{{iTtracker.memberHandoverAmount}}</td>
-                                        <td>{{iTtracker.claimStatus}}</td>
-                                        <td>{{iTtracker.remarks}}</td>
-                                        <td>{{iTtracker.trueCellPunchingDate}}</td>
-                                        <td>{{iTtracker.datedOfDOCReceivedFromMember}}</td>
-                                        <td>{{iTtracker.dateOfSendToHo}}</td>
-                                        <td>{{iTtracker.dateOfSendDocToKotak}}</td>
-                                        <td>{{iTtracker.dateOfSettelmentByKotak}}</td>
-                                        <td>{{iTtracker.accountCloseDateByBranch}}</td>
-                                        <td>{{iTtracker.incentiveReceivedInMonth}}</td>
-                                        </tbody>
-
                                     </table>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
 
 
                 <!-- RD calling Form -->
@@ -417,6 +243,8 @@
                                             <label for="filledBy">Filled By</label><span class="required">*</span>
                                             <input type="text" class="form-control glow-effect" ng-model="filledBy" id="RDfilledBy"
                                                    aria-describedby="filledBy" placeholder="">
+                                            <input type="text" class="form-control glow-effect" ng-model="id" id="id"
+                                                   aria-describedby="id" placeholder="" hidden="">
                                         </div>
 
                                         <div class="col-md-5 ml-auto">
@@ -436,7 +264,7 @@
 
                                         <div class="col-md-5 ml-auto">
                                             <label for="selectedArea">Area</label><span class="required">*</span>
-                                            <input type="email" class="form-control" ng-model="area" id="selectedArea"
+                                            <input type="text" class="form-control" ng-model="area" id="selectedArea"
                                                    aria-describedby="selectedArea" placeholder="">
                                         </div>
                                     </div>
@@ -510,15 +338,77 @@
                                     </div>
 
                                     <div class="from-group mt-3">
-                                        <label for="reasonOfRD"> remarksIfAny </label>
-                                        <textarea type="text" ng-model="remarks" id="remarks" class="form-control" placeholder="Remarks if any"
+                                        <label for="remarksForRD"> Remarks</label>
+                                        <textarea type="text" ng-model="remarksIfAny" id="remarks" class="form-control" placeholder="Remarks if any"
                                                   rows="3"></textarea>
                                     </div>
                                     <div class="mt-3 ">
-                                        <button type="submit" class="btn btn-outline-success">Submit</button>
+                                        <button type="submit" class="btn btn-outline-success" ng-show="RDsubmitButton">Submit</button>
+                                        <button type="button" class="btn btn-outline-success" ng-click="updateRDform()" ng-show="RDupdateButton">Update</button>
                                         <button type="button" class="btn btn-outline-danger" ng-click="RDcloseForm()">Cancel</button>
                                     </div>
                                 </form>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+
+
+                <!-- Od calling List view --->
+                <div class="ODcalling row" ng-show="ODcalling">
+                    <div class="col-md-12">
+                        <h4 style="font-weight: 900;"> OD Calling
+                            <button id="addODcalling" ng-click="ODcallingForm()">
+                                <i class="fa-solid fa-plus "></i>
+                            </button>
+                        </h4>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="my-card-a">
+                                    <table class="table">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th scope="col">sr.no</th>
+                                                <th scope="col">Region</th>
+                                                <th scope="col">Area</th>
+                                                <th scope="col"> Branch Id</th>
+                                                <th scope="col"> Branch Name</th>
+                                                <th scope="col"> Loan Account Number</th>
+                                                <th scope="col"> Client Name</th>
+                                                <th scope="col">Date of Default</th>
+                                                <th scope="col">Calling Date</th>
+                                                <th scope="col">called by- Employee ID</th>
+                                                <th scope="col">called by- Employee Name</th>
+                                                <th scope="col">Reason of OD Default</th>
+                                                <th scope="col">Any Misappropriation case</th>
+                                                <th scope="col">Remarks if any</th>
+                                                <th scope="col">Filled By</th>
+                                                <th scope="col">Modified By</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody> 
+                                            <tr ng-repeat="odCalling in odCallingList">
+                                                <td ng-click="getODform(odCalling.id)">{{$index + 1}}</td>
+                                                <td>{{odCalling.region}}</td>
+                                                <td>{{odCalling.area}}</td>
+                                                <td>{{odCalling.branchId}}</td>
+                                                <td>{{odCalling.branchName}}</td>
+                                                <td>{{odCalling.loanAccountNumber}}</td>
+                                                <td>{{odCalling.clientName}}</td>
+                                                <td>{{odCalling.dateOfDefault}}</td>
+                                                <td>{{odCalling.callingDate}}</td>
+                                                <td>{{odCalling.calledByEmployeeId}}</td>
+                                                <td>{{odCalling.calledByEmployeeName}}</td>
+                                                <td>{{odCalling.reasonOfODDefault}}</td>
+                                                <td>{{odCalling.anyMisappropriationCase}}</td>
+                                                <td>{{odCalling.remarksIfAny}}</td>
+                                                <td>{{odCalling.filledBy}}</td>
+                                                <td>{{odCalling.modifiedBy}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -546,6 +436,8 @@
                                             <label for="filledBy">Filled By</label><span class="required">*</span>
                                             <input type="text" class="form-control glow-effect" ng-model="filledBy" id="ODfilledBy"
                                                    aria-describedby="filledBy" placeholder="">
+                                            <input type="text" class="form-control glow-effect" ng-model="id" id="id"
+                                                   aria-describedby="id" placeholder="" hidden="">
                                         </div>
 
                                         <div class="col-md-5 ml-auto">
@@ -593,7 +485,7 @@
 
                                         <div class="col-md-5 ml-md-auto">
                                             <label for="ClientName">Client Name</label><span class="required">*</span>
-                                            <input type="text" class="form-control" id="clientName"
+                                            <input type="text" class="form-control" id="clientName" ng-model="clientName"
                                                    aria-describedby="ClientName" placeholder="">
                                         </div>
                                     </div>
@@ -627,13 +519,13 @@
                                     </div>
 
                                     <div class="from-group mt-3">
-                                        <label for="reasonOfRD"> Reason of OD Default</label><span class="required">*</span>
+                                        <label for="reasonOfOD"> Reason of OD Default</label><span class="required">*</span>
                                         <textarea type="text"  ng-model="reasonOfODDefault" id="reasonOfODDefault" class="form-control"
                                                   placeholder="Reason of Default" rows="3"></textarea>
                                     </div>
 
                                     <div class="from-group mt-3">
-                                        <label for="reasonOfRD"> Any Misappropriation case
+                                        <label for=""> Any Misappropriation case
                                         </label>
                                         <textarea type="text" ng-model="anyMisappropriationCase" id="odmisappropriationCase" class="form-control"
                                                   placeholder="Any Misappropriation case" rows="3"></textarea>
@@ -645,7 +537,8 @@
                                                   rows="3"></textarea>
                                     </div>
                                     <div class="mt-3 ">
-                                        <button type="submit" class="btn btn-outline-success">Submit</button>
+                                        <button type="submit" class="btn btn-outline-success" ng-show="ODsubmitButton">Submit</button>
+                                        <button type="button" class="btn btn-outline-success" ng-click="updateODform()" ng-show="ODupdateButton">Update</button>
                                         <button type="button" class="btn btn-outline-danger" ng-click="ODcloseForm()">Cancel</button>
                                     </div>
                                 </form>
@@ -653,6 +546,132 @@
                         </div>
                     </div>
                 </div> 
+
+
+
+                <!--- Insuarance tracker List view -->
+                <div class="insuranceTracker row" ng-show="InsuranceTracker">
+                    <div class="col-md-12">
+                        <h4 style="font-weight: 900;"> Insurance Tracker
+                            <button id="addInsuranceTracker" ng-click="InsuranceTrackerForm()">
+                                <i class="fa-solid fa-plus "></i>
+                            </button>
+                        </h4>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="my-card-a">
+                                    <table class="table">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th scope="col">sr.no</th>
+                                                <th scope="col">Region</th>
+                                                <th scope="col">Branch Code</th>
+                                                <th scope="col"> Branch Name</th>
+                                                <th scope="col"> CLAIM ID
+                                                </th>
+                                                <th scope="col"> Center ID</th>
+                                                <th scope="col">Center Name
+                                                </th>
+                                                <th scope="col">Account Id
+                                                </th>
+                                                <th scope="col">Disbursement Date
+                                                </th>
+                                                <th scope="col">Client Id
+                                                </th>
+                                                <th scope="col">Client Name
+                                                </th>
+                                                <th scope="col">Nominee Name
+                                                </th>
+                                                <th scope="col">Death Client Name /Demise Client Name
+                                                </th>
+                                                <th scope="col">Disbursement
+                                                    Amount
+                                                </th>
+                                                <th scope="col">EMI Day
+                                                </th>
+                                                <th scope="col">Date of Death
+                                                </th>
+                                                <th scope="col">Death Reasion/ Demise Reasion
+                                                </th>
+                                                <th scope="col">Paid EMI
+                                                </th>
+                                                <th scope="col">Loan Outstanding Amt
+                                                </th>
+                                                <th scope="col">OTS Amt
+                                                </th>
+                                                <th scope="col">Claim Settelment Amt
+                                                </th>
+                                                <th scope="col">Member Handover Amount
+                                                </th>
+                                                <th scope="col">Claim Status
+                                                </th>
+                                                <th scope="col">Remarks
+                                                </th>
+                                                <th scope="col">True cell punching date
+                                                </th>
+                                                <th scope="col">Dated of DOC Received Fom Member
+                                                </th>
+                                                <th scope="col">Dated of send DOC to HO
+                                                </th>
+                                                <th scope="col">Dated of send DOC TO KOTAK
+                                                </th>
+                                                <th scope="col">Date of Settelment by Kotak
+                                                </th>
+                                                <th scope="col">Account Close date by Branch
+                                                </th>
+                                                <th scope="col">Incentive received in month
+                                                </th>
+                                                <th scope="col">Filled By</th>
+                                                <th scope="col">Modified By</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="iTtracker in iTtrackerList">
+                                                <td ng-click="getITform(iTtracker.id)">{{$index + 1}}</td>
+                                                <td>{{iTtracker.region}}</td>
+                                                <td>{{iTtracker.branchCode}}</td>
+                                                <td>{{iTtracker.branchName}}</td>
+                                                <td>{{iTtracker.claimId}}</td>
+                                                <td>{{iTtracker.centerId}}</td>
+                                                <td>{{iTtracker.centerName}}</td>
+                                                <td>{{iTtracker.accountId}}</td>
+                                                <td>{{iTtracker.disbursementDate}}</td>
+                                                <td>{{iTtracker.clientId}}</td>
+                                                <td>{{iTtracker.clientName}}</td>
+                                                <td>{{iTtracker.nomineeName}}</td>
+                                                <td>{{iTtracker.deathClientName}}</td>
+                                                <td>{{iTtracker.disbursementAmount}}</td>
+                                                <td>{{iTtracker.emiDay}}</td>
+                                                <td>{{iTtracker.dateOfDeath}}</td>
+                                                <td>{{iTtracker.deathReasion}}</td>
+                                                <td>{{iTtracker.paidEmi}}</td>
+                                                <td>{{iTtracker.loanOutstandingAmt}}</td>
+                                                <td>{{iTtracker.otsAmt}}</td>
+                                                <td>{{iTtracker.claimSettelmentAmt}}</td>
+                                                <td>{{iTtracker.memberHandoverAmount}}</td>
+                                                <td>{{iTtracker.claimStatus}}</td>
+                                                <td>{{iTtracker.remarks}}</td>
+                                                <td>{{iTtracker.trueCellPunchingDate}}</td>
+                                                <td>{{iTtracker.datedOfDOCReceivedFromMember}}</td>
+                                                <td>{{iTtracker.datedOfSendDocToHo}}</td>
+                                                <td>{{iTtracker.datedOfSendDocToKotak}}</td>
+                                                <td>{{iTtracker.dateOfSettelmentByKotak}}</td>
+                                                <td>{{iTtracker.accountCloseDateByBranch}}</td>
+                                                <td>{{iTtracker.incentiveReceivedInMonth}}</td>
+                                                <td>{{iTtracker.filledBy}}</td>
+                                                <td>{{iTtracker.modifiedBy}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
 
 
                 <!-- Insurance Tracker Form -->
@@ -677,6 +696,8 @@
                                             <label for="filledBy">Filled By</label><span class="required">*</span>
                                             <input type="text" class="form-control glow-effect" ng-model="filledBy" id="ITfilledBy"
                                                    aria-describedby="filledBy" placeholder="" required="">
+                                            <input type="text" class="form-control glow-effect" ng-model="id" id="id"
+                                                   aria-describedby="id" placeholder="" hidden="">
                                         </div>
 
                                         <div class="col-md-5 ml-auto">
@@ -695,7 +716,7 @@
 
                                         <div class="col-md-5 ml-auto">
                                             <label for="selectedArea">Branch Code</label><span class="required">*</span>
-                                            <input type="email" class="form-control"  ng-model="branchCode" id="iTselectBranch"
+                                            <input type="text" class="form-control"  ng-model="branchCode" id="iTselectBranch"
                                                    aria-describedby="branch-code" placeholder="" required="">
                                         </div>
                                     </div>
@@ -872,7 +893,6 @@
                                                    aria-describedby="truecellpunchingdate" placeholder="">
                                         </div>
 
-
                                     </div>
 
                                     <div class="form-row">
@@ -923,7 +943,8 @@
                                     </div>
 
                                     <div class="mt-3 ">
-                                        <button type="submit" class="btn btn-outline-success">Submit</button>
+                                        <button type="submit" class="btn btn-outline-success" ng-show="ITsubmitButton">Submit</button>
+                                        <button type="button" class="btn btn-outline-success" ng-click="updateITform()" ng-show="ITupdateButton">Update</button>
                                         <button type="button" class="btn btn-outline-danger" ng-click="ITcloseForm()">Cancel</button>
                                     </div>
                                 </form>

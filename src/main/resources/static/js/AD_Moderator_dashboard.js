@@ -72,7 +72,9 @@ app.controller('AD_Moderator_Controller', function ($scope, $http, $document) {
                 foId: $scope.foId,
                 foName: $scope.foName,
                 reasonOfCancellation: $scope.reasonOfCancellation,
-                remarks: $scope.remarks
+                remarks: $scope.remarks,
+                filledBy: $scope.filledBy,
+                modifiedBy: $scope.modifiedBy
             };
 
             var URL = $scope.uRl + "houseverification/create";
@@ -107,7 +109,9 @@ app.controller('AD_Moderator_Controller', function ($scope, $http, $document) {
                 ifAnyCustomerMigrate: $scope.ifAnyCustomerMigrate,
                 bmVisitDone: $scope.bmVisitDone,
                 amVisitDone: $scope.amVisitDone,
-                anyOtherObservation: $scope.anyOtherObservation
+                anyOtherObservation: $scope.anyOtherObservation,
+                filledBy: $scope.filledBy,
+                modifiedBy: $scope.modifiedBy
             };
 
             var URL = $scope.uRl + "centervisitreport/create";
@@ -135,7 +139,9 @@ app.controller('AD_Moderator_Controller', function ($scope, $http, $document) {
                 remark: $scope.remark,
                 auditCover: $scope.auditCover,
                 auditSchedule: $scope.auditSchedule,
-                complinceStatus: $scope.complinceStatus
+                complinceStatus: $scope.complinceStatus,
+                filledBy: $scope.filledBy,
+                modifiedBy: $scope.modifiedBy
             };
 
             var URL = $scope.uRl + "auditscoringreport/create";
