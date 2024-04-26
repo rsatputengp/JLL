@@ -328,6 +328,7 @@ hr {
     border-left: 1px solid #eca400 !important;
     border-right: 1px solid #eca400 !important;
     z-index: 10 !important;
+    height: 1400px !important;
 }
 
 #superUser {
@@ -410,7 +411,7 @@ th {
 
 }
 
-.RDform , .InsuaranceTrackerform , .houseVerificationform , .CVRform , .ASRform , .ODform{
+.RDform , .InsuaranceTrackerform , .HVform , .CVRform , .ASRform , .ODform{
     padding: 40px;
     width:800px;
     height: 570px;

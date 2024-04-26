@@ -12,15 +12,152 @@ app.controller('CAM_Controller', function ($scope, $http, $document) {
     var host = window.location.host;
     $scope.uRl = protocal + "//" + host + "/";
 
-    if (($scope.userRecord.designation === "Cluster Audit Manager")) {
+    if (($scope.userRecord) && ($scope.userRecord.designation === "Cluster Audit Manager")) {
+
         $scope.profileCard = false;
         $scope.notificationCard = false;
         $scope.helpCard = false;
-        $scope.ODcalling = false;
-        $scope.insuranceTracker = false;
-        $scope.ROcalling = true;
+        $scope.dashBoard = false;
+
+        //list view
+        $scope.houseverification = true;
+        $scope.centervisitreport = true;
+        $scope.auditscoringreport = true;
+
+        //form view
+        $scope.houseverificationForm = false;
+        $scope.centervisitreportForm = false;
+        $scope.auditscoringreportForm = false;
+
         // side bar initial
         $scope.sidebarWidth = '0px';
+
+        //getting list for displaying
+        $scope.houseVerificationList = [];
+        $scope.centerVisitReportList = [];
+        $scope.auditScoringReportList = [];
+
+
+
+
+        //getting all lists data --->
+        $scope.getListforHV = function () {
+            console.log($scope.uRl + "houseverification/getall");
+            $http.get($scope.uRl + "houseverification/getall")
+                    .then(function (response) {
+                        $scope.houseVerificationList = response.data;
+                    }, function (error) {
+                        console.error(error);
+                    });
+        };
+
+        $scope.getListforCVR = function () {
+
+            console.log($scope.uRl + "centervisitreport/getall");
+            $http.get($scope.uRl + "centervisitreport/getall")
+                    .then(function (response) {
+                        $scope.centerVisitReportList = response.data;
+                    }, function (error) {
+                        console.error(error);
+                    });
+        };
+
+        $scope.getListforASR = function () {
+
+            console.log($scope.uRl + "auditscoringreport/getall");
+            $http.get($scope.uRl + "auditscoringreport/getall")
+                    .then(function (response) {
+                        $scope.auditScoringReportList = response.data;
+                    }, function (error) {
+                        console.error(error);
+                    });
+        };
+        $scope.getListforHV();
+        $scope.getListforCVR();
+        $scope.getListforASR();
+        //<-------------
+
+
+        //for HV list view
+        $scope.houseVerification = function () {
+            $scope.houseverification = true;
+            $scope.centervisitreport = false;
+            $scope.auditscoringreport = false;
+
+            $scope.dashBoard = false;
+
+            $scope.houseverificationForm = false;
+            $scope.centervisitreportForm = false;
+            $scope.auditscoringreportForm = false;
+
+            //for close the profile
+            $scope.showProfile = false;
+
+            $scope.sidebarWidth = '0px';
+            $scope.getListforHV();
+        };
+
+
+        //for CVR list view
+        $scope.centerVisitReport = function () {
+            $scope.houseverification = false;
+            $scope.centervisitreport = true;
+            $scope.auditscoringreport = false;
+
+            $scope.dashBoard = false;
+
+            $scope.houseverificationForm = false;
+            $scope.centervisitreportForm = false;
+            $scope.auditscoringreportForm = false;
+
+            //for close the profile
+            $scope.showProfile = false;
+
+            $scope.sidebarWidth = '0px';
+            $scope.getListforCVR();
+        };
+
+
+        // for ASR list view       
+        $scope.auditScoringReport = function () {
+            $scope.houseverification = false;
+            $scope.centervisitreport = false;
+            $scope.auditscoringreport = true;
+
+            $scope.dashBoard = false;
+
+            $scope.houseverificationForm = false;
+            $scope.centervisitreportForm = false;
+            $scope.auditscoringreportForm = false;
+            $scope.sidebarWidth = '0px';
+
+            //for close the profile
+            $scope.showProfile = false;
+
+            $scope.getListforASR();
+        };
+
+
+        $scope.HVcloseForm = function () {
+            $scope.houseverification = false;
+            $scope.houseverificationForm = true;
+            location.reload();
+        };
+
+        $scope.CVRcloseForm = function () {
+            $scope.centervisitreport = false;
+            $scope.centervisitreportForm = true;
+            location.reload();
+        };
+
+
+        $scope.ASRcloseForm = function () {
+            $scope.auditscoringreport = false;
+            $scope.auditscoringreportForm = true;
+            location.reload();
+        };
+
+
         $scope.closeSidebar = function () {
             $scope.sidebarWidth = '0px';
         };
@@ -41,12 +178,14 @@ app.controller('CAM_Controller', function ($scope, $http, $document) {
             $scope.profileCard = false;
             $scope.notificationCard = false;
             $scope.helpCard = true;
+            $scope.sidebarWidth = '0px';
         };
         $scope.closePopup = function () {
             $scope.profileCard = false;
             $scope.notificationCard = false;
             $scope.helpCard = false;
         };
+
         $scope.logout = function () {
             alert("Logout Successfully.");
             window.location.href = $scope.uRl + "index.html";
@@ -60,6 +199,370 @@ app.controller('CAM_Controller', function ($scope, $http, $document) {
             $scope.resetpasswordUserList = [];
             window.localStorage.removeItem("user");
         };
+
+        // for updating HV form {"houseverification/update/"}
+        $scope.updateHVform = function () {
+
+            $scope.houseVerification = {
+                branchId: $scope.branchId,
+                branchName: $scope.branchName,
+                roName: $scope.roName,
+                roId: $scope.roId,
+                hvDate: $scope.hvDate,
+                centerName: $scope.centerName,
+                centerId: $scope.centerId,
+                clientId: $scope.clientId,
+                clientName: $scope.clientName,
+                loanAppliedCycle: $scope.loanAppliedCycle,
+                foId: $scope.foId,
+                foName: $scope.foName,
+                reasonOfCancellation: $scope.reasonOfCancellation,
+                remarks: $scope.remarks,
+                filledBy: $scope.filledBy,
+                modifiedBy: $scope.userRecord.emp_id
+            };
+            var URL = $scope.uRl + "houseverification/update/" + $scope.id;
+            $http.put(URL, $scope.houseVerification)
+                    .then(function (response) {
+                        console.log(response);
+                        alert("Form Submitted Successfully.");
+                        location.reload();
+                    }, function (error) {
+                        console.log(error);
+                    });
+        };
+
+        //get HV form  {"houseverification/get/"}
+        $scope.getHVrecord = function (id) {
+            $scope.houseverification = false;
+            $scope.centervisitreport = false;
+            $scope.auditscoringreport = false;
+
+            $scope.houseverificationForm = true;
+            $scope.centervisitreportForm = false;
+            $scope.auditscoringreportForm = false;
+
+            //form remarks field
+            $scope.hvFormfilledBy = true;
+            $scope.hvFormModifiedBy = true;
+
+            //form button            
+            $scope.HVsubmitButton = false;
+            $scope.HVupdateButton = true;
+
+            //for close the profile
+            $scope.showProfile = false;
+
+            var URL = $scope.uRl + "houseverification/get/" + id;
+            $http.get(URL)
+                    .then(function (response) {
+                        $scope.record = response.data;
+                        $scope.id = $scope.record.id;
+                        $scope.branchId = $scope.record.branchId;
+                        $scope.branchName = $scope.record.branchName;
+                        $scope.roName = $scope.record.roName;
+                        $scope.roId = $scope.record.roId;
+                        $scope.hvDate = $scope.record.hvDate;
+                        $scope.centerName = $scope.record.centerName;
+                        $scope.centerId = $scope.record.centerId;
+                        $scope.clientId = $scope.record.clientId;
+                        $scope.clientName = $scope.record.clientName;
+                        $scope.loanAppliedCycle = $scope.record.loanAppliedCycle;
+                        $scope.foId = $scope.record.foId;
+                        $scope.foName = $scope.record.foName;
+                        $scope.reasonOfCancellation = $scope.record.reasonOfCancellation;
+                        $scope.remarks = $scope.record.remarks;
+                        $scope.filledBy = $scope.record.filledBy;
+                        $scope.modifiedBy = $scope.record.modifiedBy;
+
+                    }, function (error) {
+                        console.log(error);
+                    });
+
+        };
+
+        // for updating CVR form {"centervisitreport/update/"}
+        $scope.updateCVRform = function () {
+            $scope.centerVisitReport = {
+                branchName: $scope.branchName,
+                branchId: $scope.branchId,
+                roName: $scope.roName,
+                roEmpId: $scope.roEmpId,
+                dateOfCenterVisit: $scope.dateOfCenterVisit,
+                foName: $scope.foName,
+                foId: $scope.foId,
+                centerName: $scope.centerName,
+                centerId: $scope.centerId,
+                noOfInstallment: $scope.noOfInstallment,
+                loanCollectionReceiptAvailableInFile: $scope.loanCollectionReceiptAvailableInFile,
+                rdCollectionReceiptAvailableInFile: $scope.rdCollectionReceiptAvailableInFile,
+                loanCardUpdate: $scope.loanCardUpdate,
+                rdPassbookIssued: $scope.rdPassbookIssued,
+                rdCollectionRegular_Irregula: $scope.rdCollectionRegular_Irregula,
+                ifAnyODCustomer: $scope.ifAnyODCustomer,
+                ifAnyCustomerMigrate: $scope.ifAnyCustomerMigrate,
+                bmVisitDone: $scope.bmVisitDone,
+                amVisitDone: $scope.amVisitDone,
+                anyOtherObservation: $scope.anyOtherObservation,
+                filledBy: $scope.filledBy,
+                modifiedBy: $scope.userRecord.emp_id
+            };
+            var URL = $scope.uRl + "centervisitreport/update/" + $scope.id;
+            $http.put(URL, $scope.centerVisitReport)
+                    .then(function (response) {
+                        console.log(response);
+                        alert("Form Submitted Successfully.");
+                        location.reload();
+                    }, function (error) {
+                        console.log(error);
+                    });
+        };
+
+        //get CVR form  {"centervisitreport/get/"}
+        $scope.getCVRrecord = function (id) {
+            $scope.houseverification = false;
+            $scope.centervisitreport = false;
+            $scope.auditscoringreport = false;
+
+            $scope.houseverificationForm = false;
+            $scope.centervisitreportForm = true;
+            $scope.auditscoringreportForm = false;
+
+            //form remarks field
+            $scope.cvrFormfilledBy = true;
+            $scope.cvrFormModifiedBy = true;
+
+            //form button            
+            $scope.CVRsubmitButton = false;
+            $scope.CVRupdateButton = true;
+
+            //for close the profile
+            $scope.showProfile = false;
+
+            var URL = $scope.uRl + "centervisitreport/get/" + id;
+            $http.get(URL)
+                    .then(function (response) {
+                        $scope.record = response.data;
+                        $scope.id = $scope.record.id;
+                        $scope.branchName = $scope.record.branchName;
+                        $scope.branchId = $scope.record.branchId;
+                        $scope.roName = $scope.record.roName;
+                        $scope.roEmpId = $scope.record.roEmpId;
+                        $scope.dateOfCenterVisit = $scope.record.dateOfCenterVisit;
+                        $scope.foName = $scope.record.foName;
+                        $scope.foId = $scope.record.foId;
+                        $scope.centerName = $scope.record.centerName;
+                        $scope.centerId = $scope.record.centerId;
+                        $scope.noOfInstallment = $scope.record.noOfInstallment;
+                        $scope.loanCollectionReceiptAvailableInFile = $scope.record.loanCollectionReceiptAvailableInFile;
+                        $scope.rdCollectionReceiptAvailableInFile = $scope.record.rdCollectionReceiptAvailableInFile;
+                        $scope.loanCardUpdate = $scope.record.loanCardUpdate;
+                        $scope.rdPassbookIssued = $scope.record.rdPassbookIssued;
+                        $scope.rdCollectionRegular_Irregular = $scope.record.rdCollectionRegular_Irregular;
+                        $scope.ifAnyODCustomer = $scope.record.ifAnyODCustomer;
+                        $scope.ifAnyCustomerMigrate = $scope.record.ifAnyCustomerMigrate;
+                        $scope.bmVisitDone = $scope.record.bmVisitDone;
+                        $scope.amVisitDone = $scope.record.amVisitDone;
+                        $scope.anyOtherObservation = $scope.record.anyOtherObservation;
+                        $scope.filledBy = $scope.record.filledBy;
+                        $scope.modifiedBy = $scope.record.modifiedBy;
+
+                    }, function (error) {
+                        console.log(error);
+                    });
+
+        };
+
+        // for updating ASR form {"auditscoringreport/update/"}
+        $scope.updateASRform = function () {
+            $scope.auditScoringReport = {
+                region: $scope.region,
+                area: $scope.area,
+                branchName: $scope.branchName,
+                branchId: $scope.branchId,
+                monthOfAudit: $scope.monthOfAudit,
+                auditedBy: $scope.auditedBy,
+                auditReportRealeseDate: $scope.auditReportRealeseDate,
+                auditScoring: $scope.auditScoring,
+                scores: $scope.scores,
+                remark: $scope.remark,
+                auditCover: $scope.auditCover,
+                auditSchedule: $scope.auditSchedule,
+                complinceStatus: $scope.complinceStatus,
+                filledBy: $scope.filledBy,
+                modifiedBy: $scope.userRecord.emp_id
+            };
+            var URL = $scope.uRl + "auditscoringreport/update/" + $scope.id;
+            $http.put(URL, $scope.auditScoringReport)
+                    .then(function (response) {
+                        console.log(response);
+                        alert("Form Submitted Successfully.");
+                        location.reload();
+                    }, function (error) {
+                        console.log(error);
+                    });
+        };
+
+        //get CVR form  {"auditscoringreport/get/"}
+        $scope.getASRrecord = function (id) {
+            $scope.houseverification = false;
+            $scope.centervisitreport = false;
+            $scope.auditscoringreport = false;
+
+            $scope.houseverificationForm = false;
+            $scope.centervisitreportForm = false;
+            $scope.auditscoringreportForm = true;
+
+            //form remarks field
+            $scope.asrFormfilledBy = true;
+            $scope.asrFormModifiedBy = true;
+
+            //form button            
+            $scope.ASRsubmitButton = false;
+            $scope.ASRupdateButton = true;
+
+            //for close the profile
+            $scope.showProfile = false;
+
+            var URL = $scope.uRl + "auditscoringreport/get/" + id;
+            $http.get(URL)
+                    .then(function (response) {
+                        $scope.record = response.data;
+                        $scope.id = $scope.record.id;
+                        $scope.region = $scope.record.region;
+                        $scope.area = $scope.record.area;
+                        $scope.branchName = $scope.record.branchName;
+                        $scope.branchId = $scope.record.branchId;
+                        $scope.monthOfAudit = $scope.record.monthOfAudit;
+                        $scope.auditedBy = $scope.record.auditedBy;
+                        $scope.auditReportRealeseDate = $scope.record.auditReportRealeseDate;
+                        $scope.auditScoring = $scope.record.auditScoring;
+                        $scope.scores = $scope.record.scores;
+                        $scope.remark = $scope.record.remark;
+                        $scope.auditCover = $scope.record.auditCover;
+                        $scope.auditSchedule = $scope.record.auditSchedule;
+                        $scope.complinceStatus = $scope.record.complinceStatus;
+                        $scope.filledBy = $scope.record.filledBy;
+                        $scope.modifiedBy = $scope.record.modifiedBy;
+
+                    }, function (error) {
+                        console.log(error);
+                    });
+
+        };
+
+        // view edit function start
+
+        // profile view
+        $scope.showProfile = false;
+        $scope.profileData = [];
+
+
+        $scope.profile_View = function () {
+            // profile view
+            $scope.showProfile = true;
+
+            // super user view
+            $scope.dashBoard = false;
+
+            //list view
+            $scope.houseverification = false;
+            $scope.centervisitreport = false;
+            $scope.auditscoringreport = false;
+
+            //form view
+            $scope.houseverificationForm = false;
+            $scope.centervisitreportForm = false;
+            $scope.auditscoringreportForm = false;
+
+            $scope.closeSidebar();
+            $scope.getProfile();
+        };
+
+
+
+        // profile buttons
+        $scope.editButton = false;
+        $scope.saveButton = false;
+        $scope.usernameField = true;
+        $scope.emailField = true;
+
+
+        $scope.closeProfileView = function () {
+            location.reload();
+        };
+
+        $scope.editProfileForm = function () {
+            $scope.editButton = true;
+            $scope.saveButton = true;
+
+            $scope.usernameField = false;
+            $scope.emailField = false;
+
+        };
+
+        $scope.updateProfile = function () {
+
+            //update backend controller to update email also
+
+            var URL = $scope.uRl + "user/updateProfile/" + $scope.userRecord.id + "/" + $scope.userRecord.emp_id + "/" + $scope.userName + "/" + $scope.email;
+
+            $http.get(URL)
+                    .then(function (response) {
+                        alert("Profile Updated Successfully");
+                        location.reload();
+                    }, function (error)
+                    {
+                        console.log(error);
+                    });
+        };
+        $scope.getProfile = function () {
+
+            //update backend controller to update email also
+
+            var URL = $scope.uRl + "user/get/" + $scope.userRecord.id;
+            $http.get(URL)
+                    .then(function (response) {
+                        $scope.profileData = response.data;
+                        $scope.userName = $scope.profileData.userName;
+                        $scope.email = $scope.profileData.email;
+                    }, function (error)
+                    {
+                        console.log(error);
+                    });
+        };
+
+        // view edit function end
+
+        $scope.superUserView = function () {
+            $scope.profileCard = false;
+            $scope.notificationCard = false;
+            $scope.helpCard = false;
+            
+            // side bar initial
+            $scope.sidebarWidth = '0px';
+            
+            //super user view
+            $scope.dashBoard = true;
+
+            // profile view
+            $scope.showProfile = false;
+
+            //list view
+            $scope.houseverification = false;
+            $scope.centervisitreport = false;
+            $scope.auditscoringreport = false;
+
+            //form view
+            $scope.houseverificationForm = false;
+            $scope.centervisitreportForm = false;
+            $scope.auditscoringreportForm = false;
+
+
+        };
+
+
+
     } else {
         window.location.href = $scope.uRl + "index.html";
     }
@@ -75,6 +578,7 @@ app.controller("super_controller", function ($scope, $http) {
     if (($scope.userRecord.designation === "Cluster Audit Manager")) {
         $scope.branchContainerVisible = false;
         $scope.userContainerVisible = true;
+        $scope.dashBoard = false;
         //opration page
         $scope.branchAccess = function () {
             $scope.branchContainerVisible = true;
@@ -332,12 +836,14 @@ app.controller("super_controller", function ($scope, $http) {
         $scope.list2 = [];
         $scope.selectedOptionForUser = "";
         $scope.selectedOption = "";
-        $scope.selectedUserType = function () { debugger;
+        $scope.selectedUserType = function () {
+            debugger;
 //            alert($scope.selectedOptionForUser);
             if ($scope.selectedOptionForUser !== null) {
                 console.log($scope.uRl + "user/getActiveUser/" + $scope.selectedOptionForUser);
                 $http.get($scope.uRl + "user/getActiveUser/" + $scope.selectedOptionForUser)
-                        .then(function (response) { debugger;
+                        .then(function (response) {
+                            debugger;
                             $scope.acceptedlist = response.data;
                             $scope.emp_id = null;
                             $scope.userName = null;
@@ -368,11 +874,13 @@ app.controller("super_controller", function ($scope, $http) {
                         });
             }
         };
-        $scope.showSelectedValue = function () {debugger;
+        $scope.showSelectedValue = function () {
+            debugger;
 //            alert($scope.selectedOption);
-            if ($scope.selectedOption !== null) { 
+            if ($scope.selectedOption !== null) {
                 $http.get($scope.uRl + "user/getuser/" + $scope.selectedOption)
-                        .then(function (response) { debugger;
+                        .then(function (response) {
+                            debugger;
                             $scope.list2 = response.data;
                             $scope.id = $scope.list2.id;
                             $scope.emp_id = $scope.list2.emp_id;
@@ -467,7 +975,7 @@ app.controller("super_controller", function ($scope, $http) {
                     $scope.url = "user/update/" + $scope.list2.id + "/" + $scope.emp_id
                             + "/" + $scope.userName + "/" + $scope.list2.email + "/" + $scope.zone
                             + "/" + $scope.region + "/" + areaList + "/" + branchList
-                            + "/" + $scope.designation + "/" + $scope.userIdStatus + "/" + $scope.reacted
+                            + "/" + $scope.designation + "/" + $scope.userIdStatus + "/" + $scope.reacted;
                     alert(areaList);
                     alert(branchList);
                     $http.get($scope.uRl + $scope.url)
@@ -492,7 +1000,7 @@ app.controller("super_controller", function ($scope, $http) {
         };
         $scope.viewRemark = function (mess) {
             alert(mess);
-        }
+        };
 
 //        show popUp
 
@@ -510,6 +1018,8 @@ app.controller("super_controller", function ($scope, $http) {
             var popup = document.getElementById("popup");
             popup.style.display = "none";
         };
+
+
     } else {
         window.location.href = $scope.uRl + "index.html";
     }

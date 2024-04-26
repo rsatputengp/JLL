@@ -2,170 +2,876 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="author" content="Ritik .k. satpute" >
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Auditor Dashboard</title>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="author" content="Ritik .k. satpute" >
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Auditor Dashboard</title>
 
 
-    <!-- CSS -->
-    <link href="css/Admin_dashboard.css" rel="stylesheet" type="text/css"/>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"></script>
-    
-    <meta name="robots" content="noindex, follow">
+        <!-- CSS -->
+        <link href="css/Admin_dashboard.css" rel="stylesheet" type="text/css"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"></script>
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <meta name="robots" content="noindex, follow">
 
-    <!-- Include Font Awesome CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+              integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+        <!-- Include Font Awesome CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+              integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+              crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
-    <!-- font  -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap" rel="stylesheet">
-    
-    
-       <!-- angular JS -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
-    
-    
-    <!--Java script-->
+        <!-- font  -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap" rel="stylesheet">
 
-    <script src="js/AD_Moderator_dashboard.js" type="text/javascript"></script>
-    
-</head>
 
-<body ng-app="AD_Moderator_App" ng-controller="AD_Moderator_Controller">
+        <!-- angular JS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
 
-    <!-- Navigation Bar -->
-    <nav id="navbarContainer" class=" navbarContainer container-fluid ">
-        <div class="JLL-logo">
-            <a href="">
-                <img src="images/JLL Logo.jpg" alt="" style="height: 38px; width: 200px;"/>
-            </a>
-        </div>
-        <div class="navBarButton">
-            <div class="fixedDiv">
-                <a id="notification-button" class="navbar-button notification-button mt-1"
-                    ng-click="notificationButton()">
-                    <img src="images/bell.png" alt="bell_icon" height="20px" width="20px">
-                    <span class="notification-count" ng-show="notificationCount > 0"></span>
+
+        <!--Java script-->
+
+        <script src="js/AD_Moderator_dashboard.js" type="text/javascript"></script>
+
+    </head>
+
+    <body ng-app="AD_Moderator_App" ng-controller="AD_Moderator_Controller">
+
+
+        <!-- Navigation Bar -->
+        <nav id="navbarContainer" class=" navbarContainer container-fluid ">
+            <div class="JLL-logo">
+                <a href="">
+                    <img src="images/JLL Logo.jpg" alt="" style="height: 38px; width: 200px;"/>
                 </a>
             </div>
-            <div class="fixedDiv">
-                <a id="help-button" class="navbar-button mt-1" ng-click="helpButton()">
-                    <img src="images/question.png" alt="help_icon" height="20px" width="20px">
-                </a>
-            </div>
-            <div class="fixedDiv ml-1">
-                <a id="profile-button" class="navbar-button" ng-click="profileButton()">
-                    <img src="images/signin-image.jpg" alt="profile-image" height="30px" width="30px">
-                </a>
-            </div>
-        </div>
-    </nav>
-
-    <div id="main">
-        <i class="fa-solid fa-bars oneSideBar" ng-click="openSideBar()"></i>
-    </div>
-
-    <!-- side Bar -->
-    <div>
-        <div id="sidebar" ng-style="{'width': sidebarWidth}">
-
-            <a href="#" ng-click="closeSidebar()" class="close-button">
-                <i class="fa-solid fa-xmark"></i>
-            </a>
-            <a ng-click="houseVerification()" ng-show="sidebarWidth >= '200px'">
-                <i class="fa-solid fa-house-circle-check"><span>House Verification</span></i>
-            </a>
-
-            <a ng-click="centerVisitReport()" ng-show="sidebarWidth >= '200px'">
-                <i class="fa-solid fa-flag" ><span>Center Visit Report</span></i>
-            </a>
-
-            <a ng-click="auditScoringReport()" ng-show="sidebarWidth >= '200px'">
-                <img src="images/audit.png" alt="audit-report" height="20px" width="20px"><span>Audit Scoring Report</span></i>
-            </a>
-
-            <a ng-click="help()" ng-show="sidebarWidth >= '100px'">
-                <i class="fa-solid fa-question"><span>Help</span></i>
-            </a>
-
-            <a ng-click="yourProfile()" ng-show="sidebarWidth >= '200px'">
-                <i class="fa-solid fa-user"><span>Your Profile</span></i>
-            </a>
-            <a ng-click="logout()" ng-show="sidebarWidth >= '200px'">
-                <i class="fa-solid fa-right-from-bracket"><span>Log out</span></i>
-            </a>
-            <hr>
-        </div>
-
-    </div>
-
-    <div>
-
-        <!-- pop-up for profile -->
-
-        <div class="navPopup">
-            <div class="profile-card" ng-show="profileCard">
-                <div class="row">
-
-                    <div class="aba col-12 justify-content-center align-items-center">
-                        <a href="#" ng-click="profile()" class="profileButton"><span>Saurabh Mishra</span></a>
-                    </div>
-
-                    <div class="abb col-12 justify-content-center">
-                        <button id="logoutButton" type="button" value="logout" ng-click="logout()">
-                            <span style="font-weight: 600;">Logout</span>
-                            <span style="margin-left: 160px; ">
-                                <i class="fa-solid fa-right-from-bracket"></i>
-                            </span>
-                        </button>
-                    </div>
-
+            <div class="navBarButton">
+                <div class="fixedDiv">
+                    <a id="notification-button" class="navbar-button notification-button mt-1"
+                       ng-click="notificationButton()">
+                        <img src="images/bell.png" alt="bell_icon" height="20px" width="20px">
+                        <span class="notification-count" ng-show="notificationCount > 0"></span>
+                    </a>
                 </div>
-            </div>
-
-            <!-- pop-up for notification -->
-            <div class="notification-card" ng-show="notificationCard">
-                <div class="popUp-header">
-                    <label class="popUp-label">Notification</label>
-                    <a type="button" class="close" aria-label="Close" ng-click="closePopup()">
-                        <span aria-hidden="true">&times;</span>
+                <div class="fixedDiv">
+                    <a id="help-button" class="navbar-button mt-1" ng-click="helpButton()">
+                        <img src="images/question.png" alt="help_icon" height="20px" width="20px">
+                    </a>
+                </div>
+                <div class="fixedDiv ml-1">
+                    <a id="profile-button" class="navbar-button" ng-click="profileButton()">
+                        <img src="images/signin-image.jpg" alt="profile-image" height="30px" width="30px">
                     </a>
                 </div>
             </div>
+        </nav>
 
-            <!-- pop-up for help -->
-            <div class="help-card" ng-show="helpCard">
-                <div class="popUp-header">
-                    <label class="popUp-label">Help</label>
-                    <a type="button" class="close" aria-label="Close" ng-click="closePopup()">
-                        <span aria-hidden="true">&times;</span>
-                    </a>
+        <div id="main">
+            <i class="fa-solid fa-bars oneSideBar" ng-click="openSideBar()"></i>
+        </div>
+
+        <!-- side Bar -->
+        <div>
+            <div id="sidebar" ng-style="{'width': sidebarWidth}">
+
+                <a href="#" ng-click="closeSidebar()" class="close-button">
+                    <i class="fa-solid fa-xmark"></i>
+                </a>
+                <a ng-click="houseVerification()" ng-show="sidebarWidth >= '200px'">
+                    <i class="fa-solid fa-house-circle-check"><span>House Verification</span></i>
+                </a>
+
+                <a ng-click="centerVisitReport()" ng-show="sidebarWidth >= '200px'">
+                    <i class="fa-solid fa-flag" ><span>Center Visit Report</span></i>
+                </a>
+
+                <a ng-click="auditScoringReport()" ng-show="sidebarWidth >= '200px'">
+                    <img src="images/audit.png" alt="audit-report" height="20px" width="20px"><span>Audit Scoring Report</span></i>
+                </a>
+
+                <a ng-click="helpButton()" ng-show="sidebarWidth >= '100px'">
+                    <i class="fa-solid fa-question"><span>Help</span></i>
+                </a>
+
+                <a ng-click="profile_View()" ng-show="sidebarWidth >= '200px'">
+                    <i class="fa-solid fa-user"><span>Your Profile</span></i>
+                </a>
+                <a ng-click="logout()" ng-show="sidebarWidth >= '200px'">
+                    <i class="fa-solid fa-right-from-bracket"><span>Log out</span></i>
+                </a>
+                <hr>
+            </div>
+
+        </div>
+
+        <div>
+
+            <!-- pop-up for profile -->
+
+            <div class="navPopup">
+                <div class="profile-card" ng-show="profileCard">
+                    <div class="row">
+
+                        <div class="aba col-12 justify-content-center align-items-center">
+                            <a href="#" ng-click="profile_View()" class="profileButton"><span>{{userRecord.userName}}</span></a>
+                        </div>
+
+                        <div class="abb col-12 justify-content-center">
+                            <button id="logoutButton" type="button" value="logout" ng-click="logout()">
+                                <span style="font-weight: 600;">Logout</span>
+                                <span style="margin-left: 160px; ">
+                                    <i class="fa-solid fa-right-from-bracket"></i>
+                                </span>
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- pop-up for notification -->
+                <div class="notification-card" ng-show="notificationCard">
+                    <div class="popUp-header">
+                        <label class="popUp-label">Notification</label>
+                        <a type="button" class="close" aria-label="Close" ng-click="closePopup()">
+                            <span aria-hidden="true">&times;</span>
+                        </a>
+                    </div>
+                </div>
+                <!-- pop-up for help -->
+                <div class="help-card" ng-show="helpCard">
+                    <div class="popUp-header">
+                        <label class="popUp-label">Help</label>
+                        <a type="button" class="close" aria-label="Close" ng-click="closePopup()">
+                            <span aria-hidden="true">&times;</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+        <section class="acs" ng-click="closePopup(); closeSidebar()">
+            <div id="dashBoard">
 
-    <section class="acs" ng-click="closePopup(); closeSidebar()">
-        
+                <!--- House Verification List view -->
+                <div class="HouseVerification row" ng-show="houseverification">
+                    <div class="col-md-12">
+                        <h4 style="font-weight: 900;"> House Verification
+                            <!--                            <button id="addHouseVerification" ng-click="houseVerificationForm()">
+                                                            <i class="fa-solid fa-plus"></i>
+                                                        </button>-->
+                        </h4>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="my-card-a">
+                                    <table class="table">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th scope="col">sr.no</th>
+                                                <th scope="col">Branch Id</th>
+                                                <th scope="col"> Branch Name</th>
+                                                <th scope="col"> RO ID</th>
+                                                <th scope="col"> RO Name</th>
+                                                <th scope="col">HV Date</th>
+                                                <th scope="col"> Center ID</th>
+                                                <th scope="col"> Center Name</th>
+                                                <th scope="col">Client ID</th>
+                                                <th scope="col">Client Name</th>
+                                                <th scope="col">Loan Applied Cycle</th>
+                                                <th scope="col">FO ID</th>
+                                                <th scope="col">FO Name</th>
+                                                <th scope="col">Reason of cancellation</th>
+                                                <th scope="col">Remarks</th>
+                                                <th scope="col">Filled By</th>
+                                                <th scope="col">Modified By</th>                                                
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="hVerification in houseVerificationList">
+                                                <td ng-click="getHVrecord(hVerification.id)">{{$index + 1}}</td>
+                                                <td>{{hVerification.branchId}}</td>
+                                                <td>{{hVerification.branchName}}</td>
+                                                <td>{{hVerification.roId}}</td>
+                                                <td>{{hVerification.roName}}</td>
+                                                <td>{{hVerification.hvDate}}</td>
+                                                <td>{{hVerification.centerId}}</td>
+                                                <td>{{hVerification.centerName}}</td>
+                                                <td>{{hVerification.clientId}}</td>
+                                                <td>{{hVerification.clientName}}</td>
+                                                <td>{{hVerification.loanAppliedCycle}}</td>
+                                                <td>{{hVerification.foId}}</td>
+                                                <td>{{hVerification.foName}}</td>
+                                                <td>{{hVerification.reasonOfCancellation}}</td>
+                                                <td>{{hVerification.remarks}}</td>
+                                                <td>{{hVerification.filledBy}}</td>
+                                                <td>{{hVerification.modifiedBy}}</td>
+                                            </tr>
+                                        </tbody>
+
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+
+                <!-- House Verification Form -->
+                <div id="HouseVerificationContainer" ng-show="houseverificationForm">
+                    <div class="row">
+                        <div class="col-md-12 mt-5">
+                            <div class="houseVerificationCard">
+                                <form class="HVform " ng-submit="submitHVform()">
+                                    <span class="closeForm" ng-click="HVcloseForm()">&times;</span>
+                                    <div class="form-row formHeader ">
+                                        <div class="ml-4">
+                                            <h3>House Verification Form</h3>
+                                        </div>
+                                        <div>
+                                            <hr class="stylishLinex">
+                                        </div>
+                                    </div>
+                                    <div class="form-row ">
+                                        <div class="col-md-5 " ng-show="hvFormfilledBy">
+                                            <label for="filledBy">Filled By</label><span class="required">*</span>
+                                            <input type="text" class="form-control glow-effect" ng-model="filledBy" ng-disabled="hvdisabledFD"
+                                                   id="hvfilledBy" aria-describedby="filledBy" placeholder="" >
+                                            <input type="text" class="form-control glow-effect" ng-model="id" id="id"
+                                                   aria-describedby="id" placeholder="" hidden="">
+                                        </div>
+                                        <div class="col-md-5 ml-auto"  ng-show="hvFormModifiedBy">
+                                            <label for="modifiedBy">Modified By</label><span class="required">*</span>
+                                            <input type="modifiedBy" class="form-control" ng-model="modifiedBy" ng-disabled="hvdisabledMD" 
+                                                   id="hvmodifiedBy" aria-describedby="modifiedBy" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="form-row ">
+                                        <div class="col-md-5 ">
+                                            <label for="branchId">Branch ID</label><span class="required">*</span>
+                                            <input type="text" class="form-control glow-effect" ng-model="branchId" id="hvbranchId"
+                                                   aria-describedby="branchId" placeholder="" required="">
+                                        </div>
+
+                                        <div class="col-md-5 ml-auto">
+                                            <label for="branchName">Branch Name</label><span class="required">*</span>
+                                            <input type="text" class="form-control" ng-model="branchName" id="hvbranchName"
+                                                   aria-describedby="branchName" placeholder="" required="">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-md-5">
+                                            <label for="roName">RO Name</label><span class="required">*</span>
+                                            <input type="text" class="form-control" ng-model="roName" id="hvroName" 
+                                                   aria-describedby="roName" placeholder="" required="">
+                                        </div>
+                                        <div class="col-md-5 ml-md-auto">
+                                            <label for="roId">RO ID</label><span class="required">*</span>
+                                            <input type="text" class="form-control" ng-model="roId" id="hvroId"
+                                                   aria-describedby="roId" placeholder="" required="">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <div class="col-md-5">
+                                            <label for="hvDate">HV Date</label><span class="required">*</span>
+                                            <input type="text" class="form-control" ng-model="hvDate" id="hvDate"
+                                                   aria-describedby="hvDate" placeholder="" required="">
+                                        </div>
+                                        <div class="col-md-5 ml-md-auto">
+                                            <label for="centerName"> Center Name</label><span class="required">*</span>
+                                            <input type="text" class="form-control" ng-model="centerName" id="hvcenterName" 
+                                                   aria-describedby="centerName" placeholder="" required="">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-md-5">
+                                            <label for="centerId"> Center ID
+                                            </label><span class="required">*</span>
+                                            <input type="text" class="form-control" ng-model="centerId" id="hvcenterId" 
+                                                   aria-describedby="centerId" placeholder="" required="">
+                                        </div>
+                                        <div class="col-md-5 ml-md-auto">
+                                            <label for="clientId"> Client ID</label><span class="required">*</span>
+                                            <input type="text" class="form-control" ng-model="clientId" id="hvclientId" 
+                                                   aria-describedby="clientId" placeholder="" required="">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-md-5" >
+                                            <label for="clientName">Client Name</label><span class="required">*</span>
+                                            <input type="text" class="form-control" ng-model="clientName" id="hvclientName"
+                                                   aria-describedby="clientName" placeholder="" required="">
+                                        </div>
+                                        <div class="col-md-5 ml-md-auto">
+                                            <label for="loanAppliedCycle"> Loan Applied Cycle</label><span class="required">*</span>
+                                            <input type="text" class="form-control" ng-model="loanAppliedCycle" id="hvloanAppliedCycle" 
+                                                   aria-describedby="loanAppliedCycle" placeholder="" required="">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-md-5 ">
+                                            <label for="foId"> FO ID</label><span class="required">*</span>
+                                            <input type="text" class="form-control" ng-model="foId" id="hvfoId"
+                                                   aria-describedby="foId" placeholder="" required="">
+                                        </div>
+                                        <div class="col-md-5 ml-md-auto">
+                                            <label for="foName"> FO Name</label><span class="required">*</span>
+                                            <input type="text" ng-model="foName" id="hvfoName" class="form-control"
+                                                   aria-describedby="foName" placeholder="" required="" >
+                                        </div>
+                                    </div>
+                                    <div class="from-group mt-3">
+                                        <label for="reasonOfCancellation">Reason of cancellation
+                                        </label>
+                                        <textarea type="text" ng-model="reasonOfCancellation" id="hvreasonOfCancellation" class="form-control"
+                                                  aria-describedby="reasonOfCancelation" placeholder="" rows="3"  required=""></textarea>
+                                    </div>
+                                    <div class="from-group mt-3">
+                                        <label for="remarks"> Remarks</label>
+                                        <textarea type="text" ng-model="remarks" id="hvremarks" class="form-control" 
+                                                  aria-describedby="remarks"  placeholder="" rows="3" required=""></textarea>
+                                    </div>
+                                    <div class="mt-3 ">
+                                        <button type="button" class="btn btn-outline-success" ng-click="updateHVform()" ng-show="HVupdateButton">Update</button>
+                                        <button type="button" class="btn btn-outline-danger" ng-click="HVcloseForm()">Cancel</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
 
-    </section>
+                <!-- Center Visit Report -->
+                <div class="centerVisitReport row" ng-show="centervisitreport">
+                    <div class="col-md-12">
+                        <h4 style="font-weight: 900;"> center Visit Report</h4>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="my-card-a">
+                                    <table class="table">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th scope="col">sr.no</th>
+                                                <th scope="col"> Branch ID</th>
+                                                <th scope="col">Branch Name</th>
+                                                <th scope="col">RO EMP ID</th>
+                                                <th scope="col"> RO Name</th>
+                                                <th scope="col"> Date of Center Visit</th>
+                                                <th scope="col">FO ID</th>
+                                                <th scope="col">FO Name</th>
+                                                <th scope="col">Center ID</th>
+                                                <th scope="col">Center Name</th>
+                                                <th scope="col">No of Installment</th>
+                                                <th scope="col">Loan collection receipt available in file</th>
+                                                <th scope="col">RD collection reciept available in file</th>
+                                                <th scope="col">Loan Card Update</th>
+                                                <th scope="col">RD Passbook issued</th>
+                                                <th scope="col">RD Collection Regular/Irregular</th>
+                                                <th scope="col">If any OD customer</th>
+                                                <th scope="col">If any customer Migrate</th>
+                                                <th scope="col">BM Visit done</th>
+                                                <th scope="col">AM Visit done</th>
+                                                <th scope="col">Any other Observation</th>
+                                                <th scope="col">Filled By</th>
+                                                <th scope="col">Modified By</th>                                                
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="cvReport in centerVisitReportList">
+                                                <td ng-click="getCVRrecord(cvReport.id)">{{$index + 1}}</td>
+                                                <td>{{cvReport.branchId}}</td>
+                                                <td>{{cvReport.branchName}}</td>
+                                                <td>{{cvReport.roEmpId}}</td>
+                                                <td>{{cvReport.roName}}</td>
+                                                <td>{{cvReport.dateOfCenterVisit}}</td>
+                                                <td>{{cvReport.foId}}</td>
+                                                <td>{{cvReport.foName}}</td>
+                                                <td>{{cvReport.centerId}}</td>
+                                                <td>{{cvReport.centerName}}</td>
+                                                <td>{{cvReport.noOfInstallment}}</td>
+                                                <td>{{cvReport.loanCollectionReceiptAvailableInFile}}</td>
+                                                <td>{{cvReport.rdCollectionReceiptAvailableInFile}}</td>
+                                                <td>{{cvReport.loanCardUpdate}}</td>
+                                                <td>{{cvReport.rdPassbookIssued}}</td>
+                                                <td>{{cvReport.rdCollectionRegular_Irregular}}</td>
+                                                <td>{{cvReport.ifAnyODCustomer}}</td>
+                                                <td>{{cvReport.ifAnyCustomerMigrate}}</td>
+                                                <td>{{cvReport.bmVisitDone}}</td>
+                                                <td>{{cvReport.amVisitDone}}</td>
+                                                <td>{{cvReport.anyOtherObservation}}</td>
+                                                <td>{{cvReport.filledBy}}</td>
+                                                <td>{{cvReport.modifiedBy}}</td>
+                                            </tr>
+                                        </tbody>
+
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                </div>
 
 
-    <!-- Scripts -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
-</body>
+                <!-- Center Visit Report -->
+                <div id="CVRcontainer" ng-show="centervisitreportForm">
+                    <div class="row">
+                        <div class="col-md-12 mt-5">
+                            <div class="CVRcard">
+                                <form class="CVRform " ng-submit="submitCVRform()">
+                                    <span class="closeForm" ng-click="CVRcloseForm()">&times;</span>
+                                    <div class="form-row formHeader ">
+                                        <div class="ml-4">
+                                            <h3>Center Visit Report</h3>
+                                        </div>
+                                        <div>
+                                            <hr class="stylishLine">
+                                        </div>
+                                    </div>
+                                    <div class="form-row ">
+                                        <div class="col-md-5 " ng-show="cvrFormfilledBy">
+                                            <label for="filledBy">Filled By</label><span class="required">*</span>
+                                            <input type="text" class="form-control glow-effect" ng-model="filledBy"  ng-disabled="cvrdisabledFD"
+                                                   id="ODfilledBy" aria-describedby="filledBy" placeholder="" >
+                                            <input type="text" class="form-control glow-effect" ng-model="id" id="id"
+                                                   aria-describedby="id" placeholder="" hidden="">
+                                        </div>
+                                        <div class="col-md-5 ml-auto"  ng-show="cvrFormModifiedBy">
+                                            <label for="modifiedBy">Modified By</label><span class="required">*</span>
+                                            <input type="modifiedBy" class="form-control" ng-model="modifiedBy"  ng-disabled="cvrdisabledMD" 
+                                                   id="ODmodifiedBy" aria-describedby="modifiedBy" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="form-row ">
+                                        <div class="col-md-5 ">
+                                            <label for="branchId">Branch ID</label><span class="required">*</span>
+                                            <input type="text" class="form-control glow-effect" ng-model="branchId" id="cvrbranchId"
+                                                   aria-describedby="branchId" placeholder="" required="">
+                                        </div>
+                                        <div class="col-md-5 ml-auto">
+                                            <label for="branchName">Branch Name</label><span class="required">*</span>
+                                            <input type="text" class="form-control" ng-model="branchName" id="cvrbranchName"
+                                                   aria-describedby="branchName" placeholder="" required="">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-md-5">
+                                            <label for="roName">RO Name</label><span class="required">*</span>
+                                            <input type="text" class="form-control" ng-model="roName" id="cvrroName" 
+                                                   aria-describedby="roName" placeholder="" required="">
+                                        </div>
+                                        <div class="col-md-5 ml-md-auto">
+                                            <label for="roEmpId">RO Emplyoee ID</label><span class="required">*</span>
+                                            <input type="text" class="form-control" ng-model="roEmpId" id="cvrroEmpId"
+                                                   aria-describedby="roEmpId" placeholder="" required="">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-md-5">
+                                            <label for="dateOfCenterVisit">Date of Center Visit</label><span class="required">*</span>
+                                            <input type="text" class="form-control" ng-model="dateOfCenterVisit" id="cvrdateOfCenterVisit"
+                                                   aria-describedby="dateOfCenterVisit" placeholder="" required="">
+                                        </div>
+
+                                        <div class="col-md-5 ml-md-auto">
+                                            <label for="foId"> FO ID</label><span class="required">*</span>
+                                            <input type="text" class="form-control" ng-model="cvrfoId" id="foId" 
+                                                   aria-describedby="foId" placeholder="" required="">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class=" col-md-5">
+                                            <label for="foName"> FO Name</label><span class="required">*</span>
+                                            <input type="text" class="form-control" ng-model="foName" id="cvrfoName"  
+                                                   aria-describedby="foName" placeholder="" required="">
+                                        </div>
+                                        <div class="col-md-5 ml-md-auto">
+                                            <label for="centerId"> Center ID</label><span class="required">*</span>
+                                            <input type="text" class="form-control" ng-model="centerId" id="cvrcenterId" 
+                                                   aria-describedby="centerId" placeholder="" required="">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-md-5 ">
+                                            <label for="centerName"> Center Name</label><span class="required">*</span>
+                                            <input type="text" class="form-control" ng-model="centerName" id="cvrcenterName"
+                                                   aria-describedby="centerName" placeholder="" required="">
+                                        </div>
+                                        <div class="col-md-5 ml-md-auto">
+                                            <label for="noOfInstallment">No. of Installment</label><span class="required">*</span>
+                                            <input type="text" class="form-control" ng-model="noOfInstallment" id="cvrnoOfInstallment"
+                                                   aria-describedby="noOfInstallment" placeholder="" required="">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-md-5">
+                                            <label for="loanCollectionReceiptAvailableInFile"> Loan collection receipt available in file</label><span class="required">*</span>
+                                            <input type="text" class="form-control" ng-model="loanCollectionReceiptAvailableInFile" id="cvrloanCollectionReceiptAvailableInFile"
+                                                   aria-describedby="loanCollectionReceiptAvailableInFile" placeholder="" required="">
+                                        </div>
+                                        <div class="col-md-5 ml-md-auto">
+                                            <label for="rdCollectionReceiptAvailableInFile"> RD collection receipt available in file</label><span class="required">*</span>
+                                            <input type="text" class="form-control" ng-model="rdCollectionReceiptAvailableInFile" id="cvrrdCollectionReceiptAvailableInFile"
+                                                   aria-describedby="rdCollectionReceiptAvailableInFile" placeholder="" required="">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-md-5">
+                                            <label for="loanCardUpdate"> Loan card Update </label><span class="required">*</span>
+                                            <input type="text" class="form-control" ng-model="loanCardUpdate" id="cvrloanCardUpdate"
+                                                   aria-describedby="loanCardUpdate" placeholder="" required="">
+                                        </div>
+                                        <div class="col-md-5 ml-md-auto">
+                                            <label for="rdPassbookIssued"> RD Passbook issued</label><span class="required">*</span>
+                                            <input type="text" class="form-control" ng-model="rdPassbookIssued" id="cvrrdPassbookIssued"
+                                                   aria-describedby="rdPassbookIssued" placeholder="" required="">
+                                        </div>
+                                    </div>
+                                    <div class="from-group mt-3">
+                                        <label for="rdCollectionRegular_Irregular"> RD Collection Regular/Irregular </label><span class="required">*</span>
+                                        <input type="text" class="form-control" ng-model="rdCollectionRegular_Irregular" id="cvrrdCollectionRegular_Irregular" 
+                                               aria-describedby="rdCollectionRegular_Irregular" placeholder="" required="">
+                                    </div>
+                                    <div class="from-group mt-3">
+                                        <label for="ifAnyODCustomer">If any OD customer</label><span class="required">*</span>
+                                        <textarea type="text" class="form-control" ng-model="ifAnyODCustomer" id="cvrifAnyODCustomer" 
+                                                  aria-describedby="ifAnyODCustomer" rows="3" required=""></textarea>
+                                    </div>
+                                    <div class="from-group mt-3">
+                                        <label for="ifAnyCustomerMigrate"> If any customer Migrate</label><span class="required">*</span>
+                                        <textarea type="text" class="form-control"  ng-model="ifAnyCustomerMigrate" id="cvrifAnyCustomerMigrate" 
+                                                  aria-describedby="ifAnyCustomerMigrate" rows="3" required=""></textarea>
+                                    </div>
+                                    <div class="from-group mt-3">
+                                        <label for="bmVisitDone"> BM Visit done</label><span class="required">*</span>
+                                        <input type="text" class="form-control" ng-model="bmVisitDone" id="cvrbmVisitDone" 
+                                               aria-describedby="ifAnyCustomerMigrate"  required="">
+                                    </div>
+                                    <div class="from-group mt-3">
+                                        <label for="amVisitDone"> AM visit done</label><span class="required">*</span>
+                                        <input type="text" class="form-control" ng-model="amVisitDone" id="cvramVisitDone" 
+                                               aria-describedby="amVisitDone"  required="">
+                                    </div>
+                                    <div class="from-group mt-3">
+                                        <label for="anyOtherObservation"> Any other Observation</label>
+                                        <textarea type="text" ng-model="anyOtherObservation" id="cvranyOtherObservation" class="form-control"
+                                                  aria-describedby="anyOtherObservation" rows="3" required=""></textarea>
+                                    </div>
+                                    <div class="mt-3 ">
+                                        <button type="button" class="btn btn-outline-success" ng-click="updateCVRform()" ng-show="CVRupdateButton">Update</button>
+                                        <button type="button" class="btn btn-outline-danger" ng-click="CVRcloseForm()">Cancel</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+
+                <!-- Audit Scoring Report -->
+                <div class="AuditScoringReport row" ng-show="auditscoringreport">
+                    <div class="col-md-12">
+                        <h4 style="font-weight: 900;"> Audit Scoring Report</h4>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="my-card-a">
+                                    <table class="table">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th scope="col">sr.no</th>
+                                                <th scope="col">Region</th>
+                                                <th scope="col">Area</th>
+                                                <th scope="col"> Branch ID</th>
+                                                <th scope="col">Branch Name</th>
+                                                <th scope="col"> Month of Audit</th>
+                                                <th scope="col">Audited by</th>
+                                                <th scope="col">Audit Report Realese Date</th>
+                                                <th scope="col">Audit Scoring</th>
+                                                <th scope="col">Scores %</th>
+                                                <th scope="col">Remark</th>
+                                                <th scope="col">Audit Cover</th>
+                                                <th scope="col">Audit Schedule</th>
+                                                <th scope="col">Complince Status</th>
+                                                <th scope="col">Filled By</th>
+                                                <th scope="col">Modified By</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="adReport in auditScoringReportList">
+                                                <td ng-click="getASRrecord(adReport.id)">{{$index + 1}}</td>
+                                                <td>{{adReport.region}}</td>
+                                                <td>{{adReport.area}}</td>
+                                                <td>{{adReport.branchName}}</td>
+                                                <td>{{adReport.branchId}}</td>
+                                                <td>{{adReport.monthOfAudit}}</td>
+                                                <td>{{adReport.auditedBy}}</td>
+                                                <td>{{adReport.auditReportRealeseDate}}</td>
+                                                <td>{{adReport.auditScoring}}</td>
+                                                <td>{{adReport.scores}}</td>
+                                                <td>{{adReport.remark}}</td>
+                                                <td>{{adReport.auditCover}}</td>
+                                                <td>{{adReport.auditSchedule}}</td>
+                                                <td>{{adReport.complinceStatus}}</td>
+                                                <td>{{adReport.filledBy}}</td>
+                                                <td>{{adReport.modifiedBy}}</td>
+                                            </tr>
+
+                                        </tbody>
+
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!--Audit Scoring Report-->
+                <div id="ASRcontainer" ng-show="auditscoringreportForm">
+                    <div class="row">
+                        <div class="col-md-12 mt-5">
+                            <div class="ASRcallingCard">
+                                <form class="ASRform " ng-submit="submitASRform()">
+                                    <span class="closeForm" ng-click="ASRcloseForm()">&times;</span>
+                                    <div class="form-row formHeader ">
+                                        <div class="ml-4">
+                                            <h3>Audit Scoring Report</h3>
+                                        </div>
+                                        <div>
+                                            <hr class="stylishLine">
+                                        </div>
+                                    </div>
+                                    <div class="form-row ">
+                                        <div class="col-md-5 " ng-show="asrFormfilledBy">
+                                            <label for="filledBy">Filled By</label><span class="required">*</span>
+                                            <input type="text" class="form-control glow-effect" ng-model="filledBy" ng-disabled="asrdisabledFD" 
+                                                   id="ODfilledBy" aria-describedby="filledBy" placeholder="" >
+                                            <input type="text" class="form-control glow-effect" ng-model="id" id="id"
+                                                   aria-describedby="id" placeholder="" hidden="">
+                                        </div>
+                                        <div class="col-md-5 ml-auto" ng-show="asrFormModifiedBy">
+                                            <label for="modifiedBy">Modified By</label><span class="required">*</span>
+                                            <input type="modifiedBy" class="form-control" ng-model="modifiedBy"  ng-disabled="asrdisabledMD" 
+                                                   id="ODmodifiedBy" aria-describedby="modifiedBy" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="form-row ">
+                                        <div class="col-md-5 ">
+                                            <label for="region">Region</label><span class="required">*</span>
+                                            <input type="text" class="form-control glow-effect" ng-model="region" id="ASRselectedRegion"
+                                                   aria-describedby="region" placeholder="" required="">
+                                        </div>
+                                        <div class="col-md-5 ml-auto">
+                                            <label for="area">Area</label><span class="required">*</span>
+                                            <input type="text" class="form-control" ng-model="area" id="ASRselectedArea"
+                                                   aria-describedby="area" placeholder="" required="">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-md-5">
+                                            <label for="branchName">Branch ID</label><span class="required">*</span>
+                                            <input type="text" class="form-control" ng-model="branchName" id="ASRbranchID" 
+                                                   aria-describedby="branchName" placeholder="" required="">
+                                        </div>
+                                        <div class="col-md-5 ml-md-auto">
+                                            <label for="branchId">Branch Name</label><span class="required">*</span>
+                                            <input type="text" class="form-control" ng-model="branchId" id="ASRselectedBranchName"
+                                                   aria-describedby="branchId" placeholder="" required="">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-md-5">
+                                            <label for="monthOfAudit">Month of Audit</label><span class="required">*</span>
+                                            <input type="text" class="form-control" ng-model="monthOfAudit" id="ASR_MonthofAudit"
+                                                   aria-describedby="monthOfAudit" placeholder="" required="">
+                                        </div>
+                                        <div class="col-md-5 ml-md-auto">
+                                            <label for="auditedBy">Audited by</label><span class="required">*</span>
+                                            <input type="text" class="form-control" ng-model="auditedBy" id="ASR_Auditedby"
+                                                   aria-describedby="auditedBy" placeholder="" required="">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-md-5">
+                                            <label for="auditReportRealeseDate"> Audit Report Realese Date </label><span class="required">*</span>
+                                            <input type="text" class="form-control" ng-model="auditReportRealeseDate" id="ASR_AuditReportRealeseDate" 
+                                                   aria-describedby="auditReportRealeseDate" placeholder=" Date of Default" required="">
+                                        </div>
+                                        <div class="col-md-5 ml-md-auto">
+                                            <label for="auditScoring">Audit Scoring</label><span class="required">*</span>
+                                            <input type="text" class="form-control" ng-model="auditScoring" id="ASR_AuditScoring"
+                                                   aria-describedby="auditScoring" placeholder="" required="">
+                                        </div>
+                                    </div>
+                                    <div class="from-group mt-3">
+                                        <label for="scores">Scores%</label><span class="required">*</span>
+                                        <input type="text" class="form-control" ng-model="scores" id="ASR_scores" 
+                                               aria-describedby="scores" placeholder="" required="">
+                                    </div>
+                                    <div class="from-group mt-3">
+                                        <label for="remark"> Remarks</label>
+                                        <textarea type="text" ng-model="remark" id="ASR_remarks" class="form-control" 
+                                                  placeholder="Remarks if any" rows="3"  required=""></textarea>
+                                    </div>
+                                    <div class="from-group mt-3">
+                                        <label for="auditCover">Audit cover</label><span class="required">*</span>
+                                        <input type="text" class="form-control" ng-model="auditCover" id="ASR_AuditCover" 
+                                               aria-describedby="AuditCover" placeholder="Called by Employee ID" required="">
+                                    </div>
+                                    <div class="from-group mt-3">
+                                        <label for="auditSchedule">Audit Schedule</label><span class="required">*</span>
+                                        <input type="text" class="form-control" ng-model="auditSchedule" id="ASR_AuditSchedule" 
+                                               aria-describedby="AuditCover" placeholder="Date of Audit schedule " required="">
+                                    </div>
+                                    <div class="from-group mt-3">
+                                        <label for="complinceStatus">Complince Status</label><span class="required">*</span>
+                                        <textarea type="text" ng-model="complinceStatus" id="ASR_ComplinceStatus" class="form-control" 
+                                                  placeholder="Compliance Status" rows="3" required=""></textarea>
+                                    </div>
+                                    <div class="mt-3 ">
+                                        <button type="button" class="btn btn-outline-success" ng-click="updateASRform()" ng-show="ASRupdateButton">Update</button>
+                                        <button type="button" class="btn btn-outline-danger" ng-click="ASRcloseForm()">Cancel</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- view Profile -->
+                <div id="viewProfile" ng-show="showProfile">
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-10 offset-md-1">
+                                <div class="my-card">
+                                    <form ng-submit="updateProfile()">
+                                        <div class="row gutters-sm">
+                                            <div class="col-md-4 mb-3">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <div class="d-flex flex-column align-items-center text-center">
+                                                            <br><br>
+                                                            <img src="https://bootdey.com/img/Content/avatar/avatar7.png"
+                                                                 alt="Admin" class="rounded-circle p-1 bg-primary"
+                                                                 width="150">
+                                                            <div class="mt-2">
+                                                                <h6 style="color: black;">{{profileData.emp_id}}</h6>
+                                                                <h4 class="userName">{{profileData.userName}}</h4>
+                                                                <p class="text-secondary mb-1">
+                                                                    {{profileData.designation}}</p>
+                                                                <p class="text-muted font-size-sm">
+                                                                    {{profileData.branch}},{{profileData.area}},{{profileData.region}},{{profileData.zone}}
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <div class="row mt-2 viewPro">
+                                                            <div class="col-sm-4">
+                                                                <h6 class="mb-0">Full Name</h6>
+                                                            </div>
+                                                            <div class="col-sm-7 text-secondary">
+                                                                <input class="styleDisable" type="text" name="fullName" id="fullName"
+                                                                       ng-model="userName" ng-disabled="usernameField">
+                                                            </div>
+                                                        </div>
+                                                        <hr>
+                                                        <div class="row viewPro ">
+                                                            <div class="col-sm-4">
+                                                                <h6 class="mb-0">Email</h6>
+                                                            </div>
+                                                            <div class="col-sm-6 text-secondary">
+                                                                <input class="styleDisable" type="email" placeholder=""
+                                                                       name="email Id of user" id="emailOfuser"
+                                                                       ng-model="email"  ng-disabled="emailField">
+                                                            </div>
+                                                        </div>
+                                                        <hr>
+                                                        <div class="row viewPro">
+                                                            <div class="col-sm-3">
+                                                                <h6 class="mb-0">Branch</h6>
+                                                            </div>
+                                                            <div class="col-sm-9 text-secondary">
+                                                                {{profileData.branch}}
+                                                            </div>
+                                                        </div>
+                                                        <hr>
+                                                        <div class="row viewPro">
+                                                            <div class="col-sm-3">
+                                                                <h6 class="mb-0">Area</h6>
+                                                            </div>
+                                                            <div class="col-sm-9 text-secondary">
+                                                                {{profileData.area}}
+                                                            </div>
+                                                        </div>
+                                                        <hr>
+                                                        <div class="row viewPro">
+                                                            <div class="col-sm-3">
+                                                                <h6 class="mb-0">Region</h6>
+                                                            </div>
+                                                            <div class="col-sm-9 text-secondary">
+                                                                {{profileData.region}}
+                                                            </div>
+                                                        </div>
+                                                        <hr>
+                                                        <div class="row viewPro">
+                                                            <div class="col-sm-3">
+                                                                <h6 class="mb-0">Zone</h6>
+                                                            </div>
+                                                            <div class="col-sm-9 text-secondary">
+                                                                {{profileData.zone}}
+                                                            </div>
+                                                        </div>
+                                                        <hr>
+                                                        <div class="row viewPro">
+                                                            <div class="col-sm-3">
+                                                                <h6 class="mb-0">Status</h6>
+                                                            </div>
+                                                            <div class="col-sm-9 text-secondary">
+                                                                {{profileData.userIdStatus}}
+                                                            </div>
+                                                        </div>
+                                                        <hr>
+                                                        <div class="row ">
+                                                            <div class="col-sm-2 mr-0" ng-hide="editButton">
+                                                                <button type="button" class="btn btn-info"
+                                                                        ng-click="editProfileForm()">Edit</button>
+                                                            </div>
+                                                            <div class="col-sm-4" ng-show="saveButton">
+                                                                <button type="submit" class="btn btn-success">Save
+                                                                    Changes</button>
+                                                            </div>
+                                                            <div class="col-sm-2" style="margin-left: -20px;">
+                                                                <button type="button" class="btn btn-danger" ng-click="closeProfileView()">Cancel</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </section>
+
+        <!-- Scripts -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    </body>
 
 
 

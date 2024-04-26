@@ -1,0 +1,74 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Apr 25, 2024, 1:08:07 PM
+    Author     : ritik
+*/
+/* new css for edit profile */
+
+#viewProfile{
+
+    width:100%;
+}
+
+.userName{
+    color: black;
+}
+
+
+hr {
+    border: 1px solid rgba(0,0,0,.1);
+}
+
+.my-card {
+    height: auto;
+    padding-left: 22px;
+    padding-right: 22px;
+    padding-bottom: 8px;
+}
+
+.my-card-edit{
+    height: auto;
+    width: 700px;
+    padding-left: 22px;
+    padding-right: 22px;
+    padding-bottom: 8px;
+
+
+    background-color: rgb(210, 219, 226);
+    padding: 15px;
+    border-radius: 5px;
+
+}
+
+.card-body {
+    height: 360px;
+    margin-top:10px;
+}
+
+.card-body-edit{
+    height: 360px;
+    margin-top:10px;
+}
+
+.card {
+    margin-top: 10px;
+}
+
+.card-edit{
+
+    width:200px;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+
+}
+
+
