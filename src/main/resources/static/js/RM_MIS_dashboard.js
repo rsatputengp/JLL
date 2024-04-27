@@ -985,6 +985,7 @@ app.controller('RM_MIS_Controller', function ($scope, $http, $document) {
 
             // view edit function end
 
+            // superUserView function start 
 
             $scope.superUserView = function () {
                 $scope.profileCard = false;
@@ -1012,6 +1013,262 @@ app.controller('RM_MIS_Controller', function ($scope, $http, $document) {
 
 
             };
+
+            // superUserView function end
+
+            ///// Json to Excel file
+
+            // $scope.odCallingList = [];
+            $scope.exportToExcelOD = function () {
+                var jsonData = $scope.odCallingList;
+
+                var filteredData = jsonData.map(function (item) {
+                    return {
+                        'ID': item.id,
+                        'Region': item.region,
+                        'Area': item.area,
+                        'Branch ID': item.branchId,
+                        'Branch Name': item.branchName,
+                        'Loan Account Number': item.loanAccountNumber,
+                        'Client Name': item.clientName,
+                        'Date of Default': item.dateOfDefault,
+                        'Calling Date': item.callingDate,
+                        'Called by – Employee ID': item.calledByEmployeeId,
+                        'Called by Employee Name': item.calledByEmployeeName,
+                        'Reason of OD Default': item.reasonOfODDefault,
+                        'Any Misappropriation case': item.anyMisappropriationCase,
+                        'Remarks if any': item.remarksIfAny,
+                        'Filled By': item.filledBy,
+                        'Modified By': item.modifiedBy
+                    };
+                });
+
+                var ws = XLSX.utils.json_to_sheet(filteredData);
+
+                // Add table properties
+                var range = XLSX.utils.decode_range(ws['!ref']);
+                ws['!autofilter'] = {ref: XLSX.utils.encode_range(range)};
+                ws['!cols'] = [
+                    {width: 10}, // Adjust column widths as needed
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15}
+                ];
+
+
+                // Apply table style
+                ws['!theme'] = {
+                    'tableStyles': {
+                        '1': {
+                            'name': 'TableStyleMedium9',
+                            'showFirstColumn': false,
+                            'showLastColumn': false,
+                            'showRowStripes': true,
+                            'showColumnStripes': true
+                        }
+                    }
+                };
+
+                var wb = XLSX.utils.book_new();
+                XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+
+                // Save the Excel file
+                XLSX.writeFile(wb, 'odCallingReport.xlsx');
+                alert("Downloading Data Excel file.");
+                location.reload();
+            };
+
+            // $scope.rdCallingList = [];
+            $scope.exportToExcelRD = function () {
+                var jsonData = $scope.rdCallingList;
+
+                var filteredData = jsonData.map(function (item) {
+                    return {
+                        'ID': item.id,
+                        'Region': item.region,
+                        'Area': item.area,
+                        'Branch ID': item.branchId,
+                        'Branch Name': item.branchName,
+                        'RD Account Number': item.rdAccountNumber,
+                        'Client Name': item.clientName,
+                        'Date of Default': item.dateOfDefault,
+                        'Calling Date': item.callingDate,
+                        'Called by – Employee ID': item.calledByEmployeeId,
+                        'Called by Employee Name': item.calledByEmployeeName,
+                        'Reason of RD Default': item.reasonOfRDDefault,
+                        'Any Misappropriation case': item.anyMisappropriationCase,
+                        'Remarks if any': item.remarksIfAny,
+                        'Filled By': item.filledBy,
+                        'Modified By': item.modifiedBy
+                    };
+                });
+
+                var ws = XLSX.utils.json_to_sheet(filteredData);
+
+                // Add table properties
+                var range = XLSX.utils.decode_range(ws['!ref']);
+                ws['!autofilter'] = {ref: XLSX.utils.encode_range(range)};
+                ws['!cols'] = [
+                    {width: 10}, // Adjust column widths as needed
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15}
+                ];
+
+
+                // Apply table style
+                ws['!theme'] = {
+                    'tableStyles': {
+                        '1': {
+                            'name': 'TableStyleMedium9',
+                            'showFirstColumn': false,
+                            'showLastColumn': false,
+                            'showRowStripes': true,
+                            'showColumnStripes': true
+                        }
+                    }
+                };
+
+                var wb = XLSX.utils.book_new();
+                XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+
+                // Save the Excel file
+                XLSX.writeFile(wb, 'rdCallingReport.xlsx');
+                alert("Downloading Data Excel file.");
+                location.reload();
+            };
+
+            // $scope.iTtrackerList = [];
+            $scope.exportToExcelIT = function () {
+                var jsonData = $scope.iTtrackerList;
+
+                var filteredData = jsonData.map(function (item) {
+                    return {
+                        'ID': item.id,
+                        'Region': item.region,
+                        'Branch Code': item.branchCode,
+                        'Branch Name': item.branchName,
+                        'CLAIM ID': item.claimId,
+                        'Group No/Center ID': item.centerId,
+                        'Center Name': item.centerName,
+                        'Client Id': item.clientId,
+                        'Account Id': item.accountId,
+                        'Disbursement Date': item.disbursementDate,
+                        'Client Name': item.clientName,
+                        'Nominee Name': item.nomineeName,
+                        'Death Client Name /Demise Client Name': item.deathClientName,
+                        'Disbursement Amount': item.disbursementAmount,
+                        'EMI Day': item.emiDay,
+                        'Date of Death': item.dateOfDeath,
+                        'Death Reasion/ Demise Reasion': item.deathReasion,
+                        'Paid EMI': item.paidEmi,
+                        'Loan Outstanding Amt': item.loanOutstandingAmt,
+                        'OTS Amt': item.otsAmt,
+                        'Claim Settelment Amt': item.claimSettelmentAmt,
+                        'Member Handover Amount': item.memberHandoverAmount,
+                        'Claim Status': item.claimStatus,
+                        'Remarks': item.remarks,
+                        'True cell punching date': item.trueCellPunchingDate,
+                        'Dated of DOC Received Fom Member': item.datedOfDOCReceivedFromMember,
+                        'Dated of send DOC to HO': item.datedOfSendDocToHo,
+                        'Dated of send DOC TO KOTAK': item.datedOfSendDocToKotak,
+                        'Date of Settelment by Kotak': item.dateOfSettelmentByKotak,
+                        'Account Close date by Branch': item.accountCloseDateByBranch,
+                        'Incentive received in month': item.incentiveReceivedInMonth,
+                        'Filled By': item.filledBy,
+                        'Modified By': item.modifiedBy
+                    };
+                });
+
+                var ws = XLSX.utils.json_to_sheet(filteredData);
+
+                // Add table properties
+                var range = XLSX.utils.decode_range(ws['!ref']);
+                ws['!autofilter'] = {ref: XLSX.utils.encode_range(range)};
+                ws['!cols'] = [
+                    {width: 10}, // Adjust column widths as needed
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15}
+                ];
+
+
+                // Apply table style
+                ws['!theme'] = {
+                    'tableStyles': {
+                        '1': {
+                            'name': 'TableStyleMedium9',
+                            'showFirstColumn': false,
+                            'showLastColumn': false,
+                            'showRowStripes': true,
+                            'showColumnStripes': true
+                        }
+                    }
+                };
+
+                var wb = XLSX.utils.book_new();
+                XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+
+                // Save the Excel file
+                XLSX.writeFile(wb, 'iTtrackerReport.xlsx');
+                alert("Downloading Data Excel file.");
+                location.reload();
+            };
+
+            //end Json to Excel file
         }
     } else {
         window.location.href = $scope.uRl + "index.html";
@@ -1508,4 +1765,19 @@ function switchList(listName) {
         clickedButton.style.backgroundColor = ''; // Reset to default
     }, 300);
 }
+app.filter('continuousSubstringFilter', function () {
+    return function (list, search, columns) {
+        if (!search) {
+            return list;
+        }
 
+        search = search.toLowerCase();
+
+        return list.filter(function (record) {
+            return columns.some(function (column) {
+                var columnValue = record[column] && record[column].toString().toLowerCase();
+                return columnValue && columnValue.includes(search);
+            });
+        });
+    };
+});

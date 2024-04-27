@@ -228,7 +228,7 @@
                 <a ng-click="auditScoringReport()" ng-show="sidebarWidth >= '200px'">
                     <img src="images/audit.png" alt="audit-report" height="20px" width="20px"><span>Audit Scoring Report</span></i>
                 </a>
-                
+
                 <a ng-click="superUserView()" ng-show="sidebarWidth >= '200px'">
                     <i class="fa-solid fa-flag" ><span>Super User</span></i>
                 </a>
@@ -300,12 +300,20 @@
                 <!--- House Verification List view -->
                 <div class="HouseVerification row" ng-show="houseverification">
                     <div class="col-md-12">
-                        <h4 style="font-weight: 900;"> House Verification
-                            <!--                            <button id="addHouseVerification" ng-click="houseVerificationForm()">
-                                                            <i class="fa-solid fa-plus"></i>
-                                                        </button>-->
-                        </h4>
-
+                        <div class="d-flex flex-row">
+                            <div>
+                                <h4 style="font-weight: 900;"> House Verification</h4>
+                            </div>
+                            <div class="ml-2">
+                                <button class="excel" id="eteHouseVerification" ng-click="exportToExcelHV()">
+                                    Export to Excel
+                                </button> 
+                            </div>
+                            <div class="form-group has-search ml-md-auto">
+                                <span class="fa fa-search form-control-feedback"></span>
+                                <input  type="text" class="form-controlx" placeholder="Search" ng-model="searchHV">
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="my-card-a">
@@ -332,7 +340,9 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr ng-repeat="hVerification in houseVerificationList">
+                                            <tr ng-repeat="hVerification in houseVerificationList| continuousSubstringFilter:searchHV:['branchId','branchName'
+                                                ,'roId','roName','hvDate','centerId','centerName','clientId','clientName','loanAppliedCycle','foId'
+                                                ,'foName','reasonOfCancellation','remarks','filledBy','modifiedBy']">
                                                 <td ng-click="getHVrecord(hVerification.id)">{{$index + 1}}</td>
                                                 <td>{{hVerification.branchId}}</td>
                                                 <td>{{hVerification.branchName}}</td>
@@ -490,12 +500,20 @@
                 <!-- Center Visit Report -->
                 <div class="centerVisitReport row" ng-show="centervisitreport">
                     <div class="col-md-12">
-                        <h4 style="font-weight: 900;"> center Visit Report
-                            <!--                            <button id="addCenterVisitReport" ng-click="centerVisitReportForm()">
-                                                            <i class="fa-solid fa-plus"></i>
-                                                        </button>-->
-                        </h4>
-
+                        <div class="d-flex flex-row">
+                            <div>
+                                <h4 style="font-weight: 900;"> center Visit Report</h4>
+                            </div>
+                            <div class="ml-2">
+                                <button class="excel" id="etecenterVisitReport" ng-click="exportToExcelCVR()">
+                                    Export to Excel
+                                </button> 
+                            </div>
+                            <div class="form-group has-search ml-md-auto">
+                                <span class="fa fa-search form-control-feedback"></span>
+                                <input  type="text" class="form-controlx" placeholder="Search" ng-model="searchCVR">
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="my-card-a">
@@ -528,7 +546,11 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr ng-repeat="cvReport in centerVisitReportList">
+                                            <tr ng-repeat="cvReport in centerVisitReportList| continuousSubstringFilter:searchCVR:['id','branchId'
+                                            ,'branchName','roEmpId','roName','dateOfCenterVisit','foId','foName','centerId','centerName'
+                                            ,'noOfInstallment','loanCollectionReceiptAvailableInFile','rdCollectionReceiptAvailableInFile'
+                                            ,'loanCardUpdate','rdPassbookIssued','rdCollectionRegular_Irregular','ifAnyODCustomer'
+                                            ,'ifAnyCustomerMigrate','bmVisitDone','amVisitDone','anyOtherObservation','filledBy','modifiedBy']">
                                                 <td ng-click="getCVRrecord(cvReport.id)">{{$index + 1}}</td>
                                                 <td>{{cvReport.branchId}}</td>
                                                 <td>{{cvReport.branchName}}</td>
@@ -739,11 +761,20 @@
                 <!-- Audit Scoring Report -->
                 <div class="AuditScoringReport row" ng-show="auditscoringreport">
                     <div class="col-md-12">
-                        <h4 style="font-weight: 900;"> Audit Scoring Report
-                            <!--                            <button id="addAuditScoringReport" ng-click="auditScoringReportForm()">
-                                                            <i class="fa-solid fa-plus"></i>
-                                                        </button>-->
-                        </h4>
+                        <div class="d-flex flex-row">
+                            <div>
+                                <h4 style="font-weight: 900;"> Audit Scoring Report</h4>
+                            </div>
+                            <div class="ml-2">
+                                <button class="excel" id="eteAuditScoringReport" ng-click="exportToExcelASR()">
+                                    Export to excel
+                                </button> 
+                            </div>
+                            <div class="form-group has-search ml-md-auto">
+                                <span class="fa fa-search form-control-feedback"></span>
+                                <input  type="text" class="form-controlx" placeholder="Search" ng-model="searchASR">
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="my-card-a">
@@ -769,7 +800,9 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr ng-repeat="adReport in auditScoringReportList">
+                                            <tr ng-repeat="adReport in auditScoringReportList| continuousSubstringFilter:searchASR:['id','region'
+                                        ,'area','branchName','branchId','monthOfAudit','auditedBy','auditReportRealeseDate','auditScoring'
+                                        ,'scores','remark','auditCover','auditSchedule','complinceStatus','filledBy','modifiedBy']">
                                                 <td ng-click="getASRrecord(adReport.id)">{{$index + 1}}</td>
                                                 <td>{{adReport.region}}</td>
                                                 <td>{{adReport.area}}</td>
@@ -787,9 +820,7 @@
                                                 <td>{{adReport.filledBy}}</td>
                                                 <td>{{adReport.modifiedBy}}</td>
                                             </tr>
-
                                         </tbody>
-
                                     </table>
                                 </div>
                             </div>
@@ -1054,7 +1085,7 @@
                     </div>
                 </div>
 
-                
+
                 <div ng-show="dashBoard">
                     <div class="superUserView" ng-controller="super_controller" ng-include="'CAM_SuperUser.html'">
 

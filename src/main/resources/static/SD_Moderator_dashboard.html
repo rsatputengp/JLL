@@ -669,7 +669,20 @@
                 <!--- Insuarance tracker List view -->
                 <div class="insuranceTracker row" ng-show="InsuranceTracker">
                     <div class="col-md-12">
-                        <h4 style="font-weight: 900;"> Insurance Tracker</h4>
+                        <div class="d-flex flex-row">
+                            <div>
+                                <h4 style="font-weight: 900;"> Insurance Tracker</h4>
+                            </div>
+                            <div class="ml-2">
+                                <button class="excel" id="eteinsuranceTracker" ng-click="exportToExcelIT()">
+                                    Export to excel
+                                </button>
+                            </div>
+                            <div class="form-group has-search ml-md-auto">
+                                <span class="fa fa-search form-control-feedback"></span>
+                                <input  type="text" class="form-controlx" placeholder="Search" ng-model="searchIT">
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="my-card-a">
@@ -739,7 +752,12 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr ng-repeat="iTtracker in iTtrackerList">
+                                            <tr ng-repeat="iTtracker in iTtrackerList| continuousSubstringFilter:searchIT:['id','region'
+                                    ,'branchCode','branchName','claimId','centerId','centerName','accountId','disbursementDate','clientId'
+                                    ,'clientName','nomineeName','deathClientName','disbursementAmount','emiDay','dateOfDeath','deathReasion'
+                                    ,'paidEmi','loanOutstandingAmt','otsAmt','claimSettelmentAmt','memberHandoverAmount','claimStatus'
+                                    ,'remarks','trueCellPunchingDate','datedOfDOCReceivedFromMember','datedOfSendDocToHo','datedOfSendDocToKotak'
+                                    ,'dateOfSettelmentByKotak','accountCloseDateByBranch','incentiveReceivedInMonth','filledBy','modifiedBy']">
                                                 <td ng-click="getITform(iTtracker.id)">{{$index + 1}}</td>
                                                 <td>{{iTtracker.region}}</td>
                                                 <td>{{iTtracker.branchCode}}</td>

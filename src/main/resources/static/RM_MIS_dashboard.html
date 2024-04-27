@@ -1362,11 +1362,20 @@
                 <!-- RD calling  List view-->
                 <div class="RDcalling row" ng-show="RDcalling">
                     <div class="col-md-12">
-                        <h4 style="font-weight: 900;"> RD Calling
-                            <!--                            <button id="addRDcalling" ng-click="RDcallingForm()">
-                                                            <i class="fa-solid fa-plus "></i>
-                                                        </button>-->
-                        </h4>
+                        <div class="d-flex flex-row">
+                            <div>
+                                <h4 style="font-weight: 900;"> RD Calling</h4>
+                            </div>
+                            <div class="ml-2">
+                                <button class="excel" id="eteRDcallingReport" ng-click="exportToExcelRD()">
+                                    Export to excel
+                                </button>
+                            </div>
+                            <div class="form-group has-search ml-md-auto">
+                                <span class="fa fa-search form-control-feedback"></span>
+                                <input  type="text" class="form-controlx" placeholder="Search" ng-model="searchRD">
+                            </div>
+                        </div>
 
                         <div class="row">
                             <div class="col-md-12">
@@ -1394,7 +1403,10 @@
                                             </tr>
                                         </thead>
                                         <tbody> 
-                                            <tr ng-repeat="rdCalling in rdCallingList">
+                                            <tr ng-repeat="rdCalling in rdCallingList| continuousSubstringFilter:searchRD:['id','region'
+                                            ,'area','branchId','branchName','rdAccountNumber','clientName','dateOfDefault','callingDate'
+                                            ,'calledByEmployeeId','calledByEmployeeName','reasonOfRDDefault','anyMisappropriationCase'
+                                            ,'remarksIfAny','filledBy','modifiedBy']">
                                                 <td>{{$index + 1}}</td>
                                                 <td>{{rdCalling.region}}</td>
                                                 <td>{{rdCalling.area}}</td>
@@ -1557,12 +1569,20 @@
                 <!-- Od calling List view --->
                 <div class="ODcalling row" ng-show="ODcalling">
                     <div class="col-md-12">
-                        <h4 style="font-weight: 900;"> OD Calling
-                            <!--                            <button id="addODcalling" ng-click="ODcallingForm()">
-                                                            <i class="fa-solid fa-plus "></i>
-                                                        </button>-->
-                        </h4>
-
+                        <div class="d-flex flex-row">
+                            <div>
+                                <h4 style="font-weight: 900;"> OD Calling</h4>
+                            </div>
+                            <div class="ml-2">
+                                <button class="excel" id="eteODcallingReport" ng-click="exportToExcelOD()">
+                                    Export to excel
+                                </button>
+                            </div>
+                            <div class="form-group has-search ml-md-auto">
+                                <span class="fa fa-search form-control-feedback"></span>
+                                <input  type="text" class="form-controlx" placeholder="Search" ng-model="searchOD">
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="my-card-a">
@@ -1588,7 +1608,10 @@
                                             </tr>
                                         </thead>
                                         <tbody> 
-                                            <tr ng-repeat="odCalling in odCallingList">
+                                            <tr ng-repeat="odCalling in odCallingList| continuousSubstringFilter:searchOD:['id','region'
+                                        ,'area','branchId','branchName','loanAccountNumber','clientName','dateOfDefault','callingDate'
+                                        ,'calledByEmployeeId','calledByEmployeeName','reasonOfODDefault','anyMisappropriationCase'
+                                        ,'remarksIfAny','filledBy','modifiedBy']">
                                                 <td>{{$index + 1}}</td>
                                                 <td>{{odCalling.region}}</td>
                                                 <td>{{odCalling.area}}</td>
@@ -1752,11 +1775,20 @@
                 <!--- Insuarance tracker List view -->
                 <div class="insuranceTracker row" ng-show="InsuranceTracker">
                     <div class="col-md-12">
-                        <h4 style="font-weight: 900;"> Insurance Tracker
-                            <!--                            <button id="addInsuranceTracker" ng-click="InsuranceTrackerForm()">
-                                                            <i class="fa-solid fa-plus "></i>
-                                                        </button>-->
-                        </h4>
+                        <div class="d-flex flex-row">
+                            <div>
+                                <h4 style="font-weight: 900;"> Insurance Tracker</h4>
+                            </div>
+                            <div class="ml-2">
+                                <button class="excel" id="eteinsuranceTracker" ng-click="exportToExcelIT()">
+                                    Export to excel
+                                </button>
+                            </div>
+                            <div class="form-group has-search ml-md-auto">
+                                <span class="fa fa-search form-control-feedback"></span>
+                                <input  type="text" class="form-controlx" placeholder="Search" ng-model="searchIT">
+                            </div>
+                        </div>
 
                         <div class="row">
                             <div class="col-md-12">
@@ -1827,7 +1859,12 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr ng-repeat="iTtracker in iTtrackerList">
+                                            <tr ng-repeat="iTtracker in iTtrackerList| continuousSubstringFilter:searchIT:['id','region'
+                                    ,'branchCode','branchName','claimId','centerId','centerName','accountId','disbursementDate','clientId'
+                                    ,'clientName','nomineeName','deathClientName','disbursementAmount','emiDay','dateOfDeath','deathReasion'
+                                    ,'paidEmi','loanOutstandingAmt','otsAmt','claimSettelmentAmt','memberHandoverAmount','claimStatus'
+                                    ,'remarks','trueCellPunchingDate','datedOfDOCReceivedFromMember','datedOfSendDocToHo','datedOfSendDocToKotak'
+                                    ,'dateOfSettelmentByKotak','accountCloseDateByBranch','incentiveReceivedInMonth','filledBy','modifiedBy']">
                                                 <td>{{$index + 1}}</td>
                                                 <td>{{iTtracker.region}}</td>
                                                 <td>{{iTtracker.branchCode}}</td>

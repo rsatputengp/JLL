@@ -168,7 +168,7 @@ hr {
     padding: 16px;
     /*margin-left: 20px;*/
     background-color: #4CAF50;
-    
+
 }
 
 
@@ -320,7 +320,7 @@ hr {
 #dashBoard {
     display: flex !important;
     justify-content: flex-start !important;
-      flex-direction: column !important;
+    flex-direction: column !important;
     /*justify-content:flex-start;*/
     align-items: center;
     width: 100% !important;
@@ -405,7 +405,7 @@ th {
 
 
 .RDcallingCard , .ODcallingCard , .InsuaranceTrackerCard , .houseVerificationCard , .CVRcard ,.ASRcallingCard{
-   
+
     height: 600px;
     align-self: center;
 
@@ -423,7 +423,7 @@ th {
 
 
 .form-row {   
-     margin-top: 10px;
+    margin-top: 10px;
 }
 
 
@@ -439,7 +439,7 @@ label{
     /* justify-content: center; */
     /* align-items: center; */
     flex-direction: column;
-align-content: center;
+    align-content: center;
 }
 
 h3{
@@ -449,10 +449,10 @@ h3{
 
 .required {
     color: red;
-  }
+}
 
 
-  .closeForm{
+.closeForm{
     font-size: xx-large !important;
     margin-left:720px;
     margin-top: -40px;
@@ -460,33 +460,99 @@ h3{
     position: absolute;
     z-index: 2;
     color: red;
-  }
+}
 
 
-  .closeForm:hover {
+.closeForm:hover {
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
     cursor: pointer;
-  }
-  
+}
 
-  .stylishLine , .stylishLinex{
-        height: 2px; 
-        border: 0;
-     background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgb(0, 100, 0) , rgba(0, 0, 0, 0));
-        position: relative;
-        margin-top: -8px;
-       width: 250px;
 
-  }
+.stylishLine , .stylishLinex{
+    height: 2px; 
+    border: 0;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgb(0, 100, 0) , rgba(0, 0, 0, 0));
+    position: relative;
+    margin-top: -8px;
+    width: 250px;
 
-  .stylishLinex{
+}
+
+.stylishLinex{
     width: 350px !important; 
-  }
+}
 
-  
-  .form-control:focus {
+
+.form-control:focus {
     border-color: #218838 !important; /* Dark green border when focused */
     box-shadow: 0 0 5px #28a745 !important; /* Green glow effect when focused */
     outline: none !important; /* Remove default focus outline */
 }
 
+/* Export to excel */
+.excel {
+    display: inline-block;
+    background: #14A3A1;
+    color: #fff;
+    font-weight: 600;
+    width: auto;
+    padding: 5px 14px;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -o-border-radius: 5px;
+    -ms-border-radius: 5px;
+    cursor: pointer;
+}
+
+.excel:hover {
+    background: #479c3c;
+}
+
+/* CSS for Sreach bar  */
+
+
+.form-controlx:focus {
+    border-color: #218838; /* Dark green border when focused */
+    box-shadow: 0 0 5px #28a745; /* Green glow effect when focused */
+    outline: none; /* Remove default focus outline */
+}
+
+
+
+.has-search .form-control {
+    padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
+    border-radius: 20px;
+}
+
+
+.form-controlx {
+    display: inline-block;
+    width: 100%;
+    height: calc(1.5em + 0.75rem + 2px);
+    max-width:400px;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 20px;
+    border-color: #28a745;
+    padding: 15px 35px;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}

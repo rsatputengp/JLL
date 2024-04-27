@@ -676,7 +676,7 @@ app.controller('AD_User_Controller', function ($scope, $http, $document) {
                 $scope.asrFormfilledBy = true;
                 $scope.asrFormModifiedBy = true;
                 $scope.asrdisabledFD = true;
-                $scope.asrdisabledMD = true;                
+                $scope.asrdisabledMD = true;
 
                 //form button            
                 $scope.ASRsubmitButton = false;
@@ -788,10 +788,262 @@ app.controller('AD_User_Controller', function ($scope, $http, $document) {
 
             // view edit function end
 
+            ///// Json to Excel file
+
+            // $scope.houseVerificationList = [];
+            $scope.exportToExcelHV = function () {
+                var jsonData = $scope.houseVerificationList;
+
+                var filteredData = jsonData.map(function (item) {
+                    return {
+                        'ID': item.id,
+                        'Branch ID': item.branchId,
+                        'Branch Name': item.branchName,
+                        'RO Name': item.roName,
+                        'RO ID': item.roId,
+                        'HV Date(DD/MM/YYY)': item.hvDate,
+                        'Center Name': item.centerName,
+                        'Center ID': item.centerId,
+                        'Client ID': item.clientId,
+                        'Client Name': item.clientName,
+                        'Loan Applied Cycle': item.loanAppliedCycle,
+                        'FO ID': item.foId,
+                        'FO Name': item.foName,
+                        'Reason of cancellation': item.reasonOfCancellation,
+                        'Remarks': item.remarks,
+                        'Filled By': item.filledBy,
+                        'Modified By': item.modifiedBy
+                    };
+                });
+
+                var ws = XLSX.utils.json_to_sheet(filteredData);
+
+                // Add table properties
+                var range = XLSX.utils.decode_range(ws['!ref']);
+                ws['!autofilter'] = {ref: XLSX.utils.encode_range(range)};
+                ws['!cols'] = [
+                    {width: 10}, // Adjust column widths as needed
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15}
+                ];
+
+
+                // Apply table style
+                ws['!theme'] = {
+                    'tableStyles': {
+                        '1': {
+                            'name': 'TableStyleMedium9',
+                            'showFirstColumn': false,
+                            'showLastColumn': false,
+                            'showRowStripes': true,
+                            'showColumnStripes': true
+                        }
+                    }
+                };
+
+                var wb = XLSX.utils.book_new();
+                XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+
+                // Save the Excel file
+//                XLSX.writeFile(wb, 'User\'s Status_report.xlsx');
+                XLSX.writeFile(wb, 'houseVerificationReport.xlsx');
+                alert("Downloading Data Excel file.");
+                location.reload();
+            };
+
+            // $scope.centerVisitReportList = [];
+            $scope.exportToExcelCVR = function () {
+                var jsonData = $scope.centerVisitReportList;
+
+                var filteredData = jsonData.map(function (item) {
+                    return {
+                        'ID': item.id,
+                        'Branch Name': item.branchName,
+                        'Branch ID': item.branchId,
+                        'RO Name': item.roName,
+                        'RO EMP ID': item.roEmpId,
+                        'Date of Center Visit(DD/MM/YYY)': item.dateOfCenterVisit,
+                        'FO Name': item.foName,
+                        'FO ID': item.foId,
+                        'Center Name': item.centerName,
+                        'Center ID': item.centerId,
+                        'No of Installment': item.noOfInstallment,
+                        'Loan collection receipt available in file': item.loanCollectionReceiptAvailableInFile,
+                        'RD collection receipt available in file': item.rdCollectionReceiptAvailableInFile,
+                        'Loan card Update': item.loanCardUpdate,
+                        'RD Passbook issued': item.rdPassbookIssued,
+                        'RD Collection Regular/Irregular': item.rdCollectionRegular_Irregular,
+                        'If any OD customer': item.ifAnyODCustomer,
+                        'If any customer Migrate': item.ifAnyCustomerMigrate,
+                        'BM Visit done': item.bmVisitDone,
+                        'AM visit done': item.amVisitDone,
+                        'Any other Observation': item.anyOtherObservation,
+                        'Filled By': item.filledBy,
+                        'Modified By': item.modifiedBy
+                    };
+                });
+
+                var ws = XLSX.utils.json_to_sheet(filteredData);
+
+                // Add table properties
+                var range = XLSX.utils.decode_range(ws['!ref']);
+                ws['!autofilter'] = {ref: XLSX.utils.encode_range(range)};
+                ws['!cols'] = [
+                    {width: 10}, // Adjust column widths as needed
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15}
+                ];
+
+
+                // Apply table style
+                ws['!theme'] = {
+                    'tableStyles': {
+                        '1': {
+                            'name': 'TableStyleMedium9',
+                            'showFirstColumn': false,
+                            'showLastColumn': false,
+                            'showRowStripes': true,
+                            'showColumnStripes': true
+                        }
+                    }
+                };
+
+                var wb = XLSX.utils.book_new();
+                XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+
+                // Save the Excel file
+//                XLSX.writeFile(wb, 'User\'s Status_report.xlsx');
+                XLSX.writeFile(wb, 'centerVisitReport.xlsx');
+                alert("Downloading Data Excel file.");
+                location.reload();
+            };
+
+            // $scope.auditScoringReportList = [];
+            $scope.exportToExcelASR = function () {
+                var jsonData = $scope.auditScoringReportList;
+
+                var filteredData = jsonData.map(function (item) {
+                    return {
+                        'ID': item.id,
+                        'Region': item.region,
+                        'Area': item.area,
+                        'Branch Name': item.branchName,
+                        'Branch Id': item.branchId,
+                        'Month of Audit': item.monthOfAudit,
+                        'Audited by': item.auditedBy,
+                        'Audit Report Realese Date': item.auditReportRealeseDate,
+                        'Audit Scoring': item.auditScoring,
+                        'Scores%': item.scores,
+                        'Remark': item.remark,
+                        'Audit cover': item.auditCover,
+                        'Audit Schedule': item.auditSchedule,
+                        'Complince Status': item.complinceStatus,
+                        'Filled By': item.filledBy,
+                        'Modified By': item.modifiedBy
+                    };
+                });
+
+                var ws = XLSX.utils.json_to_sheet(filteredData);
+
+                // Add table properties
+                var range = XLSX.utils.decode_range(ws['!ref']);
+                ws['!autofilter'] = {ref: XLSX.utils.encode_range(range)};
+                ws['!cols'] = [
+                    {width: 5}, // Adjust column widths as needed
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15},
+                    {width: 15}
+                ];
+
+
+                // Apply table style
+                ws['!theme'] = {
+                    'tableStyles': {
+                        '1': {
+                            'name': 'TableStyleMedium9',
+                            'showFirstColumn': false,
+                            'showLastColumn': false,
+                            'showRowStripes': true,
+                            'showColumnStripes': true
+                        }
+                    }
+                };
+
+                var wb = XLSX.utils.book_new();
+                XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+
+                // Save the Excel file
+                XLSX.writeFile(wb, 'auditScoringReport.xlsx');
+                alert("Downloading Data Excel file.");
+                location.reload();
+            };
+
+            //end Json to Excel file
+
 
         }
     } else {
         window.location.href = $scope.uRl + "index.html";
     }
+});
+app.filter('continuousSubstringFilter', function () {
+    return function (list, search, columns) {
+        if (!search) {
+            return list;
+        }
+
+        search = search.toLowerCase();
+
+        return list.filter(function (record) {
+            return columns.some(function (column) {
+                var columnValue = record[column] && record[column].toString().toLowerCase();
+                return columnValue && columnValue.includes(search);
+            });
+        });
+    };
 });
 
