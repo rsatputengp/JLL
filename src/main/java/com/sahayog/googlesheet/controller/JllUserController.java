@@ -66,11 +66,11 @@ public class JllUserController {
     }
 
     // Edit profile for user
-    @RequestMapping("/updateProfile/{id}/{emp_id}/{userName}/{userIdStatus}")
+    @RequestMapping("/updateProfile/{id}/{emp_id}/{userName}/{email}")
     public JllUser updateProfile(@PathVariable int id, @PathVariable String emp_id,
-            @PathVariable String userName, @PathVariable String userIdStatus) {
+            @PathVariable String userName, @PathVariable String email) {
         JllUser jllUser
-                = service.updateProfile(id, emp_id, userName, userIdStatus);
+                = service.updateProfile(id, emp_id, userName, email);
         return jllUser;
     }
 
@@ -143,9 +143,9 @@ public class JllUserController {
     }
 
     // Get User by mail
-    @RequestMapping("/getEmail/{mail}")
-    public JllUser getJMail(@PathVariable String mail) {
-        return service.getUserM(mail);
+    @RequestMapping("/getEmail/{email}")
+    public JllUser getJMail(@PathVariable String email) {
+        return service.getUserM(email);
     }
 
     // Getting Actived User
@@ -183,12 +183,6 @@ public class JllUserController {
         return list;
     }
 
-//    // Getting Resetpassword list
-//    @RequestMapping("getuser_resetpassword_list")
-//    public List<JllUser> resetpassword_list() {
-//        List<JllUser> list = service.getResetPasswordRecords();
-//        return list;
-//    }
     // Getting Total no of user list all status
     @RequestMapping("/getAllRecordsNumberList")
     public ArrayList<String> getAllRecordsNumberList() {
