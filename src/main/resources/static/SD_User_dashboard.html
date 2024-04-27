@@ -1084,66 +1084,39 @@
                                                 <th scope="col">Region</th>
                                                 <th scope="col">Branch Code</th>
                                                 <th scope="col"> Branch Name</th>
-                                                <th scope="col"> CLAIM ID
-                                                </th>
+                                                <th scope="col"> CLAIM ID</th>
                                                 <th scope="col"> Center ID</th>
-                                                <th scope="col">Center Name
-                                                </th>
-                                                <th scope="col">Account Id
-                                                </th>
-                                                <th scope="col">Disbursement Date
-                                                </th>
-                                                <th scope="col">Client Id
-                                                </th>
-                                                <th scope="col">Client Name
-                                                </th>
-                                                <th scope="col">Nominee Name
-                                                </th>
-                                                <th scope="col">Death Client Name /Demise Client Name
-                                                </th>
-                                                <th scope="col">Disbursement
-                                                    Amount
-                                                </th>
-                                                <th scope="col">EMI Day
-                                                </th>
-                                                <th scope="col">Date of Death
-                                                </th>
-                                                <th scope="col">Death Reasion/ Demise Reasion
-                                                </th>
-                                                <th scope="col">Paid EMI
-                                                </th>
-                                                <th scope="col">Loan Outstanding Amt
-                                                </th>
-                                                <th scope="col">OTS Amt
-                                                </th>
-                                                <th scope="col">Claim Settelment Amt
-                                                </th>
-                                                <th scope="col">Member Handover Amount
-                                                </th>
-                                                <th scope="col">Claim Status
-                                                </th>
-                                                <th scope="col">Remarks
-                                                </th>
-                                                <th scope="col">True cell punching date
-                                                </th>
-                                                <th scope="col">Dated of DOC Received Fom Member
-                                                </th>
-                                                <th scope="col">Dated of send DOC to HO
-                                                </th>
-                                                <th scope="col">Dated of send DOC TO KOTAK
-                                                </th>
-                                                <th scope="col">Date of Settelment by Kotak
-                                                </th>
-                                                <th scope="col">Account Close date by Branch
-                                                </th>
-                                                <th scope="col">Incentive received in month
-                                                </th>
+                                                <th scope="col">Center Name</th>
+                                                <th scope="col">Account Id</th>
+                                                <th scope="col">Disbursement Date</th>
+                                                <th scope="col">Client Id</th>
+                                                <th scope="col">Client Name</th>
+                                                <th scope="col">Nominee Name</th>
+                                                <th scope="col">Death Client Name /Demise Client Name</th>
+                                                <th scope="col">Disbursement Amount</th>
+                                                <th scope="col">EMI Day</th>
+                                                <th scope="col">Date of Death</th>
+                                                <th scope="col">Death Reasion/ Demise Reasion</th>
+                                                <th scope="col">Paid EMI</th>
+                                                <th scope="col">Loan Outstanding Amt</th>
+                                                <th scope="col">OTS Amt</th>
+                                                <th scope="col">Claim Settelment Amt</th>
+                                                <th scope="col">Member Handover Amount</th>
+                                                <th scope="col">Claim Status</th>
+                                                <th scope="col">Remarks</th>
+                                                <th scope="col">True cell punching date</th>
+                                                <th scope="col">Dated of DOC Received Fom Member</th>
+                                                <th scope="col">Dated of send DOC to HO</th>
+                                                <th scope="col">Dated of send DOC TO KOTAK</th>
+                                                <th scope="col">Date of Settelment by Kotak</th>
+                                                <th scope="col">Account Close date by Branch</th>
+                                                <th scope="col">Incentive received in month</th>
                                                 <th scope="col">Filled By</th>
                                                 <th scope="col">Modified By</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr ng-repeat="iTtracker iTtrackerList| continuousSubstringFilter:searchIT:['id','region'
+                                            <tr ng-repeat="iTtracker in iTtrackerList| continuousSubstringFilter:searchIT:['id','region'
                                     ,'branchCode','branchName','claimId','centerId','centerName','accountId','disbursementDate','clientId'
                                     ,'clientName','nomineeName','deathClientName','disbursementAmount','emiDay','dateOfDeath','deathReasion'
                                     ,'paidEmi','loanOutstandingAmt','otsAmt','claimSettelmentAmt','memberHandoverAmount','claimStatus'
