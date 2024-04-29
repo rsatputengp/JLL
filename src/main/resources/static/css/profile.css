@@ -9,6 +9,8 @@ and open the template in the editor.
 */
 /* new css for edit profile */
 
+/* new css for edit profile */
+
 #viewProfile{
 
     width:100%;
@@ -19,8 +21,10 @@ and open the template in the editor.
 }
 
 
-hr {
+.profile-hv {
     border: 1px solid rgba(0,0,0,.1);
+    width: 40%;
+    margin-top: -22px;
 }
 
 .my-card {
@@ -45,8 +49,10 @@ hr {
 }
 
 .card-body {
-    height: 360px;
+    height: 380px;
     margin-top:10px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .card-body-edit{
@@ -72,3 +78,35 @@ hr {
 }
 
 
+
+.card-edit-view{
+
+    width:600px;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+
+}
+
+
+
+
+.viewPro{
+    margin-top: -8px;
+    margin-bottom: 18px;
+    border-bottom: 2px solid rgba(0,0,0,.1);
+}
+
+
+input[type='text'] , input[type='email']{
+    outline: none;
+    border:none;
+}
+
+input:disabled{
+    background-color: #fff !important;
+}

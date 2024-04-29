@@ -11,6 +11,7 @@
 
 
         <!-- CSS -->
+        <link href="css/profile.css" rel="stylesheet" type="text/css"/>
         <link href="css/Admin_dashboard.css" rel="stylesheet" type="text/css"/>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"></script>
 
@@ -1775,12 +1776,11 @@
 
                 <!-- view Profile -->
                 <div id="viewProfile" ng-show="showProfile">
-
-                    <div class="container">
+                    <div class="container mt-2">
                         <div class="row">
                             <div class="col-md-10 offset-md-1">
                                 <div class="my-card">
-                                    <form ng-submit="updateProfile()">
+                                    <form ng-submit="updateProfile">
                                         <div class="row gutters-sm">
                                             <div class="col-md-4 mb-3">
                                                 <div class="card">
@@ -1816,7 +1816,7 @@
                                                                        ng-model="userName" ng-disabled="usernameField">
                                                             </div>
                                                         </div>
-                                                        <hr>
+                                                        <!--<hr class="profile-hv">-->
                                                         <div class="row viewPro ">
                                                             <div class="col-sm-4">
                                                                 <h6 class="mb-0">Email</h6>
@@ -1828,54 +1828,67 @@
                                                             </div>
                                                         </div>
 
-                                                        <hr>
+                                                        <!--<hr class="profile-hv">-->
                                                         <div class="row viewPro">
-                                                            <div class="col-sm-3">
+                                                            <div class="col-sm-4">
                                                                 <h6 class="mb-0">Branch</h6>
                                                             </div>
-                                                            <div class="col-sm-9 text-secondary">
-                                                                {{profileData.branch}}
+                                                            <div class="col-sm-6 text-secondary">
+                                                                <input class="styleDisable" type="text" placeholder=""
+                                                                       name="email Id of user" id="emailOfuser"
+                                                                       ng-model="branch"  readonly="" >
+                                                                <!--{{profileData.branch}}-->
                                                             </div>
                                                         </div>
-                                                        <hr>
-
+                                                        <!--<hr class="profile-hv">-->
                                                         <div class="row viewPro">
-                                                            <div class="col-sm-3">
+                                                            <div class="col-sm-4">
                                                                 <h6 class="mb-0">Area</h6>
                                                             </div>
-                                                            <div class="col-sm-9 text-secondary">
-                                                                {{profileData.area}}
+                                                            <div class="col-sm-6 text-secondary">
+                                                                <input class="styleDisable" type="text" placeholder=""
+                                                                       name="email Id of user" id="emailOfuser"
+                                                                       ng-model="area"  readonly="">
+                                                                <!--{{profileData.area}}-->
                                                             </div>
                                                         </div>
-                                                        <hr>
-
+                                                        <!--<hr class="profile-hv">-->
                                                         <div class="row viewPro">
-                                                            <div class="col-sm-3">
+                                                            <div class="col-sm-4">
                                                                 <h6 class="mb-0">Region</h6>
                                                             </div>
-                                                            <div class="col-sm-9 text-secondary">
-                                                                {{profileData.region}}
+                                                            <div class="col-sm-6 text-secondary">
+                                                                <input class="styleDisable" type="text" placeholder=""
+                                                                       name="region" id="emailOfuser"
+                                                                       ng-model="region"  readonly="">
+                                                                <!--{{profileData.region}}-->
                                                             </div>
                                                         </div>
-                                                        <hr>
+                                                        <!--<hr class="profile-hv">-->
                                                         <div class="row viewPro">
-                                                            <div class="col-sm-3">
+                                                            <div class="col-sm-4">
                                                                 <h6 class="mb-0">Zone</h6>
                                                             </div>
-                                                            <div class="col-sm-9 text-secondary">
-                                                                {{profileData.zone}}
+                                                            <div class="col-sm-6 text-secondary">
+                                                                <input class="styleDisable" type="text" placeholder=""
+                                                                       name="zone" id="emailOfuser"
+                                                                       ng-model="zone"  readonly="">
+                                                                <!--{{profileData.zone}}-->
                                                             </div>
                                                         </div>
-                                                        <hr>
+                                                        <!--<hr class="profile-hv">-->
                                                         <div class="row viewPro">
-                                                            <div class="col-sm-3">
+                                                            <div class="col-sm-4">
                                                                 <h6 class="mb-0">Status</h6>
                                                             </div>
-                                                            <div class="col-sm-9 text-secondary">
-                                                                {{profileData.userIdStatus}}
+                                                            <div class="col-sm-6 text-secondary">
+                                                                <input class="styleDisable" type="text" placeholder=""
+                                                                       name="userIdStatus" id="emailOfuser"
+                                                                       ng-model="userIdStatus"  readonly="">
+                                                                <!--{{profileData.userIdStatus}}-->
                                                             </div>
                                                         </div>
-                                                        <hr>
+                                                        <!--<hr class="profile-hv">-->
                                                         <div class="row ">
                                                             <div class="col-sm-2 mr-0" ng-hide="editButton">
                                                                 <button type="button" class="btn btn-info"

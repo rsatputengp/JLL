@@ -977,6 +977,11 @@ app.controller('RM_MIS_Controller', function ($scope, $http, $document) {
                             $scope.profileData = response.data;
                             $scope.userName = $scope.profileData.userName;
                             $scope.email = $scope.profileData.email;
+                            $scope.branch = $scope.profileData.branch;
+                            $scope.area = $scope.profileData.area;
+                            $scope.region = $scope.profileData.region;
+                            $scope.zone = $scope.profileData.zone;
+                            $scope.userIdStatus = $scope.profileData.userIdStatus;
                         }, function (error)
                         {
                             console.log(error);
