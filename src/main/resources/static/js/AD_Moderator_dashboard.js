@@ -643,10 +643,10 @@ app.controller('AD_Moderator_Controller', function ($scope, $http, $document) {
                         'Loan Applied Cycle': item.loanAppliedCycle,
                         'FO ID': item.foId,
                         'FO Name': item.foName,
-                        'Reason of cancellation': item.reasonOfCancellation,
+                        'Reason of Cancellation': item.reasonOfCancellation,
                         'Remarks': item.remarks,
-                        'Filled By': item.filledBy,
-                        'Modified By': item.modifiedBy
+                        'Filled by': item.filledBy,
+                        'Modified by': item.modifiedBy
                     };
                 });
 
@@ -714,19 +714,19 @@ app.controller('AD_Moderator_Controller', function ($scope, $http, $document) {
                         'FO ID': item.foId,
                         'Center Name': item.centerName,
                         'Center ID': item.centerId,
-                        'No of Installment': item.noOfInstallment,
-                        'Loan collection receipt available in file': item.loanCollectionReceiptAvailableInFile,
-                        'RD collection receipt available in file': item.rdCollectionReceiptAvailableInFile,
-                        'Loan card Update': item.loanCardUpdate,
-                        'RD Passbook issued': item.rdPassbookIssued,
+                        'No. of Installment': item.noOfInstallment,
+                        'Loan Collection Receipt Available in File': item.loanCollectionReceiptAvailableInFile,
+                        'RD Collection Receipt Available in File': item.rdCollectionReceiptAvailableInFile,
+                        'Loan Card Update': item.loanCardUpdate,
+                        'RD Passbook Issued': item.rdPassbookIssued,
                         'RD Collection Regular/Irregular': item.rdCollectionRegular_Irregular,
-                        'If any OD customer': item.ifAnyODCustomer,
-                        'If any customer Migrate': item.ifAnyCustomerMigrate,
-                        'BM Visit done': item.bmVisitDone,
-                        'AM visit done': item.amVisitDone,
-                        'Any other Observation': item.anyOtherObservation,
-                        'Filled By': item.filledBy,
-                        'Modified By': item.modifiedBy
+                        'If any OD Customer': item.ifAnyODCustomer,
+                        'If any Customer Migrate': item.ifAnyCustomerMigrate,
+                        'BM Visit Done': item.bmVisitDone,
+                        'AM Visit Done': item.amVisitDone,
+                        'Any Other Observation': item.anyOtherObservation,
+                        'Filled by': item.filledBy,
+                        'Modified by': item.modifiedBy
                     };
                 });
 
@@ -794,18 +794,18 @@ app.controller('AD_Moderator_Controller', function ($scope, $http, $document) {
                         'Region': item.region,
                         'Area': item.area,
                         'Branch Name': item.branchName,
-                        'Branch Id': item.branchId,
+                        'Branch ID': item.branchId,
                         'Month of Audit': item.monthOfAudit,
                         'Audited by': item.auditedBy,
                         'Audit Report Realese Date': item.auditReportRealeseDate,
                         'Audit Scoring': item.auditScoring,
-                        'Scores%': item.scores,
-                        'Remark': item.remark,
-                        'Audit cover': item.auditCover,
+                        'Scores %': item.scores,
+                        'Remarks': item.remark,
+                        'Audit Cover': item.auditCover,
                         'Audit Schedule': item.auditSchedule,
                         'Complince Status': item.complinceStatus,
-                        'Filled By': item.filledBy,
-                        'Modified By': item.modifiedBy
+                        'Filled by': item.filledBy,
+                        'Modified by': item.modifiedBy
                     };
                 });
 
@@ -857,6 +857,15 @@ app.controller('AD_Moderator_Controller', function ($scope, $http, $document) {
             };
 
             //end Json to Excel file
+
+            $scope.showMessage = function (inputId, divId) {
+                const viewMessage = document.getElementById(inputId);
+                const popupView = document.getElementById(divId);
+                viewMessage.addEventListener('input', function () {
+                    popupView.innerText = viewMessage.value;
+                });
+
+            };
 
         }
     } else {

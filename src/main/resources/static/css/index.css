@@ -188,8 +188,12 @@ body {
     /* margin-bottom: 10px; */
 }
 
+.forbody{
+}
+
 .signup-content {
     padding: 20px 0;
+    margin-top: 70px !important;
     /* margin-top: -20px; */
 }
 
@@ -410,6 +414,7 @@ label.valid:after {
 .signin-content {
     padding-top: 67px;
     padding-bottom: 87px;
+    margin-top: 70px !important;
 }
 
 .social-login {
@@ -759,4 +764,8 @@ body{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+a {
+    cursor: pointer;
 }

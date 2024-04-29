@@ -181,30 +181,30 @@
                                     <table class="table">
                                         <thead class="thead-dark">
                                             <tr>
-                                                <th scope="col">sr.no</th>
+                                                <th scope="col">Sr.No</th>
                                                 <th scope="col">Branch Id</th>
-                                                <th scope="col"> Branch Name</th>
-                                                <th scope="col"> RO ID</th>
-                                                <th scope="col"> RO Name</th>
+                                                <th scope="col">Branch Name</th>
+                                                <th scope="col">RO Id</th>
+                                                <th scope="col">RO Name</th>
                                                 <th scope="col">HV Date</th>
-                                                <th scope="col"> Center ID</th>
-                                                <th scope="col"> Center Name</th>
-                                                <th scope="col">Client ID</th>
+                                                <th scope="col">Center Id</th>
+                                                <th scope="col">Center Name</th>
+                                                <th scope="col">Client Id</th>
                                                 <th scope="col">Client Name</th>
                                                 <th scope="col">Loan Applied Cycle</th>
-                                                <th scope="col">FO ID</th>
+                                                <th scope="col">FO Id</th>
                                                 <th scope="col">FO Name</th>
-                                                <th scope="col">Reason of cancellation</th>
+                                                <th scope="col">Reason of Cancellation</th>
                                                 <th scope="col">Remarks</th>
-                                                <th scope="col">Filled By</th>
-                                                <th scope="col">Modified By</th>                                                
+                                                <th scope="col">Filled by</th>
+                                                <th scope="col">Modified by</th>                                                 
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr ng-repeat="hVerification in houseVerificationList| continuousSubstringFilter:searchHV:['id','branchId','branchName'
                                                 ,'roId','roName','hvDate','centerId','centerName','clientId','clientName','loanAppliedCycle'
                                                 ,'foId','foName','reasonOfCancellation','remarks','filledBy','modifiedBy']">
-                                                <td ng-click="getHVrecord(hVerification.id)">{{$index + 1}}</td>
+                                                <td class="editCursor" ng-click="getHVrecord(hVerification.id)">{{$index + 1}}</td>
                                                 <td>{{hVerification.branchId}}</td>
                                                 <td>{{hVerification.branchName}}</td>
                                                 <td>{{hVerification.roId}}</td>
@@ -236,7 +236,7 @@
                     <div class="row">
                         <div class="col-md-12 mt-5">
                             <div class="houseVerificationCard">
-                                <form class="HVform " ng-submit="submitHVform()">
+                                <form class="HVform" ng-submit="submitHVform()">
                                     <span class="closeForm" ng-click="HVcloseForm()">&times;</span>
                                     <div class="form-row formHeader ">
                                         <div class="ml-4">
@@ -361,7 +361,7 @@
                     <div class="col-md-12">
                         <div class="d-flex flex-row">
                             <div>
-                                <h4 style="font-weight: 900;"> center Visit Report</h4>
+                                <h4 style="font-weight: 900;"> Center Visit Report</h4>
                             </div>
                             <div class="ml-2">
                                 <button class="excel" id="etecenterVisitReport" ng-click="exportToExcelCVR()">
@@ -379,29 +379,29 @@
                                     <table class="table">
                                         <thead class="thead-dark">
                                             <tr>
-                                                <th scope="col">sr.no</th>
-                                                <th scope="col"> Branch ID</th>
+                                                <th scope="col">Sr.No</th>
+                                                <th scope="col">Branch Id</th>
                                                 <th scope="col">Branch Name</th>
-                                                <th scope="col">RO EMP ID</th>
-                                                <th scope="col"> RO Name</th>
-                                                <th scope="col"> Date of Center Visit</th>
-                                                <th scope="col">FO ID</th>
+                                                <th scope="col">RO Emp Id</th>
+                                                <th scope="col">RO Name</th>
+                                                <th scope="col">Date of Center Visit</th>
+                                                <th scope="col">FO Id</th>
                                                 <th scope="col">FO Name</th>
-                                                <th scope="col">Center ID</th>
+                                                <th scope="col">Center Id</th>
                                                 <th scope="col">Center Name</th>
-                                                <th scope="col">No of Installment</th>
-                                                <th scope="col">Loan collection receipt available in file</th>
-                                                <th scope="col">RD collection reciept available in file</th>
+                                                <th scope="col">No. of Installment</th>
+                                                <th scope="col">Loan Collection Receipt Available in File</th>
+                                                <th scope="col">RD Collection Reciept Available in File</th>
                                                 <th scope="col">Loan Card Update</th>
-                                                <th scope="col">RD Passbook issued</th>
+                                                <th scope="col">RD Passbook Issued</th>
                                                 <th scope="col">RD Collection Regular/Irregular</th>
-                                                <th scope="col">If any OD customer</th>
-                                                <th scope="col">If any customer Migrate</th>
-                                                <th scope="col">BM Visit done</th>
-                                                <th scope="col">AM Visit done</th>
-                                                <th scope="col">Any other Observation</th>
-                                                <th scope="col">Filled By</th>
-                                                <th scope="col">Modified By</th>                                                
+                                                <th scope="col">If any OD Customer</th>
+                                                <th scope="col">If any Customer Migrate</th>
+                                                <th scope="col">BM Visit Done</th>
+                                                <th scope="col">AM Visit Done</th>
+                                                <th scope="col">Any Other Observation</th>
+                                                <th scope="col">Filled by</th>
+                                                <th scope="col">Modified by</th>                                                  
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -410,7 +410,7 @@
                                                 ,'loanCollectionReceiptAvailableInFile','rdCollectionReceiptAvailableInFile','loanCardUpdate'
                                                 ,'rdPassbookIssued','rdCollectionRegular_Irregular','ifAnyODCustomer','ifAnyCustomerMigrate'
                                                 ,'bmVisitDone','amVisitDone','anyOtherObservation','filledBy','modifiedBy']">
-                                                <td ng-click="getCVRrecord(cvReport.id)">{{$index + 1}}</td>
+                                                <td class="editCursor" ng-click="getCVRrecord(cvReport.id)">{{$index + 1}}</td>
                                                 <td>{{cvReport.branchId}}</td>
                                                 <td>{{cvReport.branchName}}</td>
                                                 <td>{{cvReport.roEmpId}}</td>
@@ -607,7 +607,7 @@
                             </div>
                             <div class="ml-2">
                                 <button class="excel" id="eteAuditScoringReport" ng-click="exportToExcelASR()">
-                                    Export to excel
+                                    Export to Excel
                                 </button> 
                             </div>
                             <div class="form-group has-search ml-md-auto">
@@ -621,29 +621,29 @@
                                     <table class="table">
                                         <thead class="thead-dark">
                                             <tr>
-                                                <th scope="col">sr.no</th>
+                                                <th scope="col">Sr.No</th>
                                                 <th scope="col">Region</th>
                                                 <th scope="col">Area</th>
-                                                <th scope="col"> Branch ID</th>
+                                                <th scope="col">Branch Id</th>
                                                 <th scope="col">Branch Name</th>
-                                                <th scope="col"> Month of Audit</th>
+                                                <th scope="col">Month of Audit</th>
                                                 <th scope="col">Audited by</th>
                                                 <th scope="col">Audit Report Realese Date</th>
                                                 <th scope="col">Audit Scoring</th>
                                                 <th scope="col">Scores %</th>
-                                                <th scope="col">Remark</th>
+                                                <th scope="col">Remarks</th>
                                                 <th scope="col">Audit Cover</th>
                                                 <th scope="col">Audit Schedule</th>
                                                 <th scope="col">Complince Status</th>
-                                                <th scope="col">Filled By</th>
-                                                <th scope="col">Modified By</th>
+                                                <th scope="col">Filled by</th>
+                                                <th scope="col">Modified by</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr ng-repeat="adReport in auditScoringReportList| continuousSubstringFilter:searchASR:['id','region','area','branchName','branchId','monthOfAudit'
                                                     ,'auditedBy','auditReportRealeseDate','auditScoring','scores','remark','auditCover','auditSchedule'
                                                     ,'complinceStatus','filledBy','modifiedBy']">
-                                                <td ng-click="getASRrecord(adReport.id)">{{$index + 1}}</td>
+                                                <td class="editCursor" ng-click="getASRrecord(adReport.id)">{{$index + 1}}</td>
                                                 <td>{{adReport.region}}</td>
                                                 <td>{{adReport.area}}</td>
                                                 <td>{{adReport.branchName}}</td>
@@ -785,7 +785,7 @@
 
                 <!-- view Profile -->
                 <div id="viewProfile" ng-show="showProfile">
-                    <div class="container mt-2">
+                    <div class="container-md mt-5">
                         <div class="row">
                             <div class="col-md-10 offset-md-1">
                                 <div class="my-card">
@@ -797,22 +797,21 @@
                                                         <div class="d-flex flex-column align-items-center text-center">
                                                             <br><br>
                                                             <img src="https://bootdey.com/img/Content/avatar/avatar7.png"
-                                                                 alt="Admin" class="rounded-circle p-1 bg-primary"
-                                                                 width="150">
+                                                                 alt="Admin" class="rounded-circle p-1 bg-primary" width="150">
                                                             <div class="mt-2">
                                                                 <h6 style="color: black;">{{profileData.emp_id}}</h6>
                                                                 <h4 class="userName">{{profileData.userName}}</h4>
                                                                 <p class="text-secondary mb-1">
                                                                     {{profileData.designation}}</p>
-                                                                <p class="text-muted font-size-sm">
+                                                                <p class="text-muted font-size-sm hideExtra" id="address" ng-mouseenter="showMessage(address, popupViewArea)" >
                                                                     {{profileData.branch}},{{profileData.area}},{{profileData.region}},{{profileData.zone}}
+                                                                <div class="popupView" id="popupViewAdd">{{profileData.branch}},{{profileData.area}},{{profileData.region}},{{profileData.zone}}</div>
                                                                 </p>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-
                                             <div class="col-md-8">
                                                 <div class="card">
                                                     <div class="card-body">
@@ -825,94 +824,73 @@
                                                                        ng-model="userName" ng-disabled="usernameField">
                                                             </div>
                                                         </div>
-                                                        <!--<hr class="profile-hv">-->
                                                         <div class="row viewPro ">
                                                             <div class="col-sm-4">
                                                                 <h6 class="mb-0">Email</h6>
                                                             </div>
                                                             <div class="col-sm-6 text-secondary">
                                                                 <input class="styleDisable" type="email" placeholder=""
-                                                                       name="email Id of user" id="emailOfuser"
-                                                                       ng-model="email"  ng-disabled="emailField">
+                                                                       name="email Id of user" id="emailOfuser" ng-model="email"  ng-disabled="emailField">
                                                             </div>
                                                         </div>
-
-                                                        <!--<hr class="profile-hv">-->
                                                         <div class="row viewPro">
                                                             <div class="col-sm-4">
                                                                 <h6 class="mb-0">Branch</h6>
                                                             </div>
-                                                            <div class="col-sm-6 text-secondary">
+                                                            <div class="col-sm-6 text-secondary" ng-mouseenter="showMessage(branchview, popupViewBranch)">
                                                                 <input class="styleDisable" type="text" placeholder=""
-                                                                       name="email Id of user" id="emailOfuser"
-                                                                       ng-model="branch"  readonly="" >
-                                                                <!--{{profileData.branch}}-->
+                                                                       name="email Id of user" id="branchview" ng-model="branch"  readonly="">
+                                                                <div class="popupView" id="popupViewBranch">{{profileData.branch}}</div>
                                                             </div>
                                                         </div>
-                                                        <!--<hr class="profile-hv">-->
                                                         <div class="row viewPro">
                                                             <div class="col-sm-4">
                                                                 <h6 class="mb-0">Area</h6>
                                                             </div>
-                                                            <div class="col-sm-6 text-secondary">
+                                                            <div class="col-sm-6 text-secondary" ng-mouseenter="showMessage(areaview, popupViewArea)">
                                                                 <input class="styleDisable" type="text" placeholder=""
-                                                                       name="email Id of user" id="emailOfuser"
-                                                                       ng-model="area"  readonly="">
-                                                                <!--{{profileData.area}}-->
+                                                                       name="email Id of user" id="areaview" ng-model="area"  readonly="">
+                                                                <div class="popupView" id="popupViewArea">{{profileData.area}}</div>
                                                             </div>
                                                         </div>
-                                                        <!--<hr class="profile-hv">-->
                                                         <div class="row viewPro">
                                                             <div class="col-sm-4">
                                                                 <h6 class="mb-0">Region</h6>
                                                             </div>
                                                             <div class="col-sm-6 text-secondary">
                                                                 <input class="styleDisable" type="text" placeholder=""
-                                                                       name="region" id="emailOfuser"
-                                                                       ng-model="region"  readonly="">
-                                                                <!--{{profileData.region}}-->
+                                                                       name="region" id="emailOfuser" ng-model="region"  readonly="">
                                                             </div>
                                                         </div>
-                                                        <!--<hr class="profile-hv">-->
                                                         <div class="row viewPro">
                                                             <div class="col-sm-4">
                                                                 <h6 class="mb-0">Zone</h6>
                                                             </div>
                                                             <div class="col-sm-6 text-secondary">
                                                                 <input class="styleDisable" type="text" placeholder=""
-                                                                       name="zone" id="emailOfuser"
-                                                                       ng-model="zone"  readonly="">
-                                                                <!--{{profileData.zone}}-->
+                                                                       name="zone" id="emailOfuser" ng-model="zone"  readonly="">
                                                             </div>
                                                         </div>
-                                                        <!--<hr class="profile-hv">-->
                                                         <div class="row viewPro">
                                                             <div class="col-sm-4">
                                                                 <h6 class="mb-0">Status</h6>
                                                             </div>
                                                             <div class="col-sm-6 text-secondary">
                                                                 <input class="styleDisable" type="text" placeholder=""
-                                                                       name="userIdStatus" id="emailOfuser"
-                                                                       ng-model="userIdStatus"  readonly="">
-                                                                <!--{{profileData.userIdStatus}}-->
+                                                                       name="userIdStatus" id="emailOfuser" ng-model="userIdStatus"  readonly="">
                                                             </div>
                                                         </div>
-                                                        <!--<hr class="profile-hv">-->
                                                         <div class="row ">
                                                             <div class="col-sm-2 mr-0" ng-hide="editButton">
-                                                                <button type="button" class="btn btn-info"
-                                                                        ng-click="editProfileForm()">Edit</button>
+                                                                <button type="button" class="btn btn-info" ng-click="editProfileForm()">Edit</button>
                                                             </div>
 
                                                             <div class="col-sm-4" ng-show="saveButton">
-                                                                <button type="submit" class="btn btn-success">Save
-                                                                    Changes</button>
+                                                                <button type="submit" class="btn btn-success" ng-click="updateProfile()">Save Changes</button>
                                                             </div>
-
                                                             <div class="col-sm-2" style="margin-left: -20px;">
                                                                 <button type="button" class="btn btn-danger" ng-click="closeProfileView()">Cancel</button>
                                                             </div>
-
                                                         </div>
                                                     </div>
                                                 </div>

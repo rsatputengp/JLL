@@ -1233,6 +1233,14 @@ app.controller('OD_Moderator_Controller', function ($scope, $http, $document) {
 
             //end Json to Excel file
 
+            $scope.showMessage = function (inputId, divId) {
+                const viewMessage = document.getElementById(inputId);
+                const popupView = document.getElementById(divId);
+                viewMessage.addEventListener('input', function () {
+                    popupView.innerText = viewMessage.value;
+                });
+
+            };
         }
     } else {
         window.location.href = $scope.uRl + "index.html";

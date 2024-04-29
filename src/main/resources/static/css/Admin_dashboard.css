@@ -556,3 +556,40 @@ h3{
     padding: 15px 35px;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
+
+a {
+    cursor: pointer;
+}
+
+.hideExtra{
+    width: 220px; /* Set your desired width */
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis; /* Apply ellipsis */
+}
+
+.popupView {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    padding: 10px;
+    z-index: 2;
+    width: 560px;
+}
+
+#branchview:hover + .popupView {
+    display: block;
+}
+
+#areaview:hover + .popupView {
+    display: block;
+}
+
+#address:hover + .popupView {
+    display: block;
+}
+
+.editCursor{
+    cursor: pointer;
+}
