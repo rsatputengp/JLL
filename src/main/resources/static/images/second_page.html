@@ -1,0 +1,130 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mandatory KYC Upload</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-heading {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+        .form-label {
+            font-weight: bold;
+        }
+
+        .form-input {
+            width: 96%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .form-button {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            align-self: flex-end; /* Align the button to the right */
+        }
+
+        .form-button:hover {
+            background-color: #0056b3;
+        }
+        h1.form-heading {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    background-color: #91E246; 
+    color: black ; 
+    padding: 10px; 
+}
+.form-button{
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #91E246;
+    color: black;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+ .button:hover {
+    background-color: #91E246;
+  }
+  .form-group1 {
+    width: 300px; /* Adjust the width as needed */
+    /* Other CSS styles for .form-group1 */
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="form-heading">Mandatory KYC Upload</h1>
+        <h4>Applicant Name:</h4>
+        <form action="#" method="post" enctype="multipart/form-data">
+            <div class="form-group" style="display: inline-block; margin-right: 20px;">
+                <input type="text" id="firstName" name="firstName" class="form-input" required value="First Name">
+            </div>
+            <div class="form-group" style="display: inline-block;">
+                <input type="text" id="lastName" name="lastName" class="form-input" required value="Last Name">
+            </div>
+        </form>
+        
+            
+            
+            <div class="form-group">
+                <label for="accountNumber" class="form-label">Account Number:</label>
+                <input type="text" id="accountNumber" name="accountNumber" class="form-input" required>
+            </div>
+            <div class="form-group1">
+                <label for="accountType" class="form-label">Account Type:</label>
+                <select id="accountType" name="accountType" class="form-input" required>
+                    <option value="savings">Savings</option>
+                    <option value="current">Current</option>
+                </select>
+            </div>
+            <div class="document-section">
+                <h3 class="form-heading">Document to Upload</h3>
+                <label class="form-label">Upload PAN Card:</label>
+                <input type="file" id="panCard" name="panCard" accept=".jpg, .jpeg, .png, .pdf" required>
+            </div><br>
+            <div class="document-section">
+                <label class="form-label">Upload ADHAR Card:</label>
+                <input type="file" id="panCard" name="panCard" accept=".jpg, .jpeg, .png, .pdf" required>
+            </div><br>
+            <div class="document-section">
+                <label class="form-label">Upload Voter ID</label>
+                <input type="file" id="panCard" name="panCard" accept=".jpg, .jpeg, .png, .pdf" required>
+            </div>
+        </form><br>
+        <button type="submit" class="form-button">Submit</button>
+    </div>
+</body>
+</html>

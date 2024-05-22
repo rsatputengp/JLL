@@ -60,15 +60,13 @@ body{
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/*.containernew {
-    width: 100%;
-    margin: 0 auto;
-    background-color: #fff;
-    padding: 15px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    display: inline-block;
-}*/
+.containernew {
+
+    display: flex;
+    /*justify-content: center;*/
+    align-items: center;
+    justify-content: space-around;
+}
 
 .document {
     margin-bottom: 20px;
@@ -79,7 +77,8 @@ body{
 }    
 
 .attractive-button {
-    background-color: #91E246; 
+    /*    background-color: #91E246; */
+    background-color: #bfe7ee !important;
     color: black; 
     border: none; 
     padding: 6px 20px; 
@@ -88,7 +87,8 @@ body{
 }
 
 .attractive-button:hover {
-    background-color: #007bff; 
+    background-color: rgb(123, 199, 235) !important;    
+    /*background-color: #007bff;*/ 
 }
 table {
     width: 100%;
@@ -259,12 +259,14 @@ h1.form-heading {
 .cardviewtr{
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     text-align: center;
-    background-color: #C7E7C5;
+    background-color: #bfe7ee !important;
+    /*background-color: #C7E7C5;*/
 }
 .cardviewth{
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     text-align: center;
-    background-color: #80C37D;
+    background-color: rgb(123, 199, 235) !important;
+    /*background-color: #80C37D;*/
 }
 .searchbar{
     width: 80%;
@@ -487,17 +489,20 @@ dt{
 }
 
 .cardL , .cardR{
-    width: 44%;
+    width: 46%;
     height:550px;
     margin-top: -22px;
-    float: left;
+    /*float: left;*/
     padding: 8px;
-    border: 2px solid #80C37D;
+    border: 2px solid #bfe7ee;;
     border-radius: 7px;
-    background-color: #C7E7C5;
-    margin-left: 28px;  
+    background-color: #7BC7EB;
+    /*margin-left: 28px;*/  
 }
 
+.mlsm{
+    margin-left: 0px;
+}
 
 .right-branchContainer{
     width: 44%;
@@ -519,11 +524,11 @@ dt{
     height: 185px; /* Adjust the maximum height as needed */
     width: 220px;
     overflow-y: auto;
-    border: 4px solid #e5ffcf;
+    border: 3px solid white;
     padding: 8px;
     /*margin-bottom: 1px;*/
     border-radius: 8px;
-    background-color: #f7fcf2;
+    background-color: #bfe7ee;
     margin-left: 8%;
     margin-top: 8px;
     display:inline-block;
@@ -532,10 +537,10 @@ dt{
     height: 185px; /* Adjust the maximum height as needed */
     width: 220px;
     overflow-y: auto;
-    border: 4px solid #e5ffcf;
+    border: 3px solid white;
     border-radius: 8px;
     padding: 8px; 
-    background-color: #f7fcf2;
+    background-color: #bfe7ee;
     margin-left: 8%;
     margin-top: 8px;
     /*width: 80%;*/
@@ -559,7 +564,7 @@ dt{
     margin-top: 6px;
     padding: 2px;
     position: relative;
-    background-color: white;
+    background-color: #bfe7ee;
     margin-left: 14px;
     margin-right: 14px;
 }
@@ -572,8 +577,9 @@ dt{
 
 /* Style for the active button */
 .active {
-    background-color: #4CAF50;
-    color: white;
+    /*    background-color: #4CAF50;*/
+    background-color: rgb(123, 199, 235) !important; 
+    color: mediumblue;
 }
 
 
@@ -592,10 +598,13 @@ dt{
 }
 
 
+/* CSS for Sreach bar  */
+
+
 .form-controlx:focus {
-    border-color: #218838; /* Dark green border when focused */
-    box-shadow: 0 0 5px #28a745; /* Green glow effect when focused */
-    outline: none; /* Remove default focus outline */
+    border-color: #014e73 !important;
+    box-shadow: 0 0 6px #095ab7 !important; 
+    outline: none !important;
 }
 
 
@@ -615,15 +624,16 @@ dt{
     pointer-events: none;
     color: #aaa;
     border-radius: 20px;
+    align-items: center;
 }
 
 
 .form-controlx {
-
-    display: block;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    display: inline-block;
     width: 100%;
     height: calc(1.5em + 0.75rem + 2px);
-    max-width: 400px;
+    max-width:400px;
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
@@ -635,9 +645,6 @@ dt{
     border-color: #28a745;
     padding: 15px 35px;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-    margin-left: -14px;
-    padding-left: 40px;
-
 }
 
 .ab{
@@ -724,7 +731,7 @@ dt{
 }
 
 .form-control[type="text"]{
-    background-color: #f7fcf2;
+    background-color: white;
     /*border-color: rgba(0, 0, 0, 0.6);*/
 }
 
@@ -738,26 +745,51 @@ dt{
 /*css for wraping extra contnet in branch access branch input field*/
 
 .hideExtra{
-    width: 254px; /* Set your desired width */
+    width: 268px; /* Set your desired width */
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis; /* Apply ellipsis */
 }
 
 .popupView {
-        display: none;
-        position: absolute;
-        background-color: #f9f9f9;
-        border: 1px solid #ccc;
-        padding: 10px;
-        z-index: 2;
-    }
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    padding: 10px;
+    z-index: 2;
+}
 
-    #branchview:hover + .popupView {
-        display: block;
-    }
-    
-    #areaview:hover + .popupView {
-        display: block;
-    }
-    
+#branchview:hover + .popupView {
+    display: block;
+}
+
+#areaview:hover + .popupView {
+    display: block;
+}
+
+
+.list-iconS{
+    height: 18px;
+    width: 18px;
+}
+
+/*.excel {
+    display: inline-block;
+    background: #14A3A1;
+    color: #25B7D3;
+    font-weight: 600;
+    font-size: 14px;
+    width: auto;
+    padding: 3px 10px;
+    border-radius: 5px;
+    background-color: whitesmoke;
+    border: #25B7D3 solid 2px;
+    cursor: pointer;
+}
+
+.excel:hover {
+    border: white solid 2px;
+    background: #7bc7eb;
+    color: white;
+}*/

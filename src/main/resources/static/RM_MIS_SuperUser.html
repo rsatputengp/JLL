@@ -35,8 +35,10 @@
                         <div class="col-md-12">  
                             <div class="row">
                                 <div class=" col">
-                                    <div class="form-group has-search">
-                                        <span class="fa fa-search form-control-feedback"></span>
+                                    <div class="form-group has-search ml-md-auto">
+                                        <span class="form-control-feedback">
+                                            <img class="list-iconS" src="images/search_bar.png" alt=""/>
+                                        </span> 
                                         <input type="text" class="form-controlx" ng-model="search" placeholder="Search...">
                                     </div>
                                 </div>
@@ -107,10 +109,10 @@
 
                         <!--left container-->
 
-                        <div class="cardL row ml-md-5">
+                        <div class="cardL row mlsm">
                             <div class="col ">
-                                <div class="row justify-content-right">
-                                </div>
+                                <!--                                <div class="row justify-content-right">
+                                                                </div>-->
 
                                 <form class="form-row cardX">
 
@@ -203,12 +205,12 @@
                         </div>
 
                         <!--right conatiner-->
-                        <div class="cardR ml-md-5">
+                        <div class="cardR ">
                             <div class="col">
                                 <form class="form-row">
                                     <div class="row justify-content-center">
                                         <div class="col ml-md-4 justify-content-center">
-                                            <label style="font-size: 20px; color: #007006;font-family: 'Rajdhani', sans-serif;" for="selectedOptionForUser">User's Designation :</label>
+                                            <label style="font-size: 20px; color: black;font-family: 'Rajdhani', sans-serif;" for="selectedOptionForUser">User's Designation :</label>
                                             <select class="form-input-selectuser" id="designation" ng-model="selectedOptionForUser" ng-change="selectedUserType()">
                                                 <option value="">Select the Designation</option>
                                                 <optgroup label="Sales Department">
@@ -231,7 +233,7 @@
                                             </select>
                                         </div>  
                                         <div class="col align-item-cneter">
-                                            <label style="font-size: 20px; color: #007006;font-family: 'Rajdhani', sans-serif;" for="selectedOption">User's Name :</label>
+                                            <label style="font-size: 20px; color: black;font-family: 'Rajdhani', sans-serif;" for="selectedOption">User's Name :</label>
                                             <select class="form-input-selectuser" ng-model="selectedOption" ng-change="showSelectedValue()">
                                                 <option value="" disabled="" selected="">Select The User Name</option>
                                                 <option ng-repeat="option in acceptedlist" value="{{option.emp_id}}">{{option.emp_id}}</option>
@@ -288,44 +290,44 @@
         </div>
         <script>
 
-            ///session tinme out code here
-            var idleTimeout = 900000; // 5 minutes in milliseconds
-            var idleTimer;
+             ///session tinme out code here
+             var idleTimeout = 900000; // 5 minutes in milliseconds
+             var idleTimer;
 
-            function resetTimer() {
-                clearTimeout(idleTimer);
-                idleTimer = setTimeout(logout, idleTimeout);
-            }
+             function resetTimer() {
+                 clearTimeout(idleTimer);
+                 idleTimer = setTimeout(logout, idleTimeout);
+             }
 
-            function logout() {
-                window.localStorage.removeItem("super_user");
-                location.reload();
-                console.log("User automatically logged out due to inactivity.");
-            }
-            // Initial setup
-            resetTimer();
-            // Listen for user activity
-            window.addEventListener('mousemove', resetTimer);
-            window.addEventListener('keydown', resetTimer);
-            window.addEventListener('scroll', resetTimer);
+             function logout() {
+                 window.localStorage.removeItem("super_user");
+                 location.reload();
+                 console.log("User automatically logged out due to inactivity.");
+             }
+             // Initial setup
+             resetTimer();
+             // Listen for user activity
+             window.addEventListener('mousemove', resetTimer);
+             window.addEventListener('keydown', resetTimer);
+             window.addEventListener('scroll', resetTimer);
         </script>
 
         <script>
-            const branchview = document.getElementById('branchview');
-            const popupView = document.getElementById('popupView');
+             const branchview = document.getElementById('branchview');
+             const popupView = document.getElementById('popupView');
 
-            branchview.addEventListener('input', function () {
-                popupView.innerText = branchview.value;
-            });
+             branchview.addEventListener('input', function () {
+                 popupView.innerText = branchview.value;
+             });
         </script>
 
         <script>
-            const branchview = document.getElementById('areaview');
-            const popupView = document.getElementById('popupViewArea');
+             const branchview = document.getElementById('areaview');
+             const popupView = document.getElementById('popupViewArea');
 
-            branchview.addEventListener('input', function () {
-                popupView.innerText = branchview.value;
-            });
+             branchview.addEventListener('input', function () {
+                 popupView.innerText = branchview.value;
+             });
         </script>
 
     </body>

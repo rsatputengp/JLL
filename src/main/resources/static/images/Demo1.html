@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+.card {
+  width: 400px;
+  margin: 80px;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.5); 
+}
+    
+    .card input[type="text"],
+    .card input[type="password"] {
+        width: 100%;
+      padding: 12px 20px;
+      margin: 0;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      border: 0px solid black;
+      background-color: rgba(0, 0, 0, 0.6);
+      color: rgba(1288, 1288, 1288, 0.9);
+   
+    }
+   .right-align {
+
+  text-align: center;
+}
+    
+   .card button {
+       display: inline-block;
+       padding: 10px 20px;
+       background-color: black;
+       color: white;
+       border: none;
+       background-color: rgba(0, 0, 0, 0.5);
+       width: 45%;
+       color: white;
+       padding: 12px 20px;
+       margin:  0px;
+       border: none;
+       border-radius: 10px; 
+       cursor: pointer;
+}
+ .button:hover {
+    background-color: #91E246;
+  }
+    .input-container {
+      position: relative;
+      margin-bottom: 20px;
+       
+    }
+    .input-container i {
+      position: absolute;
+      top: 25px;
+      left: 25px;
+      color: #ccc;
+     
+    }
+body{
+     background-image: url('/home/mansi/Downloads/finance.jpg');
+      
+      background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+.card {
+    width: calc(33.33% - 40px);
+    padding: 20px;
+    box-sizing: border-box;
+    margin: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+.btn {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #91E246;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #91E246;
+}
+    </style>
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Login Page</title>
+    <!-- Include jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body> 
+    <div class="card">
+        <div class="logo">
+            <img src="/home/mansi/Downloads/logo.png" alt="Company Logo" style="width: 100px; ">
+        </div>
+      
+        <form id="loginForm">
+            <h3 style="font-size: 28px; color: white; margin-bottom: -15px;">Document Management System </h3><br>
+            <div class="input-container">
+                <i class="far fa-user right-align-icon" style=" left: 50px; top: 60%; "></i><br>
+                <input type="text" id="username" name="username" placeholder="name@sahayog.com" required class="right-align">
+            </div>
+            <div class="input-container">
+                <i class="fas fa-lock right-align-icon "style=" left: 50px;top: 35%;"></i>
+                <input type="password" id="password" name="password" placeholder="Password" required class="right-align">
+            </div>
+ 
+            <button id="loginButton" class="btn btn-sm btn-primary btn-block btn-login" type="submit">Login</button>
+        </form>
+    </div>
+    </div>  
+    <script>
+        $(document).ready(function() {
+            $('#loginForm').submit(function(e) {
+                e.preventDefault(); // Prevent the default form submission
+        
+                // Get the values of the username and password input fields
+                var username = $('#username').val();
+                var password = $('#password').val();
+        
+                // Check if the username and password match your condition
+                if (username === 'mansi@gmail.com' && password === '1234') {
+                    // Redirect to the second page (change 'second_page.html' to your actual page URL)
+                    window.location.href = 'third_page.html';
+                } else {
+                    // Display an error message or handle the login failure
+                    alert('Invalid username or password');
+                }
+            });
+        });
+        </script>
+        
+</body>
+</html>

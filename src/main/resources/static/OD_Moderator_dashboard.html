@@ -6,953 +6,46 @@
         <meta charset="UTF-8">
         <meta name="author" content="Ritik .k. satpute" >
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Area Account Manager Dashboard</title>
 
 
         <!-- CSS -->
-        <link href="css/profile.css" rel="stylesheet" type="text/css"/>
         <link href="css/Admin_dashboard.css" rel="stylesheet" type="text/css"/>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"></script>
+        <link href="css/profile.css" rel="stylesheet" type="text/css"/>
+
+        <script src="lib/xlsx.full.min.js" type="text/javascript"></script>
+        <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"></script>-->
 
         <meta name="robots" content="noindex, follow">
 
         <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
-              integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link href="lib/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <!--        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+                      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">-->
 
         <!-- Include Font Awesome CSS -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-              integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-              crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link href="lib/all.min.css" rel="stylesheet" type="text/css"/>
+        <!--        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+                      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+                      crossorigin="anonymous" referrerpolicy="no-referrer" />-->
 
 
         <!-- font  -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap" rel="stylesheet">
+        <link href="lib/css2.css" rel="stylesheet" type="text/css"/>
+        <!--<link href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap" rel="stylesheet">-->
 
 
         <!-- angular JS -->
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+        <script src="lib/angular.min.js" type="text/javascript"></script>
 
 
         <!--Java script-->
-
         <script src="js/OD_Moderator_dashboard.js" type="text/javascript"></script>
 
     </head>
 
     <body ng-app="OD_Moderator_App" ng-controller="OD_Moderator_Controller">
 
-        <!--         Navigation Bar 
-                <nav id="navbarContainer" class=" navbarContainer container-fluid ">
-                    <div class="JLL-logo">
-                        <a href="">
-                            <img src="images/JLL Logo.jpg" alt="" style="height: 38px; width: 200px;"/>
-                        </a>
-                    </div>
-                    <div class="navBarButton">
-                        <div class="fixedDiv">
-                            <a id="notification-button" class="navbar-button notification-button mt-1"
-                               ng-click="notificationButton()">
-                                <img src="images/bell.png" alt="bell_icon" height="20px" width="20px">
-                                <span class="notification-count" ng-show="notificationCount > 0"></span>
-                            </a>
-                        </div>
-                        <div class="fixedDiv">
-                            <a id="help-button" class="navbar-button mt-1" ng-click="helpButton()">
-                                <img src="images/question.png" alt="help_icon" height="20px" width="20px">
-                            </a>
-                        </div>
-                        <div class="fixedDiv ml-1">
-                            <a id="profile-button" class="navbar-button" ng-click="profileButton()">
-                                <img src="images/signin-image.jpg" alt="profile-image" height="30px" width="30px">
-                            </a>
-                        </div>
-                    </div>
-                </nav>
-        
-                <div id="main">
-                    <i class="fa-solid fa-bars oneSideBar" ng-click="openSideBar()"></i>
-                </div>
-        
-                 side Bar 
-                <div>
-                    <div id="sidebar" ng-style="{'width': sidebarWidth}">
-        
-                        <a href="#" ng-click="closeSidebar()" class="close-button">
-                            <i class="fa-solid fa-xmark"></i>
-                        </a>
-                        <a ng-click="rdCalling()" ng-show="sidebarWidth >= '200px'">
-                            <i class="fa-solid fa-phone"><span>RD Calling</span></i>
-                        </a>
-        
-                        <a ng-click="odCalling()" ng-show="sidebarWidth >= '200px'">
-                            <i class="fa-solid fa-phone"><span>OD Calling</span></i>
-                        </a>
-        
-                        <a ng-click="insuranceTracker()" ng-show="sidebarWidth >= '200px'">
-                            <i class="fa-solid fa-building-columns"><span>Insurance Tracker</span></i>
-                        </a>
-        
-                        <a ng-click="helpButton()" ng-show="sidebarWidth >= '100px'">
-                            <i class="fa-solid fa-question"><span>Help</span></i>
-                        </a>
-        
-                        <a ng-click="yourProfile()" ng-show="sidebarWidth >= '200px'">
-                            <i class="fa-solid fa-user"><span>Your Profile</span></i>
-                        </a>
-                        <a ng-click="logout()" ng-show="sidebarWidth >= '200px'">
-                            <i class="fa-solid fa-right-from-bracket"><span>Log out</span></i>
-                        </a>
-                        <hr>
-                    </div>
-        
-                </div>
-        
-                <div>
-        
-                     pop-up for profile 
-        
-                    <div class="navPopup">
-                        <div class="profile-card" ng-show="profileCard">
-                            <div class="row">
-        
-                                <div class="aba col-12 justify-content-center align-items-center">
-                                    <a href="#" ng-click="profile()" class="profileButton"><span>{{userRecord.userName}}</span></a>
-                                </div>
-        
-                                <div class="abb col-12 justify-content-center">
-                                    <button id="logoutButton" type="button" value="logout" ng-click="logout()">
-                                        <span style="font-weight: 600;">Logout</span>
-                                        <span style="margin-left: 160px; ">
-                                            <i class="fa-solid fa-right-from-bracket"></i>
-                                        </span>
-                                    </button>
-                                </div>
-        
-                            </div>
-                        </div>
-        
-                         pop-up for notification 
-                        <div class="notification-card" ng-show="notificationCard">
-                            <div class="popUp-header">
-                                <label class="popUp-label">Notification</label>
-                                <a type="button" class="close" aria-label="Close" ng-click="closePopup()">
-                                    <span aria-hidden="true">&times;</span>
-                                </a>
-                            </div>
-                        </div>
-        
-                         pop-up for help 
-                        <div class="help-card" ng-show="helpCard">
-                            <div class="popUp-header">
-                                <label class="popUp-label">Help</label>
-                                <a type="button" class="close" aria-label="Close" ng-click="closePopup()">
-                                    <span aria-hidden="true">&times;</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-        
-                <section class="acs" ng-click="closePopup(); closeSidebar()">
-        
-                     Dashboard 
-                    <div id="dashBoard" ng-show="dashBoard">
-        
-                         RD calling  List view
-                        <div class="RDcalling row" ng-show="RDcalling">
-                            <div class="col-md-12">
-                                <h4 style="font-weight: 900;"> RD Calling List View
-        
-                                </h4>
-        
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="my-card-a">
-                                            <table class="table">
-                                                <thead class="thead-dark">
-                                                    <tr>
-                                                        <th scope="col">sr.no</th>
-                                                        <th scope="col">Region</th>
-                                                        <th scope="col">Area</th>
-                                                        <th scope="col"> Branch Name</th>
-                                                        <th scope="col"> RD Acc No.</th>
-                                                        <th scope="col"> Client Name</th>
-                                                        <th scope="col">Date</th>
-                                                        <th scope="col">Calling Date</th>
-                                                        <th scope="col">Employee ID</th>
-                                                        <th scope="col">Employee Name</th>
-                                                        <th scope="col">Reason of RD</th>
-                                                        <th scope="col">AMC</th>
-                                                        <th scope="col">Remarks</th>
-                                                        <th scope="col">Filled By</th>
-                                                        <th scope="col">Modified By</th>
-        
-                                                    </tr>
-                                                </thead>
-                                                <tbody> 
-                                                    <tr ng-repeat="rdCalling in rdCallingList">
-                                                        <td  ng-click="getRDrecord(rdCalling.id)">{{$index + 1}}</td>
-                                                        <td>{{rdCalling.region}}</td>
-                                                        <td>{{rdCalling.branchId}}</td>
-                                                        <td>{{rdCalling.branchName}}</td>
-                                                        <td>{{rdCalling.rdAccountNumber}}</td>
-                                                        <td>{{rdCalling.clientName}}</td>
-                                                        <td>{{rdCalling.dateOfDefault}}</td>
-                                                        <td>{{rdCalling.callingDate}}</td>
-                                                        <td>{{rdCalling.calledByEmployeeId}}</td>
-                                                        <td>{{rdCalling.calledByEmployeeName}}</td>
-                                                        <td>{{rdCalling.reasonOfRDDefault}}</td>
-                                                        <td>{{rdCalling.anyMisappropriationCase}}</td>
-                                                        <td>{{rdCalling.anyMisappropriationCase}}</td>
-                                                        <td>{{rdCalling.remarksIfAny}}</td>
-                                                        <td>{{rdCalling.filledBy}}</td>
-                                                        <td>{{rdCalling.modifiedBy}}</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-        
-        
-                         RD calling Form 
-                        <div id="RDcontainer" ng-show="rdContainerForm">
-                            <div class="row">
-                                <div class="col-md-12 mt-5">
-                                    <div class="RDcallingCard">
-                                        <form class="RDform " ng-submit="updateRDform()">
-                                            <span class="closeForm" ng-click="RDcloseForm()">&times;</span>
-                                            <div class="form-row formHeader ">
-                                                <div class="ml-4">
-                                                    <h3>RD Calling Form</h3>
-                                                </div>
-                                                <div>
-                                                    <hr class="stylishLine">
-                                                </div>
-                                            </div>
-        
-                                            <div class="form-row ">
-                                                <div class="col-md-5 ">
-                                                    <label for="filledBy">Filled By</label><span class="required">*</span>
-                                                    <input type="text" class="form-control glow-effect" ng-model="filledBy" id="RDfilledBy"
-                                                           aria-describedby="filledBy" placeholder="">
-                                                    <input type="text" class="form-control glow-effect" ng-model="id" id="id"
-                                                           aria-describedby="id" placeholder="" hidden="">
-                                                </div>
-        
-                                                <div class="col-md-5 ml-auto">
-                                                    <label for="modifiedBy">Modified By</label><span class="required">*</span>
-                                                    <input type="modifiedBy" class="form-control" ng-model="modifiedBy" id="RDmodifiedBy"
-                                                           aria-describedby="modifiedBy" placeholder="">
-                                                </div>
-                                            </div>
-        
-        
-                                            <div class="form-row ">
-                                                <div class="col-md-5 ">
-                                                    <label for="selectedRegion">Region</label><span class="required">*</span>
-                                                    <input type="text" class="form-control glow-effect" ng-model="region" id="selectedRegion"
-                                                           aria-describedby="selectedRegion" placeholder="">
-                                                </div>
-        
-                                                <div class="col-md-5 ml-auto">
-                                                    <label for="selectedArea">Area</label><span class="required">*</span>
-                                                    <input type="text" class="form-control" ng-model="area" id="selectedArea"
-                                                           aria-describedby="selectedArea" placeholder="">
-                                                </div>
-                                            </div>
-        
-                                            <div class="form-row">
-                                                <div class="col-md-5">
-                                                    <label for="branchID">Branch ID</label><span class="required">*</span>
-                                                    <input type="text" class="form-control" ng-model="branchId" id="branchID" aria-describedby="branchID"
-                                                           placeholder="">
-                                                </div>
-                                                <div class="col-md-5 ml-md-auto">
-                                                    <label for="selectedBranchName">Branch Name</label><span class="required">*</span>
-                                                    <input type="text" class="form-control" ng-model="branchName" id="selectedBranchName"
-                                                           aria-describedby="selectedBranchName" placeholder="">
-                                                </div>
-                                            </div>
-        
-                                            <div class="form-row">
-                                                <div class="col-md-5">
-                                                    <label for="rdAccountNo"> RD Account Number</label><span class="required">*</span>
-                                                    <input type="text" class="form-control" ng-model="rdAccountNumber" id="selectedBranchName"
-                                                           aria-describedby="selectedBranchName" placeholder="">
-                                                </div>
-        
-                                                <div class="col-md-5 ml-md-auto">
-                                                    <label for="selectedClientName">Client Name</label><span class="required">*</span>
-                                                    <input type="text" class="form-control" ng-model="clientName" id="selectedClientName"
-                                                           aria-describedby="selectedClientName" placeholder="">
-                                                </div>
-                                            </div>
-        
-                                            <div class="form-row">
-                                                <div class="col-md-5">
-                                                    <label for="date"> Date </label><span class="required">*</span>
-                                                    <input type="text" class="form-control" id="date" ng-model="dateOfDefault" aria-describedby="date"
-                                                           placeholder=" Date of Default">
-                                                </div>
-        
-                                                <div class="col-md-5 ml-md-auto">
-                                                    <label for="callingDate">Calling Date</label><span class="required">*</span>
-                                                    <input type="text" class="form-control" ng-model="callingDate" id="callingDate"
-                                                           aria-describedby="callingDate" placeholder="RD Calling Date">
-                                                </div>
-                                            </div>
-        
-                                            <div class="form-row">
-                                                <div class="col-md-5">
-                                                    <label for="callEmpId"> Employee ID</label><span class="required">*</span>
-                                                    <input type="text" class="form-control" ng-model="calledByEmployeeId" id="callEmpId" aria-describedby="callEmpId"
-                                                           placeholder="Called by Employee ID">
-                                                </div>
-        
-                                                <div class="col-md-5 ml-md-auto">
-                                                    <label for="callingDate"> Employee Name </label><span class="required">*</span>
-                                                    <input type="text" class="form-control" ng-model="calledByEmployeeName" id="callingDate"
-                                                           aria-describedby="callingDate" placeholder=" Called by Employee Name">
-                                                </div>
-                                            </div>
-        
-                                            <div class="from-group mt-3">
-                                                <label for="reasonOfRD"> Reason of RD Default</label><span class="required">*</span>
-                                                <textarea type="text" ng-model="reasonOfRDDefault" id="reasonOfRD" class="form-control"
-                                                          placeholder="Reason of Default" rows="3"></textarea>
-                                            </div>
-        
-                                            <div class="from-group mt-3">
-                                                <label for="reasonOfRD"> Any Misappropriation case
-                                                </label>
-                                                <textarea type="text" ng-model="anyMisappropriationCase" id="misappropriationCase" class="form-control"
-                                                          placeholder="Any Misappropriation case" rows="3"></textarea>
-                                            </div>
-        
-                                            <div class="from-group mt-3">
-                                                <label for="reasonOfRD"> remarksIfAny </label>
-                                                <textarea type="text" ng-model="remarks" id="remarks" class="form-control" placeholder="Remarks if any"
-                                                          rows="3"></textarea>
-                                            </div>
-                                            <div class="mt-3 ">
-                                                <button type="submit" class="btn btn-outline-success">Update</button>
-                                                <button type="button" class="btn btn-outline-danger" ng-click="RDcloseForm()">Cancel</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> 
-        
-        
-                         Od calling List view -
-                        <div class="ODcalling row" ng-show="ODcalling">
-                            <div class="col-md-12">
-                                <h4 style="font-weight: 900;"> OD Calling List View
-        
-                                </h4>
-        
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="my-card-a">
-                                            <table class="table">
-                                                <thead class="thead-dark">
-                                                    <tr>
-                                                        <th scope="col">sr.no</th>
-                                                        <th scope="col">Region</th>
-                                                        <th scope="col">Area</th>
-                                                        <th scope="col"> Branch Name</th>
-                                                        <th scope="col"> Loan Account Number</th>
-                                                        <th scope="col"> Client Name</th>
-                                                        <th scope="col">Date of Default</th>
-                                                        <th scope="col">Calling Date</th>
-                                                        <th scope="col">called by- Employee ID</th>
-                                                        <th scope="col">called by- Employee Name</th>
-                                                        <th scope="col">Reason of DD Default</th>
-                                                        <th scope="col">Any Misappropriation case</th>
-                                                        <th scope="col">Remarks if any</th>
-                                                        <th scope="col">Filled By</th>
-                                                        <th scope="col">Modified By</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody> 
-                                                    <tr ng-repeat="odCalling in odCallingList">
-                                                        <td ng-click="getODform(odCalling.id)">{{$index + 1}}</td>
-                                                        <td >{{odCalling.id}}</td>
-                                                        <td>{{odCalling.region}}</td>
-                                                        <td>{{odCalling.branchId}}</td>
-                                                        <td>{{odCalling.branchName}}</td>
-                                                        <td>{{odCalling.loanAccountNumber}}</td>
-                                                        <td>{{odCalling.clientName}}</td>
-                                                        <td>{{odCalling.dateOfDefault}}</td>
-                                                        <td>{{odCalling.callingDate}}</td>
-                                                        <td>{{odCalling.calledByEmployeeId}}</td>
-                                                        <td>{{odCalling.calledByEmployeeName}}</td>
-                                                        <td>{{odCalling.reasonOfODDefault}}</td>
-                                                        <td>{{odCalling.anyMisappropriationCase}}</td>
-                                                        <td>{{odCalling.remarksIfAny}}</td>
-                                                        <td>{{odCalling.filledBy}}</td>
-                                                        <td>{{odCalling.modifiedBy}}</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> 
-        
-        
-                         OD calling form 
-                        <div id="ODcontainer" ng-show="odConatinerForm">
-                            <div class="row">
-                                <div class="col-md-12 mt-5">
-                                    <div class="ODcallingCard">
-                                        <form class="ODform " ng-submit="updateODform()">
-                                            <span class="closeForm" ng-click="ODcloseForm()">&times;</span>
-                                            <div class="form-row formHeader ">
-                                                <div class="ml-4">
-                                                    <h3>OD Calling Form</h3>
-                                                </div>
-                                                <div>
-                                                    <hr class="stylishLine">
-                                                </div>
-                                            </div>
-        
-                                            <div class="form-row ">
-                                                <div class="col-md-5 ">
-                                                    <label for="filledBy">Filled By</label><span class="required">*</span>
-                                                    <input type="text" class="form-control glow-effect" ng-model="filledBy" id="ODfilledBy"
-                                                           aria-describedby="filledBy" placeholder="">
-                                                    <input type="text" class="form-control glow-effect" ng-model="id" id="id"
-                                                           aria-describedby="id" placeholder="" hidden="">
-                                                </div>
-        
-                                                <div class="col-md-5 ml-auto">
-                                                    <label for="modifiedBy">Modified By</label><span class="required">*</span>
-                                                    <input type="modifiedBy" class="form-control" ng-model="modifiedBy" id="ODmodifiedBy"
-                                                           aria-describedby="modifiedBy" placeholder="">
-                                                </div>
-                                            </div>
-        
-        
-                                            <div class="form-row ">
-                                                <div class="col-md-5 ">
-                                                    <label for="selectedRegion">Region</label><span class="required">*</span>
-                                                    <input type="text" class="form-control glow-effect"  ng-model="region" id="odselectedRegion"
-                                                           aria-describedby="selectedRegion" placeholder="">
-                                                </div>
-        
-                                                <div class="col-md-5 ml-auto">
-                                                    <label for="selectedArea">Area</label><span class="required">*</span>
-                                                    <input type="text" class="form-control" ng-model="area" id="odselectedArea"
-                                                           aria-describedby="selectedArea" placeholder="">
-                                                </div>
-                                            </div>
-        
-                                            <div class="form-row">
-                                                <div class="col-md-5">
-                                                    <label for="branchID">Branch ID</label><span class="required">*</span>
-                                                    <input type="text" class="form-control" ng-model="branchId" id="odbranchID" aria-describedby="branchID"
-                                                           placeholder="">
-                                                </div>
-                                                <div class="col-md-5 ml-md-auto">
-                                                    <label for="selectedBranchName">Branch Name</label><span class="required">*</span>
-                                                    <input type="text" class="form-control" ng-model="branchName" id="odselectedBranchName"
-                                                           aria-describedby="selectedBranchName" placeholder="">
-                                                </div>
-                                            </div>
-        
-                                            <div class="form-row">
-                                                <div class="col-md-5">
-                                                    <label for="rdAccountNo"> Loan Account Number
-                                                    </label><span class="required">*</span>
-                                                    <input type="text" class="form-control" ng-model="loanAccountNumber" id="odLoanAccountNumber"
-                                                           aria-describedby="LoanAccountNumber" placeholder="">
-                                                </div>
-        
-                                                <div class="col-md-5 ml-md-auto">
-                                                    <label for="ClientName">Client Name</label><span class="required">*</span>
-                                                    <input type="text" class="form-control" id="clientName"
-                                                           aria-describedby="ClientName" placeholder="">
-                                                </div>
-                                            </div>
-        
-                                            <div class="form-row">
-                                                <div class="col-md-5">
-                                                    <label for="date"> Date </label><span class="required">*</span>
-                                                    <input type="text" class="form-control" ng-model="dateOfDefault" id="oddate" aria-describedby="date"
-                                                           placeholder=" Date of Default">
-                                                </div>
-        
-                                                <div class="col-md-5 ml-md-auto">
-                                                    <label for="callingDate">Calling Date</label><span class="required">*</span>
-                                                    <input type="text" class="form-control" ng-model="callingDate" id="odcallingDate"
-                                                           aria-describedby="callingDate" placeholder="OD Calling Date">
-                                                </div>
-                                            </div>
-        
-                                            <div class="form-row">
-                                                <div class="col-md-5">
-                                                    <label for="callEmpId"> Employee ID</label><span class="required">*</span>
-                                                    <input type="text" class="form-control" ng-model="calledByEmployeeId" id="odcallEmpId" aria-describedby="callEmpId"
-                                                           placeholder="Called by Employee ID">
-                                                </div>
-        
-                                                <div class="col-md-5 ml-md-auto">
-                                                    <label for="callingDate"> Employee Name </label><span class="required">*</span>
-                                                    <input type="text" class="form-control" ng-model="calledByEmployeeName" id="odcallEmpName"
-                                                           aria-describedby="callingDate" placeholder=" Called by Employee Name">
-                                                </div>
-                                            </div>
-        
-                                            <div class="from-group mt-3">
-                                                <label for="reasonOfRD"> Reason of OD Default</label><span class="required">*</span>
-                                                <textarea type="text"  ng-model="reasonOfODDefault" id="reasonOfODDefault" class="form-control"
-                                                          placeholder="Reason of Default" rows="3"></textarea>
-                                            </div>
-        
-                                            <div class="from-group mt-3">
-                                                <label for="reasonOfRD"> Any Misappropriation case
-                                                </label>
-                                                <textarea type="text" ng-model="anyMisappropriationCase" id="odmisappropriationCase" class="form-control"
-                                                          placeholder="Any Misappropriation case" rows="3"></textarea>
-                                            </div>
-        
-                                            <div class="from-group mt-3">
-                                                <label for="reasonOfRD"> Remarks</label>
-                                                <textarea type="text" ng-model="remarksIfAny" id="odremarks" class="form-control" placeholder="Remarks if any"
-                                                          rows="3"></textarea>
-                                            </div>
-                                            <div class="mt-3 ">
-                                                <button type="submit" class="btn btn-outline-success">Update</button>
-                                                <button type="button" class="btn btn-outline-danger" ng-click="ODcloseForm()">Cancel</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> 
-        
-        
-                        - Insuarance tracker List view 
-                        <div class="insuranceTracker row" ng-show="InsuranceTracker">
-                            <div class="col-md-12">
-                                <h4 style="font-weight: 900;"> Insurance Tracker List View
-                                </h4>
-        
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="my-card-a">
-                                            <table class="table">
-        
-                                                <thead class="thead-dark">
-                                                    <tr>
-                                                        <th scope="col">sr.no</th>
-                                                        <th scope="col">Region</th>
-                                                        <th scope="col">Branch Code</th>
-                                                        <th scope="col"> Branch Name</th>
-                                                        <th scope="col"> CLAIM ID
-                                                        </th>
-                                                        <th scope="col">Center Name
-                                                        </th>
-                                                        <th scope="col"> Center ID</th>
-                                                        <th scope="col">Account Id
-                                                        </th>
-                                                        <th scope="col">Disbursement Date
-                                                        </th>
-                                                        <th scope="col">Client Name
-                                                        </th>
-                                                        <th scope="col">Nominee Name
-                                                        </th>
-                                                        <th scope="col">Death Client Name /Demise Client Name
-                                                        </th>
-                                                        <th scope="col">Disbursement Amount
-                                                        </th>
-                                                        <th scope="col">EMI Day
-                                                        </th>
-                                                        <th scope="col">Date of Death
-                                                        </th>
-                                                        <th scope="col">Death Reasion/ Demise Reasion
-                                                        </th>
-                                                        <th scope="col">Paid EMI
-                                                        </th>
-                                                        <th scope="col">Loan Outstanding Amt
-                                                        </th>
-                                                        <th scope="col">OTS Amt
-                                                        </th>
-                                                        <th scope="col">Claim Settelment Amt
-                                                        </th>
-                                                        <th scope="col">Member Handover Amount
-                                                        </th>
-                                                        <th scope="col">Claim Status
-                                                        </th>
-                                                        <th scope="col">Remarks
-                                                        </th>
-                                                        <th scope="col">True cell punching date
-                                                        </th>
-                                                        <th scope="col">Dated of DOC Received Fom Member
-                                                        </th>
-                                                        <th scope="col">Dated of send DOC to HO
-                                                        </th>
-                                                        <th scope="col">Dated of send DOC TO KOTAK
-                                                        </th>
-                                                        <th scope="col">Date of Settelment by Kotak
-                                                        </th>
-                                                        <th scope="col">Account Close date by Branch
-                                                        </th>
-                                                        <th scope="col">Incentive received in month
-                                                        </th>
-                                                        <th scope="col">Filled By</th>
-                                                        <th scope="col">Modified By</th>
-                                                    </tr>
-                                                </thead>
-        
-                                                <tbody>
-                                                    <tr ng-repeat="iTtracker in iTtrackerList"></tr>
-                                                <td ng-click="getITform(iTtracker.id)">{{$index + 1}}</td>
-                                                <td>{{iTtracker.region}}</td>
-                                                <td>{{iTtracker.branchCode}}</td>
-                                                <td>{{iTtracker.branchName}}</td>
-                                                <td>{{iTtracker.claimId}}</td>
-                                                <td>{{iTtracker.centerId}}</td>
-                                                <td>{{iTtracker.centerName}}</td>
-                                                <td>{{iTtracker.clientId}}</td>
-                                                <td>{{iTtracker.accountId}}</td>
-                                                <td>{{iTtracker.disbursementDate}}</td>
-                                                <td>{{iTtracker.clientName}}</td>
-                                                <td>{{iTtracker.nomineeName}}</td>
-                                                <td>{{iTtracker.deathClientName}}</td>
-                                                <td>{{iTtracker.disbursementAmount}}</td>
-                                                <td>{{iTtracker.emiDay}}</td>
-                                                <td>{{iTtracker.dateOfDeath}}</td>
-                                                <td>{{iTtracker.deathReasion}}</td>
-                                                <td>{{iTtracker.paidEmi}}</td>
-                                                <td>{{iTtracker.loanOutstandingAmt}}</td>
-                                                <td>{{iTtracker.otsAmt}}</td>
-                                                <td>{{iTtracker.claimSettelmentAmt}}</td>
-                                                <td>{{iTtracker.memberHandoverAmount}}</td>
-                                                <td>{{iTtracker.claimStatus}}</td>
-                                                <td>{{iTtracker.remarks}}</td>
-                                                <td>{{iTtracker.trueCellPunchingDate}}</td>
-                                                <td>{{iTtracker.datedOfDOCReceivedFromMember}}</td>
-                                                <td>{{iTtracker.dateOfSendToHo}}</td>
-                                                <td>{{iTtracker.dateOfSendDocToKotak}}</td>
-                                                <td>{{iTtracker.dateOfSettelmentByKotak}}</td>
-                                                <td>{{iTtracker.accountCloseDateByBranch}}</td>
-                                                <td>{{iTtracker.incentiveReceivedInMonth}}</td>
-                                                <td>{{iTtracker.filledBy}}</td>
-                                                <td>{{iTtracker.modifiedBy}}</td>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-        
-        
-        
-                         Insurance Tracker Form 
-                        <div id="InsuaranceTrackerContainer" ng-show="insuranceTrackerForm">
-                            <div class="row">
-                                <div class="col-md-12 mt-5">
-                                    <div class="InsuaranceTrackerCard">
-                                        <form class="InsuaranceTrackerform " ng-submit="updateITform()">
-                                            <span class="closeForm" ng-click="ITcloseForm()">&times;</span>
-                                            <div class="form-row formHeader ">
-                                                <div class="ml-4">
-                                                    <h3>Insuarance Tracker Form</h3>
-                                                </div>
-                                                <div>
-                                                    <hr class="stylishLinex">
-                                                </div>
-                                            </div>
-        
-        
-                                            <div class="form-row ">
-                                                <div class="col-md-5 ">
-                                                    <label for="filledBy">Filled By</label><span class="required">*</span>
-                                                    <input type="text" class="form-control glow-effect" ng-model="filledBy" id="ITfilledBy"
-                                                           aria-describedby="filledBy" placeholder="" required="">
-                                                    <input type="text" class="form-control glow-effect" ng-model="id" id="id"
-                                                           aria-describedby="id" placeholder="" hidden="">
-                                                </div>
-        
-                                                <div class="col-md-5 ml-auto">
-                                                    <label for="modifiedBy">Modified By</label><span class="required">*</span>
-                                                    <input type="modifiedBy" class="form-control" ng-model="modifiedBy" id="ITmodifiedBy"
-                                                           aria-describedby="modifiedBy" placeholder="" required="">
-                                                </div>
-                                            </div>
-        
-                                            <div class="form-row ">
-                                                <div class="col-md-5 ">
-                                                    <label for="selectedRegion">Region</label><span class="required">*</span>
-                                                    <input type="text" class="form-control glow-effect" ng-model="region" id="iTselectedRegion"
-                                                           aria-describedby="selectedRegion" placeholder="" required="">
-                                                </div>
-        
-                                                <div class="col-md-5 ml-auto">
-                                                    <label for="selectedArea">Branch Code</label><span class="required">*</span>
-                                                    <input type="text" class="form-control"  ng-model="branchCode" id="iTselectBranch"
-                                                           aria-describedby="branch-code" placeholder="" required="">
-                                                </div>
-                                            </div>
-        
-                                            <div class="form-row">
-        
-                                                <div class="col-md-5 ">
-                                                    <label for="selectedBranchName">Branch Name</label><span class="required">*</span>
-                                                    <input type="text" class="form-control" ng-model="branchName" id="iTselectedBranchName"
-                                                           aria-describedby="selectedBranchName" placeholder="" required="">
-                                                </div>
-        
-                                                <div class="col-md-5 ml-md-auto">
-                                                    <label for="claimID">Claim ID</label><span class="required">*</span>
-                                                    <input type="text" class="form-control" ng-model="claimId" id="odclaimID" aria-describedby="claimID"
-                                                           placeholder="" required="">
-                                                </div>
-        
-                                            </div>
-        
-                                            <div class="form-row">
-                                                <div class="col-md-5">
-                                                    <label for="centerID"> Center ID
-                                                    </label><span class="required">*</span>
-                                                    <input type="text" class="form-control" ng-model="centerId" id="iTcenterID" aria-describedby="CenterID"
-                                                           placeholder="" required="">
-                                                </div>
-        
-                                                <div class="col-md-5 ml-md-auto">
-                                                    <label for="selectedCenterName">Center Name</label><span class="required">*</span>
-                                                    <input type="text" class="form-control" ng-model="centerName" id="iTselectedCenterName"
-                                                           aria-describedby="selectedCenterName" placeholder="" required="">
-                                                </div>
-                                            </div>
-        
-                                            <div class="form-row">
-                                                <div class="col-md-5">
-                                                    <label for="date"> Client ID </label><span class="required">*</span>
-                                                    <input type="text" class="form-control" ng-model="clientId" id="iTclientId" aria-describedby="clientID"
-                                                           placeholder=" Date of Default" required="">
-                                                </div>
-        
-                                                <div class="col-md-5 ml-md-auto">
-                                                    <label for="callingDate">Account ID</label><span class="required">*</span>
-                                                    <input type="text" class="form-control" ng-model="accountId" id="iTaccountID"
-                                                           aria-describedby="accountId" placeholder="OD Calling Date" required="">
-                                                </div>
-                                            </div>
-        
-                                            <div class="form-row">
-                                                <div class="col-md-5">
-                                                    <label for="callEmpId"> Disbursement Date</label><span class="required">*</span>
-                                                    <input type="text" class="form-control"  ng-model="disbursementDate" id="iTdisbursementDate"
-                                                           aria-describedby="disbursementDate" placeholder="" required="">
-                                                </div>
-        
-                                                <div class="col-md-5 ml-md-auto">
-                                                    <label for="clientName"> Client Name </label><span class="required">*</span>
-                                                    <input type="text" class="form-control" ng-model="clientName" id="iTclientName"
-                                                           aria-describedby="clientName" placeholder=" " required=""> 
-                                                </div>
-                                            </div>
-        
-                                            <div class="form-row">
-                                                <div class="col-md-12 ">
-                                                    <label for="nomineeName"> Nominee Name</label><span class="required">*</span>
-                                                    <input type="text" class="form-control"  ng-model="nomineeName" id="nomineeName"
-                                                           aria-describedby="nomineeName" placeholder=" " required="">
-                                                </div>
-                                            </div>
-        
-        
-                                            <div class="form-row">
-                                                <div class="col-md-5">
-                                                    <label for="deathClientName"> Death Client Name</label><span
-                                                        class="required">*</span>
-                                                    <input type="text" class="form-control" ng-model="deathClientName" id="iTdeathClientName"
-                                                           aria-describedby="deathClientName" placeholder="" required="">
-                                                </div>
-        
-                                                <div class="col-md-5 ml-md-auto">
-                                                    <label for="disbursementAmount"> Disbursement Amount</label><span class="required">*</span>
-                                                    <input type="text" class="form-control"  ng-model="disbursementAmount" id="iTdisbursementAmount"
-                                                           aria-describedby="disbursementAmount" placeholder=" " required="">
-                                                </div>
-        
-        
-                                            </div>
-        
-        
-                                            <div class="form-row">
-                                                <div class="col-md-5">
-                                                    <label for="emi_Day"> EMI Day</label><span class="required">*</span>
-                                                    <input type="text" class="form-control" ng-model="emiDay" id="iTemi_Day"
-                                                           aria-describedby="emi_Day" placeholder="" required="">
-                                                </div>
-        
-                                                <div class="col-md-5 ml-md-auto">
-                                                    <label for="dateOfDeath"> Date of Death </label><span class="required">*</span>
-                                                    <input type="text" class="form-control" ng-model="dateOfDeath" id="iTdateOfDeath"
-                                                           aria-describedby="dateOfDeath" placeholder=" " required="">
-                                                </div>
-                                            </div>
-        
-        
-                                            <div class="form-row">
-                                                <div class="col-md-5">
-                                                    <label for="deathReasion">Death Reasion</label><span class="required">*</span>
-                                                    <input type="text" class="form-control" ng-model="deathReasion" id="iTdeathReasion"
-                                                           aria-describedby="deathReasion" placeholder="" required="">
-                                                </div>
-        
-                                                <div class="col-md-5 ml-md-auto">
-                                                    <label for="paidEMI"> Paid EMI </label><span class="required">*</span>
-                                                    <input type="text" class="form-control" ng-model="paidEmi" id="iTpaidEMI"
-                                                           aria-describedby="paidEMI" placeholder=" " required=""> 
-                                                </div>
-                                            </div>
-        
-        
-        
-                                            <div class="form-row">
-        
-        
-                                                <div class="col-md-5">
-                                                    <label for="loanOutstandingAmt">Loan Outstanding Amt</label><span class="required">*</span>
-                                                    <input type="text" class="form-control" ng-model="loanOutstandingAmt" id="loanOutstandingAmt"
-                                                           aria-describedby="loanOutstandingAmt" placeholder="" required="">
-                                                </div>
-        
-                                                <div class="col-md-5 ml-md-auto">
-                                                    <label for="OTSamt">OTS Amount</label><span class="required">*</span>
-                                                    <input type="text" class="form-control" ng-model="otsAmt" id="iTOTSamt"
-                                                           aria-describedby="OTSamt" placeholder="" required="">
-                                                </div>
-        
-                                            </div>
-        
-                                            <div class="form-row">
-        
-                                                <div class="col-md-5 ">
-                                                    <label for="claimSettlementAmt"> Claim Settlement Amount </label><span class="required">*</span>
-                                                    <input type="text" class="form-control" ng-model="claimSettelmentAmt" id="iTclaimSettlementAmt"
-                                                           aria-describedby="claimSettlementAmt" placeholder=" " required="">
-                                                </div>
-        
-                                                <div class="col-md-5 ml-md-auto">
-                                                    <label for="memberHandoverAmt">Member Handover Amount</label><span class="required">*</span>
-                                                    <input type="text" class="form-control" ng-model="memberHandoverAmount" id="iTmemberHandoverAmt"
-                                                           aria-describedby="memberHandoverAmt" placeholder="" required="">
-                                                </div>
-        
-                                            </div>
-        
-        
-                                            <div class="from-group mt-3">
-                                                <label for="remarks">Remarks</label><span class="required">*</span>
-                                                <textarea type="text" ng-model="remarks" id="iTremark" class="form-control"
-                                                          placeholder="Any remark" rows="3"></textarea>
-                                            </div>
-        
-        
-                                            <div class="form-row">
-        
-                                                <div class="col-md-5 ">
-                                                    <label for="claimSettlementAmt"> Claim Status</label><span class="required">*</span>
-                                                    <input type="text" class="form-control" ng-model="claimStatus" id="iTclaimStatus"
-                                                           aria-describedby="claimStatus" placeholder=" " required="">
-                                                </div>
-        
-                                                <div class="col-md-5 ml-md-auto">
-                                                    <label for="truecellpunchingdate">True cell punching date</label><span class="required">*</span>
-                                                    <input type="text" class="form-control" ng-model="trueCellPunchingDate" id="iTtruecellpunchingdate"
-                                                           aria-describedby="truecellpunchingdate" placeholder="">
-                                                </div>
-        
-        
-                                            </div>
-        
-                                            <div class="form-row">
-        
-                                                <div class="col-md-5 ">
-                                                    <label for="DOCReceivedFomMember"> Dated of DOC Received Fom Member</label><span class="required">*</span>
-                                                    <input type="text" class="form-control" ng-model="datedOfDOCReceivedFromMember" id="iTDOCReceivedFomMember"
-                                                           aria-describedby="DOCReceivedFomMember" placeholder=" ">
-                                                </div>
-        
-                                                <div class="col-md-5 ml-md-auto">
-                                                    <label for="sendDOCtoHO">Dated of send DOC to HO</label><span class="required">*</span>
-                                                    <input type="text" class="form-control" ng-model="datedOfSendDocToHo" id="iTsendDOCtoHO"
-                                                           aria-describedby="sendDOCtoHO" placeholder="">
-                                                </div>
-        
-        
-                                            </div>
-        
-                                            <div class="form-row">
-        
-                                                <div class="col-md-5 ">
-                                                    <label for="DocToKotak"> Dated of send DOC TO KOTAK</label><span class="required">*</span>
-                                                    <input type="text" class="form-control" ng-model="datedOfSendDocToKotak" id="iTDocToKotak"
-                                                           aria-describedby="DOCtoKOTAK" placeholder=" ">
-                                                </div>
-        
-                                                <div class="col-md-5 ml-md-auto">
-                                                    <label for="dateOfSettelmentByKotak">Date of Settelment by Kotak</label><span class="required">*</span>
-                                                    <input type="text" class="form-control" ng-model="dateOfSettelmentByKotak" id="dateOfSettelmentByKotak"
-                                                           aria-describedby="dateOfSettelmentByKotak" placeholder=" ">
-                                                </div>
-                                            </div>
-        
-        
-                                            <div class="form-row">
-                                                <div class="col-md-5">
-                                                    <label for="accountCloseDateByBranch">Account Close date by Branch</label><span class="required">*</span>
-                                                    <input type="text" class="form-control" ng-model="accountCloseDateByBranch" id="accountCloseDateByBranch"
-                                                           aria-describedby="accountCloseDateByBranch" placeholder="">
-                                                </div>
-        
-                                                <div class="col-md-5 ml-md-auto">
-                                                    <label for="incentiveReceivedInMonth"> Incentive received in month</label><span class="required">*</span>
-                                                    <input type="text" class="form-control" ng-model="incentiveReceivedInMonth" id="incentiveReceivedInMonth"
-                                                           aria-describedby="incentiveReceivedInMonth" placeholder=" ">
-                                                </div>
-                                            </div>
-        
-                                            <div class="mt-3 ">
-                                                <button type="submit" class="btn btn-outline-success">Update</button>
-                                                <button type="button" class="btn btn-outline-danger" ng-click="ITcloseForm()">Cancel</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> 
-        
-                    </div>
-                </div> 
-        
-        
-        
-            </section>
-        
-        
-             Scripts 
-            <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>-->
-
-
-
-        <!--new code-->
         <!-- Navigation Bar -->
         <nav id="navbarContainer" class=" navbarContainer container-fluid ">
             <div class="JLL-logo">
@@ -961,13 +54,6 @@
                 </a>
             </div>
             <div class="navBarButton">
-                <div class="fixedDiv">
-                    <a id="notification-button" class="navbar-button notification-button mt-1"
-                       ng-click="notificationButton()">
-                        <img src="images/bell.png" alt="bell_icon" height="20px" width="20px">
-                        <span class="notification-count" ng-show="notificationCount > 0"></span>
-                    </a>
-                </div>
                 <div class="fixedDiv">
                     <a id="help-button" class="navbar-button mt-1" ng-click="helpButton()">
                         <img src="images/question.png" alt="help_icon" height="20px" width="20px">
@@ -982,38 +68,41 @@
         </nav>
 
         <div id="main">
-            <i class="fa-solid fa-bars oneSideBar" ng-click="openSideBar()"></i>
+            <img class="close-icon" ng-click="openSideBar()" src="images/menu-bar.png" alt=""/>
         </div>
 
         <!-- side Bar -->
         <div>
-            <div id="sidebar" ng-style="{
-                'width': sidebarWidth}">
+            <div id="sidebar" ng-style="{'width': sidebarWidth}">
 
-                <a href="#" ng-click="closeSidebar()" class="close-button">
-                    <i class="fa-solid fa-xmark"></i>
+                <a ng-click="closeSidebar()" class="close-button">
+                    <img class="close-icon" src="images/close.png" alt=""/>
                 </a>
                 <a ng-click="rdCalling()" ng-show="sidebarWidth >= '200px'">
-                    <i class="fa-solid fa-phone"><span>RD Calling</span></i>
+                    <i><img class="list-icon" src="images/rd-calling.png" alt=""/>
+                        <span>RD Calling</span></i>
                 </a>
 
                 <a ng-click="odCalling()" ng-show="sidebarWidth >= '200px'">
-                    <i class="fa-solid fa-phone"><span>OD Calling</span></i>
+                    <i><img class="list-icon" src="images/rd-calling.png" alt=""/>
+                        <span>OD Calling</span></i>
                 </a>
 
                 <a ng-click="insuranceTracker()" ng-show="sidebarWidth >= '200px'">
-                    <i class="fa-solid fa-building-columns"><span>Insurance Tracker</span></i>
+                    <i><img class="list-icon" src="images/it.png" alt=""/>
+                        <span>Insurance Tracker</span></i>
                 </a>
 
                 <a ng-click="helpButton()" ng-show="sidebarWidth >= '100px'">
-                    <i class="fa-solid fa-question"><span>Help</span></i>
+                    <i><img class="list-icon" src="images/question-sidebar.png" alt=""/><span>Help</span></i>
                 </a>
 
                 <a ng-click="profile_View()" ng-show="sidebarWidth >= '200px'">
-                    <i class="fa-solid fa-user"><span>Your Profile</span></i>
+                    <i><img class="list-icon" src="images/profile-icon.png" alt=""/><span>Your Profile</span></i>
                 </a>
+
                 <a ng-click="logout()" ng-show="sidebarWidth >= '200px'">
-                    <i class="fa-solid fa-right-from-bracket"><span>Log out</span></i>
+                    <i><img class="list-icon" src="images/logout-icon.png" alt=""/><span>Log out</span></i>
                 </a>
                 <hr>
             </div>
@@ -1025,7 +114,6 @@
             <div class="navPopup">
                 <div class="profile-card" ng-show="profileCard">
                     <div class="row">
-
                         <div class="aba col-12 justify-content-center align-items-center">
                             <a href="#" ng-click="profile_View()" class="profileButton"><span>{{userRecord.userName}}</span></a>
                         </div>
@@ -1034,21 +122,10 @@
                             <button id="logoutButton" type="button" value="logout" ng-click="logout()">
                                 <span style="font-weight: 600;">Logout</span>
                                 <span style="margin-left: 160px; ">
-                                    <i class="fa-solid fa-right-from-bracket"></i>
+                                    <img class="list-icon" src="images/logout-icon.png" alt=""/>
                                 </span>
                             </button>
                         </div>
-
-                    </div>
-                </div>
-
-                <!-- pop-up for notification -->
-                <div class="notification-card" ng-show="notificationCard">
-                    <div class="popUp-header">
-                        <label class="popUp-label">Notification</label>
-                        <a type="button" class="close" aria-label="Close" ng-click="closePopup()">
-                            <span aria-hidden="true">&times;</span>
-                        </a>
                     </div>
                 </div>
 
@@ -1082,7 +159,9 @@
                                 </button>
                             </div>
                             <div class="form-group has-search ml-md-auto">
-                                <span class="fa fa-search form-control-feedback"></span>
+                                <span class="form-control-feedback">
+                                    <img class="list-icon" src="images/search_bar.png" alt=""/>
+                                </span>
                                 <input  type="text" class="form-controlx" placeholder="Search" ng-model="searchRD">
                             </div>
                         </div>
@@ -1147,7 +226,7 @@
                     <div class="row">
                         <div class="col-md-12 mt-5">
                             <div class="RDcallingCard">
-                                <form class="RDform " ng-submit="submitRDform()">
+                                <form id="rdForm" class="RDform " ng-submit="submitRDform()">
                                     <span class="closeForm" ng-click="RDcloseForm()">&times;</span>
                                     <div class="form-row formHeader ">
                                         <div class="ml-4">
@@ -1157,18 +236,20 @@
                                             <hr class="stylishLine">
                                         </div>
                                     </div>
+
                                     <div class="form-row ">
                                         <div class="col-md-5 " ng-show="rdFormfilledBy">
                                             <label for="filledBy">Filled By</label><span class="required">*</span>
                                             <input type="text" class="form-control glow-effect" ng-model="filledBy" ng-disabled="rddisabledFD"
-                                                   id="RDfilledBy" aria-describedby="filledBy" placeholder="">
+                                                   id="RDfilledBy" aria-describedby="filledBy" placeholder="" >
                                             <input type="text" class="form-control glow-effect" ng-model="id" id="id"
                                                    aria-describedby="id" placeholder="" hidden="">
                                         </div>
+
                                         <div class="col-md-5 ml-auto" ng-show="rdFormModifiedBy">
                                             <label for="modifiedBy">Modified By</label><span class="required">*</span>
                                             <input type="modifiedBy" class="form-control" ng-model="modifiedBy" ng-disabled="rddisabledMD"
-                                                   id="RDmodifiedBy" aria-describedby="modifiedBy" placeholder="">
+                                                   id="RDmodifiedBy" aria-describedby="modifiedBy" placeholder="" >
                                         </div>
                                     </div>
                                     <div class="form-row ">
@@ -1257,6 +338,7 @@
                         </div>
                     </div>
                 </div> 
+
                 <!-- Od calling List view --->
                 <div class="ODcalling row" ng-show="ODcalling">
                     <div class="col-md-12">
@@ -1270,8 +352,10 @@
                                 </button>
                             </div>
                             <div class="form-group has-search ml-md-auto">
-                                <span class="fa fa-search form-control-feedback"></span>
-                                <input  type="text" class="form-controlx" placeholder="Search" ng-model="searchOD">
+                                <span class="form-control-feedback">
+                                    <img class="list-icon" src="images/search_bar.png" alt=""/>
+                                </span>
+                                <input  type="text" class="form-controlx" placeholder="Search"  ng-model="searchOD">
                             </div>
                         </div>
                         <div class="row">
@@ -1328,12 +412,13 @@
                     </div>
                 </div> 
 
+
                 <!-- OD calling form -->
                 <div id="ODcontainer" ng-show="odConatinerForm">
                     <div class="row">
                         <div class="col-md-12 mt-5">
                             <div class="ODcallingCard">
-                                <form class="ODform " ng-submit="submitODform()">
+                                <form id="odForm" class="ODform " ng-submit="submitODform()">
                                     <span class="closeForm" ng-click="ODcloseForm()">&times;</span>
                                     <div class="form-row formHeader ">
                                         <div class="ml-4">
@@ -1343,15 +428,17 @@
                                             <hr class="stylishLine">
                                         </div>
                                     </div>
+
                                     <div class="form-row ">
                                         <div class="col-md-5 " ng-show="odFormfilledBy">
                                             <label for="filledBy">Filled By</label><span class="required">*</span>
                                             <input type="text" class="form-control glow-effect" ng-model="filledBy" ng-disabled="oddisabledFD"
-                                                   id="ODfilledBy" aria-describedby="filledBy" placeholder="">
+                                                   id="ODfilledBy" aria-describedby="filledBy" placeholder="" >
                                             <input type="text" class="form-control glow-effect" ng-model="id" id="id"
                                                    aria-describedby="id" placeholder="" hidden="">
                                         </div>
-                                        <div class="col-md-5 ml-auto" ng-show="odFormModifiedBy">
+
+                                        <div class="col-md-5 ml-auto"  ng-show="odFormModifiedBy">
                                             <label for="modifiedBy">Modified By</label><span class="required">*</span>
                                             <input type="modifiedBy" class="form-control" ng-model="modifiedBy" ng-disabled="oddisabledMD"
                                                    id="ODmodifiedBy" aria-describedby="modifiedBy" placeholder="">
@@ -1450,7 +537,7 @@
                     <div class="col-md-12">
                         <div class="d-flex flex-row">
                             <div>
-                                <h4 style="font-weight: 900;"> Insurance Tracker</h4>
+                                <h4 style="font-weight: 900;"> Insurance Tracker </h4>
                             </div>
                             <div class="ml-2">
                                 <button class="excel" id="eteinsuranceTracker" ng-click="exportToExcelIT()">
@@ -1458,7 +545,9 @@
                                 </button>
                             </div>
                             <div class="form-group has-search ml-md-auto">
-                                <span class="fa fa-search form-control-feedback"></span>
+                                <span class="form-control-feedback">
+                                    <img class="list-icon" src="images/search_bar.png" alt=""/>
+                                </span>
                                 <input  type="text" class="form-controlx" placeholder="Search" ng-model="searchIT">
                             </div>
                         </div>
@@ -1557,7 +646,7 @@
                     <div class="row">
                         <div class="col-md-12 mt-5">
                             <div class="InsuaranceTrackerCard">
-                                <form class="InsuaranceTrackerform " ng-submit="submitITform()">
+                                <form id="itForm" class="InsuaranceTrackerform " ng-submit="submitITform()">
                                     <span class="closeForm" ng-click="ITcloseForm()">&times;</span>
                                     <div class="form-row formHeader ">
                                         <div class="ml-4">
@@ -1567,21 +656,25 @@
                                             <hr class="stylishLinex">
                                         </div>
                                     </div>
-                                    <div class="form-row ">
+
+
+                                    <div class="form-row " >
                                         <div class="col-md-5 " ng-show="itFormfilledBy">
                                             <label for="filledBy">Filled By</label><span class="required">*</span>
                                             <input type="text" class="form-control glow-effect" ng-model="filledBy" ng-disabled="itdisabledFD"
-                                                   id="ITfilledBy" aria-describedby="filledBy" placeholder="" required="">
+                                                   id="ITfilledBy" aria-describedby="filledBy" placeholder="" >
 
                                             <input type="text" class="form-control glow-effect" ng-model="id" id="id"
                                                    aria-describedby="id" placeholder="" hidden="">
                                         </div>
+
                                         <div class="col-md-5 ml-auto" ng-show="itFormModifiedBy">
                                             <label for="modifiedBy">Modified By</label><span class="required">*</span>
-                                            <input type="modifiedBy" class="form-control" ng-model="modifiedBy" ng-disabled="itdisabledMD"
-                                                   id="ITmodifiedBy" aria-describedby="modifiedBy" placeholder="" required="">
+                                            <input type="modifiedBy" class="form-control" ng-model="modifiedBy" ng-disabled="itdisabledMD" 
+                                                   id="ITmodifiedBy" aria-describedby="modifiedBy" placeholder="" >
                                         </div>
                                     </div>
+
                                     <div class="form-row ">
                                         <div class="col-md-5 ">
                                             <label for="selectedRegion">Region</label><span class="required">*</span>
@@ -1772,7 +865,7 @@
                             </div>
                         </div>
                     </div>
-                </div> 
+                </div>
 
                 <!-- view Profile -->
                 <div id="viewProfile" ng-show="showProfile">
@@ -1787,7 +880,7 @@
                                                     <div class="card-body">
                                                         <div class="d-flex flex-column align-items-center text-center">
                                                             <br><br>
-                                                            <img src="https://bootdey.com/img/Content/avatar/avatar7.png"
+                                                            <img src="images/avatar7.png"
                                                                  alt="Admin" class="rounded-circle p-1 bg-primary" width="150">
                                                             <div class="mt-2">
                                                                 <h6 style="color: black;">{{profileData.emp_id}}</h6>
@@ -1895,8 +988,23 @@
                 </div>
             </div>
         </section>
-        <!-- Scripts -->
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+        <script>
+                     document.getElementById('rdForm').addEventListener('keydown', function (event) {
+                         if (event.key === "Enter" && event.target.tagName !== "TEXTAREA") {
+                             event.preventDefault();
+                         }
+                     });
+                     document.getElementById('odForm').addEventListener('keydown', function (event) {
+                         if (event.key === "Enter" && event.target.tagName !== "TEXTAREA") {
+                             event.preventDefault();
+                         }
+                     });
+                     document.getElementById('itForm').addEventListener('keydown', function (event) {
+                         if (event.key === "Enter" && event.target.tagName !== "TEXTAREA") {
+                             event.preventDefault();
+                         }
+                     });
+        </script>
     </body>
 
 

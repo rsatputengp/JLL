@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Verification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .document {
+            margin-bottom: 20px;
+        }
+
+        .document-label {
+            font-weight: bold;
+        }    
+   
+  .attractive-button {
+    background-color: #91E246; 
+    color: black; 
+    border: none; 
+    padding: 6px 20px; 
+    border-radius: 5px; 
+    cursor: pointer; 
+  }
+
+  /* Add hover effect */
+  .attractive-button:hover {
+    background-color: #007bff; 
+  }
+  table {
+        border-collapse: separate;
+        border-spacing: 0 20px;
+    }
+    td, th {
+        padding: 10px; 
+    }
+    h2 {
+    background-color: #91E246; 
+    color:black;
+    padding: 25px;
+    border-radius: 5px; 
+    margin-left: -20px;
+    margin-right: -20px;
+    margin-top: -20px;
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <h2>Document Verification</h2>
+
+       <h3>Uploaded Document</h3> 
+        <!-- Applicant Name -->
+        
+        <table>
+            <tr>
+                <th>Applicant name</th>
+                <th>Account No.</th>
+                <th>Aadhar card</th>
+                <th>PAN card</th>
+                <th>Voter ID</th>
+               
+                <th>Verify</th>
+            </tr>
+            <tr >
+                <td>XYZ</td>
+                <td>926548654654</td>
+                <td><a href="/home/mansi/Downloads/images.jpeg" target="_blank">View Document</a></td>
+                <td><a href="/home/mansi/Downloads/PAN.jpg" target="_blank">View Document</a></td>
+                <td><a href="/home/mansi/Downloads/Voter ID.jpeg" target="_blank">View Document</a></td>
+               <!--<td><button onclick="verifyDocument()">Verify</button></td>-->
+             <td>
+                <button type="submit" class="form-button attractive-button">Verify</button>
+              </td>
+              
+            </tr>
+            
+            <tr>
+                <td>XYZ</td>
+                <td>926548654654</td>
+                <td><a href="/home/mansi/Downloads/images.jpeg" target="_blank">View Document</a></td>
+                <td><a href="/home/mansi/Downloads/PAN.jpg" target="_blank">View Document</a></td>
+                <td><a href="/home/mansi/Downloads/Voter ID.jpeg" target="_blank">View Document</a></td>
+               <!-- <td><button onclick="verifyDocument()">Verify</button></td>-->
+               <td>
+                <button type="submit" class="form-button attractive-button">Verify</button>
+              </td>
+            </tr>
+        </table>
+
+        <script>
+            function verifyDocument() {
+                // You can add JavaScript code here to handle document verification
+                alert("Document verification logic goes here.");
+            }
+        </script>
+    </div>
+    
+   
+</body>
+</html>

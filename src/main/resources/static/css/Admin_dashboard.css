@@ -7,10 +7,16 @@ and open the template in the editor.
     Created on : Apr 16, 2024, 5:35:33 PM
     Author     : ritik
 */
+
+body{
+    zoom: 0.9;
+    -moz-transform: scale(0.9);
+    transform-origin: 0 0;
+}
 .navbarContainer {
     display: flex;
     height: 70px;
-    border: 1px salmon solid;
+    /*    border: 1px salmon solid;*/
     background-color: white;
     flex-direction: row;
     align-items: center;
@@ -44,6 +50,15 @@ body {
     background-color: #bfe7ee !important;
 }
 
+.close-icon{
+    height: 14px;
+    width: 14px;
+}
+
+.list-icon{
+    height: 22px;
+    width: 22px;
+}
 
 .navbar-button {
     background-color: transparent;
@@ -167,7 +182,8 @@ hr {
     transition: margin-left 0.6s;
     padding: 16px;
     /*margin-left: 20px;*/
-    background-color: #4CAF50;
+    /*background-color: #4CAF50;*/
+    background-color: rgb(123, 199, 235) !important; 
 
 }
 
@@ -314,6 +330,7 @@ hr {
     border-radius: 15px;
     z-index: 12 !important;
     margin-top: 36px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
 }
 
 
@@ -324,9 +341,9 @@ hr {
     /*justify-content:flex-start;*/
     align-items: center;
     width: 100% !important;
-    border-top: 1px solid #eca400 !important;
-    border-left: 1px solid #eca400 !important;
-    border-right: 1px solid #eca400 !important;
+    border-top: 1px solid green !important;
+    /*    border-left: 1px solid #eca400 !important;
+        border-right: 1px solid #eca400 !important;*/
     z-index: 10 !important;
     height: 1400px !important;
 }
@@ -369,6 +386,50 @@ h4 {
 th {
     vertical-align: top !important;
 }
+
+.addform{
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    width: 38px;
+    height: 38px;
+    margin-left: 6px;
+    margin-right: 6px;
+    background-color: whitesmoke;
+    /* Green */
+    outline: #25B7D3 solid 2px;
+    color: white;
+    padding: 4px;
+    border-radius: 15%;
+    margin-top: -3px;
+
+}
+
+/*.addform :hover{
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    width: 36px;
+    height: 36px;
+    margin-left: 0px;
+    margin-right: 4px;
+    background-color: whitesmoke;
+    outline: white solid 2px;
+    color: white;
+    padding: 4px;
+    border-radius: 15%;
+    margin-top: -3px;
+    margin-left: -3px;
+}*/
+
+.addform-icon{
+    width: 26px;
+    height: 26px;
+    display: inline-block;
+}
+
 
 #addRDcalling , #addODcalling , #addInsuranceTracker,  #addHouseVerification ,#addCenterVisitReport, #addAuditScoringReport{
     background-color: #4CAF50;
@@ -485,38 +546,39 @@ h3{
 
 
 .form-control:focus {
-    border-color: #218838 !important; /* Dark green border when focused */
-    box-shadow: 0 0 5px #28a745 !important; /* Green glow effect when focused */
-    outline: none !important; /* Remove default focus outline */
+    border-color: #7bc7eb !important;
+    box-shadow: 0 0 6px #7bc7eb !important; 
+    outline: none !important;  
 }
 
 /* Export to excel */
 .excel {
     display: inline-block;
-    background: #14A3A1;
-    color: #fff;
+    /*background: #14A3A1;*/
+    color: #25B7D3;
     font-weight: 600;
+    font-size: 14px;
     width: auto;
-    padding: 5px 14px;
+    padding: 3px 10px;
     border-radius: 5px;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    -o-border-radius: 5px;
-    -ms-border-radius: 5px;
+    background-color: whitesmoke;
+    border: #25B7D3 solid 2px;
     cursor: pointer;
 }
 
 .excel:hover {
-    background: #479c3c;
+    border: white solid 2px;
+    background: #7bc7eb;
+    color: white;
 }
 
 /* CSS for Sreach bar  */
 
 
 .form-controlx:focus {
-    border-color: #218838; /* Dark green border when focused */
-    box-shadow: 0 0 5px #28a745; /* Green glow effect when focused */
-    outline: none; /* Remove default focus outline */
+    border-color: #014e73 !important;
+    box-shadow: 0 0 6px #095ab7 !important; 
+    outline: none !important;
 }
 
 
@@ -536,10 +598,12 @@ h3{
     pointer-events: none;
     color: #aaa;
     border-radius: 20px;
+    align-items: center;
 }
 
 
 .form-controlx {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
     display: inline-block;
     width: 100%;
     height: calc(1.5em + 0.75rem + 2px);
